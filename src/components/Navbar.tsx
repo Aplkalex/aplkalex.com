@@ -34,10 +34,10 @@ export default function Navbar() {
                     <Link href="/#about" className="text-sm text-gray-400 hover:text-white transition-colors">
                         About
                     </Link>
-                    <Link href="/#projects" className="text-sm text-gray-400 hover:text-white transition-colors">
+                    <Link href="/projects" className="text-sm text-gray-400 hover:text-white transition-colors">
                         Projects
                     </Link>
-                    <Link href="/#awards" className="text-sm text-gray-400 hover:text-white transition-colors">
+                    <Link href="/awards" className="text-sm text-gray-400 hover:text-white transition-colors">
                         Awards
                     </Link>
                     <Link
@@ -63,10 +63,10 @@ export default function Navbar() {
                     <Link href="/#about" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
                         About
                     </Link>
-                    <Link href="/#projects" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
+                    <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
                         Projects
                     </Link>
-                    <Link href="/#awards" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
+                    <Link href="/awards" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
                         Awards
                     </Link>
                     <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-lg text-white font-semibold">

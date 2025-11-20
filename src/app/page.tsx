@@ -3,7 +3,11 @@
 import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
-import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
+import Typewriter from '@/components/ui/Typewriter';
+import TechMarquee from '@/components/ui/TechMarquee';
+
+import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb } from 'react-icons/si';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -11,23 +15,41 @@ const fadeInUp = {
     transition: { duration: 0.5 }
 };
 
+const slideInLeft = {
+    initial: { opacity: 0, x: -50 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+};
+
+const slideInRight = {
+    initial: { opacity: 0, x: 50 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6, ease: "easeOut" }
+};
+
+const popIn = {
+    initial: { opacity: 0, scale: 0.9 },
+    animate: { opacity: 1, scale: 1 },
+    transition: { duration: 0.4, ease: "easeOut" }
+};
+
 const staggerContainer = {
     animate: {
         transition: {
-            staggerChildren: 0.1
+            staggerChildren: 0.05
         }
     }
 };
 
 const techStack = [
-    { name: 'Next.js', icon: <Globe size={16} /> },
-    { name: 'TypeScript', icon: <Code2 size={16} /> },
-    { name: 'React', icon: <Code2 size={16} /> },
-    { name: 'Tailwind', icon: <Code2 size={16} /> },
-    { name: 'Python', icon: <Terminal size={16} /> },
-    { name: 'Node.js', icon: <Cpu size={16} /> },
-    { name: 'MongoDB', icon: <Database size={16} /> },
-    { name: 'Cybersecurity', icon: <Shield size={16} /> },
+    { name: 'Next.js', icon: <SiNextdotjs size={16} />, color: '#ffffff' },
+    { name: 'TypeScript', icon: <SiTypescript size={16} />, color: '#3178C6' },
+    { name: 'React', icon: <SiReact size={16} />, color: '#61DAFB' },
+    { name: 'Tailwind', icon: <SiTailwindcss size={16} />, color: '#06B6D4' },
+    { name: 'Python', icon: <SiPython size={16} />, color: '#3776AB' },
+    { name: 'Node.js', icon: <SiNodedotjs size={16} />, color: '#339933' },
+    { name: 'MongoDB', icon: <SiMongodb size={16} />, color: '#47A248' },
+    { name: 'Cybersecurity', icon: <Shield size={16} />, color: '#00FF00' },
 ];
 
 export default function Home() {
@@ -37,28 +59,28 @@ export default function Home() {
             <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        initial="initial"
+                        animate="animate"
+                        variants={staggerContainer}
                     >
-                        <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-purple-300 backdrop-blur-sm">
+                        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-purple-300 backdrop-blur-sm">
                             <span className="relative flex h-2 w-2">
                                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
                                 <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
                             </span>
                             Available for collaborations
-                        </div>
-                        <h1 className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight">
+                        </motion.div>
+                        <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight">
                             Hi, I'm <span className="text-gradient">Aplkalex</span>.
-                        </h1>
-                        <h2 className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
+                        </motion.h1>
+                        <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
                             CS Student @ CUHK & UBC <br />
                             <span className="text-white font-medium">Full Stack Developer</span> & Security Enthusiast.
-                        </h2>
-                        <p className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+                        </motion.h2>
+                        <motion.p variants={fadeInUp} className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
                             I build secure, intelligent systems that solve real-world problems. Passionate about FinTech, AI, and making the web a safer place.
-                        </p>
-                        <div className="flex flex-wrap gap-4">
+                        </motion.p>
+                        <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
                             <Link
                                 href="#projects"
                                 className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform flex items-center gap-2"
@@ -71,37 +93,38 @@ export default function Home() {
                             >
                                 Contact Me
                             </Link>
-                        </div>
+                        </motion.div>
 
-                        {/* Tech Stack Mini-Grid */}
-                        <div className="mt-12 pt-8 border-t border-white/10">
+                        {/* Tech Stack Marquee */}
+                        <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-white/10 w-full max-w-[90vw] md:max-w-md lg:max-w-lg overflow-hidden">
                             <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Technologies</p>
-                            <div className="flex flex-wrap gap-3">
-                                {techStack.map((tech) => (
-                                    <div key={tech.name} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs text-gray-300 hover:border-white/30 transition-colors cursor-default">
-                                        {tech.icon}
-                                        {tech.name}
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
+                            <TechMarquee items={techStack} />
+                        </motion.div>
                     </motion.div>
 
                     {/* Visual Element / Code Block */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                         className="hidden lg:block relative"
                     >
                         <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20"></div>
-                        <GlassCard className="relative bg-black/40 font-mono text-sm overflow-hidden">
+                        <GlassCard className="relative bg-black/60 backdrop-blur-sm font-mono text-sm overflow-hidden border-white/5">
                             <div className="flex gap-2 mb-4 border-b border-white/10 pb-4">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
-                            <div className="space-y-2 text-gray-300">
+
+                            <motion.div
+                                className="space-y-2 text-gray-300"
+                                initial="initial"
+                                animate="animate"
+                                variants={{
+                                    animate: { transition: { staggerChildren: 0.1 } }
+                                }}
+                            >
                                 <div className="flex">
                                     <span className="text-purple-400 mr-2">const</span>
                                     <span className="text-yellow-200">developer</span>
@@ -109,10 +132,10 @@ export default function Home() {
                                     <span className="text-white">{'{'}</span>
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">name</span>: <span className="text-green-300">'Aplkalex'</span>,
+                                    <span className="text-blue-300">name</span>: <span className="text-green-300">'<Typewriter text="Aplkalex" delay={0.5} />'</span>,
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">role</span>: <span className="text-green-300">'Full Stack Developer'</span>,
+                                    <span className="text-blue-300">role</span>: <span className="text-green-300">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
                                 </div>
                                 <div className="pl-4">
                                     <span className="text-blue-300">education</span>: <span className="text-white">['CUHK', 'UBC']</span>,
@@ -121,66 +144,88 @@ export default function Home() {
                                     <span className="text-blue-300">passions</span>: <span className="text-white">[</span>
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'Cybersecurity'</span>,
+                                    <span className="text-green-300">'<Typewriter text="Cybersecurity" delay={1.5} />'</span>,
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'FinTech'</span>,
+                                    <span className="text-green-300">'<Typewriter text="FinTech" delay={2.0} />'</span>,
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'AI & LLMs'</span>
+                                    <span className="text-green-300">'<Typewriter text="AI & LLMs" delay={2.5} />'</span>
                                 </div>
                                 <div className="pl-4 text-white">],</div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">status</span>: <span className="text-green-300">'Building cool stuff 🚀'</span>
+                                    <span className="text-blue-300">status</span>: <span className="text-green-300">'<Typewriter text="Building cool stuff 🚀" delay={3.0} />'</span>
                                 </div>
                                 <div className="text-white">{'}'};</div>
-                            </div>
+                            </motion.div>
                         </GlassCard>
                     </motion.div>
                 </div>
             </section>
 
             {/* About Section */}
-            <section id="about">
-                <motion.div
-                    initial="initial"
-                    whileInView="animate"
-                    viewport={{ once: true }}
-                    variants={fadeInUp}
-                    className="max-w-4xl mx-auto"
-                >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-display">About Me</h2>
-                    <GlassCard className="prose prose-invert max-w-none">
-                        <p className="text-lg text-gray-300 leading-relaxed">
-                            I am a second‑year Computer Science student at <strong className="text-white">The Chinese University of Hong Kong</strong>, pursuing a double degree in Integrated BBA and a minor in Mathematics. Currently, I am studying as an exchange student at the <strong className="text-white">University of British Columbia</strong>, Vancouver.
-                        </p>
-                        <br />
-                        <p className="text-lg text-gray-300 leading-relaxed">
-                            I am passionate about <strong className="text-white">cybersecurity, financial technology, AI and LLM applications</strong>, and interdisciplinary innovations. Feel free to find me discuss security challenges, data analytics, and potential collaborations!
-                        </p>
-                        <div className="flex flex-wrap gap-2 mt-8">
-                            {['Database', 'Data Analytics', 'Finance', 'FinTech', 'Cybersecurity', 'Mental Health', 'Philosophy', 'Hong Kong History', 'Chemistry', 'Applied Maths'].map((tag) => (
-                                <span key={tag} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300">
-                                    {tag}
-                                </span>
-                            ))}
+            <section id="about" className="scroll-mt-28">
+                <div className="max-w-4xl mx-auto">
+                    <motion.h2
+                        initial="initial"
+                        whileInView="animate"
+                        viewport={{ once: true }}
+                        variants={fadeInUp}
+                        className="text-3xl md:text-4xl font-bold mb-12 text-center font-display"
+                    >
+                        About Me
+                    </motion.h2>
+                    <GlassCard className="overflow-hidden">
+                        <div className="grid md:grid-cols-3 gap-8">
+                            <motion.div
+                                className="md:col-span-2 prose prose-invert max-w-none"
+                                initial="initial"
+                                whileInView="animate"
+                                viewport={{ once: true }}
+                                variants={slideInLeft}
+                            >
+                                <p className="text-lg text-gray-300 leading-relaxed">
+                                    I am a second‑year Computer Science student at <strong className="text-white">The Chinese University of Hong Kong</strong>, pursuing a double degree in Integrated BBA and a minor in Mathematics. Currently, I am studying as an exchange student at the <strong className="text-white">University of British Columbia</strong>, Vancouver.
+                                </p>
+                                <br />
+                                <p className="text-lg text-gray-300 leading-relaxed">
+                                    I am passionate about <strong className="text-white">cybersecurity, financial technology, AI and LLM applications</strong>, and interdisciplinary innovations. Feel free to find me discuss security challenges, data analytics, and potential collaborations!
+                                </p>
+                            </motion.div>
+                            <motion.div
+                                className="flex flex-wrap content-start gap-2"
+                                initial="initial"
+                                whileInView="animate"
+                                viewport={{ once: true }}
+                                variants={staggerContainer}
+                            >
+                                {['Database', 'Data Analytics', 'Finance', 'FinTech', 'Cybersecurity', 'Mental Health', 'Philosophy', 'Hong Kong History', 'Chemistry', 'Applied Maths'].map((tag) => (
+                                    <motion.span
+                                        key={tag}
+                                        variants={popIn}
+                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300"
+                                    >
+                                        {tag}
+                                    </motion.span>
+                                ))}
+                            </motion.div>
                         </div>
                     </GlassCard>
-                </motion.div>
+                </div>
             </section>
 
             {/* Projects Section */}
-            <section id="projects">
+            <section id="projects" className="scroll-mt-28">
                 <motion.div
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
                     variants={staggerContainer}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-display">Featured Projects</h2>
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-display">Featured Project</h2>
+                    <div className="max-w-2xl mx-auto">
                         {/* Project 1: Queuesis */}
-                        <motion.div variants={fadeInUp}>
+                        <motion.div variants={popIn}>
                             <GlassCard className="h-full flex flex-col">
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-xl font-bold font-display">Queuesis</h3>
@@ -194,10 +239,13 @@ export default function Home() {
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">TypeScript</span>
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Tailwind</span>
                                 </div>
-                                <div className="flex gap-4 mt-auto">
+                                <div className="flex gap-4 mt-auto flex-wrap">
                                     <Link href="/queuesis" className="text-sm font-semibold hover:text-white text-gray-300 flex items-center gap-1">
                                         View Details <ArrowRight size={14} />
                                     </Link>
+                                    <a href="https://queuesis.aplkalex.com" target="_blank" className="text-sm hover:text-white text-gray-300 flex items-center gap-1">
+                                        <ExternalLink size={14} /> Live
+                                    </a>
                                     <a href="https://github.com/Aplkalex/Queuesis" target="_blank" className="text-sm hover:text-white text-gray-300 flex items-center gap-1">
                                         <Github size={14} /> Code
                                     </a>
@@ -205,91 +253,36 @@ export default function Home() {
                             </GlassCard>
                         </motion.div>
 
-                        {/* Project 2: uPals */}
-                        <motion.div variants={fadeInUp}>
-                            <GlassCard className="h-full flex flex-col">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-xl font-bold font-display">CUHK uPals</h3>
-                                    <span className="text-xs text-gray-500 border border-white/10 px-2 py-1 rounded">Feb 2025 - Present</span>
-                                </div>
-                                <p className="text-gray-400 text-sm mb-6 flex-grow">
-                                    Promoted mental health awareness and emotional wellbeing. Organized outreach events and provided peer support.
-                                </p>
-                                <div className="flex gap-2 mb-6 flex-wrap">
-                                    <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Communication</span>
-                                    <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Mental Health</span>
-                                </div>
-                            </GlassCard>
-                        </motion.div>
-
-                        {/* Project 3: Carrie */}
-                        <motion.div variants={fadeInUp}>
-                            <GlassCard className="h-full flex flex-col">
-                                <div className="flex justify-between items-start mb-4">
-                                    <h3 className="text-xl font-bold font-display">Carrie - AI Therapy</h3>
-                                    <span className="text-xs text-gray-500 border border-white/10 px-2 py-1 rounded">Oct 2025</span>
-                                </div>
-                                <p className="text-gray-400 text-sm mb-6 flex-grow">
-                                    <strong>Best Use of ElevenLabs @ StormHacks 2025</strong>. AI peer counselor integrating computer vision and speech-to-text.
-                                </p>
-                                <div className="flex gap-2 mb-6 flex-wrap">
-                                    <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">AI</span>
-                                    <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">LiveKit</span>
-                                </div>
-                            </GlassCard>
-                        </motion.div>
+                        <div className="mt-12 text-center">
+                            <Link href="/projects" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
+                                View All Projects <ArrowRight size={16} />
+                            </Link>
+                        </div>
                     </div>
                 </motion.div>
             </section>
 
             {/* Awards Section */}
-            <section id="awards">
+            <section id="awards" className="scroll-mt-28">
                 <motion.div
                     initial="initial"
                     whileInView="animate"
                     viewport={{ once: true }}
                     variants={staggerContainer}
-                    className="max-w-4xl mx-auto"
+                    className="max-w-4xl mx-auto text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-display">Awards & Honors</h2>
-                    <div className="space-y-6">
-                        {[
-                            {
-                                date: 'Aug 2025',
-                                title: 'Cyber Attack and Defence Elite Training cum Tournament 2025',
-                                award: 'Merit Award',
-                                desc: 'Executed attack strategies (SQLi, XSS) and coordinated defensive posture.'
-                            },
-                            {
-                                date: 'Apr 2025',
-                                title: 'GenAI Application in Financial Services',
-                                award: '2nd Runner Up',
-                                desc: 'Led the design of a prototype integrating GenAI APIs for real-time financial insights.'
-                            },
-                            {
-                                date: 'Dec 2022',
-                                title: 'Inter-School Cybersecurity Competition 2022',
-                                award: 'Medallion',
-                                desc: 'Gained hands-on experience with AWS (EC2, IAM, S3) and solved cybersecurity challenges.'
-                            }
-                        ].map((item, i) => (
-                            <motion.div key={i} variants={fadeInUp}>
-                                <GlassCard className="flex flex-col md:flex-row gap-6 items-start">
-                                    <div className="min-w-[100px] text-gray-500 font-display pt-1">{item.date}</div>
-                                    <div>
-                                        <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                                        <span className="inline-block px-2 py-1 bg-white/10 rounded text-xs text-white mb-3">{item.award}</span>
-                                        <p className="text-gray-400 text-sm">{item.desc}</p>
-                                    </div>
-                                </GlassCard>
-                            </motion.div>
-                        ))}
-                    </div>
+                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center font-display">Awards & Honors</h2>
+                    <p className="text-gray-400 mb-8">
+                        I have participated in various hackathons and competitions. Check out my achievements!
+                    </p>
+                    <Link href="/awards" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
+                        View All Awards <ArrowRight size={16} />
+                    </Link>
                 </motion.div>
             </section>
 
             {/* Contact Section */}
-            <section id="contact" className="text-center">
+            <section id="contact" className="text-center scroll-mt-28">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
@@ -301,14 +294,24 @@ export default function Home() {
                     <p className="text-gray-400 mb-10">
                         I'm always open to discussing security challenges, data analytics, and potential collaborations.
                     </p>
-                    <a
-                        href="mailto:contact@aplkalex.com"
-                        className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform"
-                    >
-                        Get in Touch
-                    </a>
+                    <div className="flex justify-center gap-6">
+                        <a
+                            href="mailto:contact@aplkalex.com"
+                            className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform"
+                        >
+                            Get in Touch
+                        </a>
+                        <a
+                            href="https://www.linkedin.com/in/ka-hei-wong-5a5322309/"
+                            target="_blank"
+                            className="inline-flex items-center gap-2 px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:scale-105 transition-transform"
+                        >
+                            <Linkedin size={20} /> LinkedIn
+                        </a>
+                    </div>
                 </motion.div>
             </section>
         </div>
     );
 }
+
