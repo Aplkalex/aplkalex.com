@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface TypewriterProps {
     text: string;
@@ -12,7 +12,7 @@ export default function Typewriter({ text, delay = 0, className }: TypewriterPro
     // Split text into characters (using Array.from to handle emojis correctly)
     const characters = Array.from(text);
 
-    const container = {
+    const container: Variants = {
         hidden: { opacity: 0 },
         visible: (i: number = 1) => ({
             opacity: 1,
@@ -20,7 +20,7 @@ export default function Typewriter({ text, delay = 0, className }: TypewriterPro
         })
     };
 
-    const child = {
+    const child: Variants = {
         visible: {
             opacity: 1,
             display: 'inline-block',
