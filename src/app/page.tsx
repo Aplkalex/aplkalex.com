@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
-import { ArrowRight, Github, ExternalLink } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield } from 'lucide-react';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -19,42 +19,125 @@ const staggerContainer = {
     }
 };
 
+const techStack = [
+    { name: 'Next.js', icon: <Globe size={16} /> },
+    { name: 'TypeScript', icon: <Code2 size={16} /> },
+    { name: 'React', icon: <Code2 size={16} /> },
+    { name: 'Tailwind', icon: <Code2 size={16} /> },
+    { name: 'Python', icon: <Terminal size={16} /> },
+    { name: 'Node.js', icon: <Cpu size={16} /> },
+    { name: 'MongoDB', icon: <Database size={16} /> },
+    { name: 'Cybersecurity', icon: <Shield size={16} /> },
+];
+
 export default function Home() {
     return (
         <div className="container mx-auto px-6 space-y-32 pb-20">
             {/* Hero Section */}
-            <section id="hero" className="min-h-[80vh] flex flex-col justify-center items-center text-center relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="max-w-4xl mx-auto"
-                >
-                    <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-gray-300 backdrop-blur-sm">
-                        Cybersecurity • FinTech • AI
-                    </div>
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight">
-                        Innovating at the Intersection of <br />
-                        <span className="text-gradient">Tech & Finance</span>
-                    </h1>
-                    <p className="text-xl text-gray-400 mb-10 max-w-2xl mx-auto leading-relaxed">
-                        Computer Science student at CUHK & UBC. Passionate about building secure, intelligent systems that solve real-world problems.
-                    </p>
-                    <div className="flex gap-4 justify-center">
-                        <Link
-                            href="#projects"
-                            className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform flex items-center gap-2"
-                        >
-                            View Work <ArrowRight size={18} />
-                        </Link>
-                        <Link
-                            href="#about"
-                            className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
-                        >
-                            More About Me
-                        </Link>
-                    </div>
-                </motion.div>
+            <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
+                    <motion.div
+                        initial={{ opacity: 0, x: -30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                    >
+                        <div className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-purple-300 backdrop-blur-sm">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                            </span>
+                            Available for collaborations
+                        </div>
+                        <h1 className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight">
+                            Hi, I'm <span className="text-gradient">Aplkalex</span>.
+                        </h1>
+                        <h2 className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
+                            CS Student @ CUHK & UBC <br />
+                            <span className="text-white font-medium">Full Stack Developer</span> & Security Enthusiast.
+                        </h2>
+                        <p className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+                            I build secure, intelligent systems that solve real-world problems. Passionate about FinTech, AI, and making the web a safer place.
+                        </p>
+                        <div className="flex flex-wrap gap-4">
+                            <Link
+                                href="#projects"
+                                className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform flex items-center gap-2"
+                            >
+                                View Work <ArrowRight size={18} />
+                            </Link>
+                            <Link
+                                href="#contact"
+                                className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
+                            >
+                                Contact Me
+                            </Link>
+                        </div>
+
+                        {/* Tech Stack Mini-Grid */}
+                        <div className="mt-12 pt-8 border-t border-white/10">
+                            <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Technologies</p>
+                            <div className="flex flex-wrap gap-3">
+                                {techStack.map((tech) => (
+                                    <div key={tech.name} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-md text-xs text-gray-300 hover:border-white/30 transition-colors cursor-default">
+                                        {tech.icon}
+                                        {tech.name}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </motion.div>
+
+                    {/* Visual Element / Code Block */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+                        className="hidden lg:block relative"
+                    >
+                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20"></div>
+                        <GlassCard className="relative bg-black/40 font-mono text-sm overflow-hidden">
+                            <div className="flex gap-2 mb-4 border-b border-white/10 pb-4">
+                                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                            </div>
+                            <div className="space-y-2 text-gray-300">
+                                <div className="flex">
+                                    <span className="text-purple-400 mr-2">const</span>
+                                    <span className="text-yellow-200">developer</span>
+                                    <span className="text-white mx-2">=</span>
+                                    <span className="text-white">{'{'}</span>
+                                </div>
+                                <div className="pl-4">
+                                    <span className="text-blue-300">name</span>: <span className="text-green-300">'Aplkalex'</span>,
+                                </div>
+                                <div className="pl-4">
+                                    <span className="text-blue-300">role</span>: <span className="text-green-300">'Full Stack Developer'</span>,
+                                </div>
+                                <div className="pl-4">
+                                    <span className="text-blue-300">education</span>: <span className="text-white">['CUHK', 'UBC']</span>,
+                                </div>
+                                <div className="pl-4">
+                                    <span className="text-blue-300">passions</span>: <span className="text-white">[</span>
+                                </div>
+                                <div className="pl-8">
+                                    <span className="text-green-300">'Cybersecurity'</span>,
+                                </div>
+                                <div className="pl-8">
+                                    <span className="text-green-300">'FinTech'</span>,
+                                </div>
+                                <div className="pl-8">
+                                    <span className="text-green-300">'AI & LLMs'</span>
+                                </div>
+                                <div className="pl-4 text-white">],</div>
+                                <div className="pl-4">
+                                    <span className="text-blue-300">status</span>: <span className="text-green-300">'Building cool stuff 🚀'</span>
+                                </div>
+                                <div className="text-white">{'}'};</div>
+                            </div>
+                        </GlassCard>
+                    </motion.div>
+                </div>
             </section>
 
             {/* About Section */}

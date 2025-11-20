@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className="scroll-smooth" suppressHydrationWarning>
-            <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`}>
+            <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
                 <Starfield />
                 <Navbar />
                 <main className="flex-grow pt-24">{children}</main>
