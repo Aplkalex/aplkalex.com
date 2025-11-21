@@ -10,7 +10,7 @@ import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
 
-import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb } from 'react-icons/si';
+import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
 
 const fadeInUp = {
     initial: { opacity: 0, y: 20 },
@@ -45,13 +45,26 @@ const staggerContainer = {
 };
 
 const techStack = [
-    { name: 'Next.js', icon: <SiNextdotjs size={16} />, color: '#ffffff' },
-    { name: 'TypeScript', icon: <SiTypescript size={16} />, color: '#3178C6' },
-    { name: 'React', icon: <SiReact size={16} />, color: '#61DAFB' },
-    { name: 'Tailwind', icon: <SiTailwindcss size={16} />, color: '#06B6D4' },
-    { name: 'Python', icon: <SiPython size={16} />, color: '#3776AB' },
-    { name: 'Node.js', icon: <SiNodedotjs size={16} />, color: '#339933' },
-    { name: 'MongoDB', icon: <SiMongodb size={16} />, color: '#47A248' },
+    { name: 'Python', icon: <SiPython size={18} />, color: '#3776AB' },
+    {
+        name: 'C / C++',
+        icon: (
+            <div className="flex items-center gap-1">
+                <SiC size={16} />
+                <SiCplusplus size={16} />
+            </div>
+        ),
+        color: '#A8B9CC'
+    },
+    { name: 'JavaScript', icon: <SiJavascript size={18} />, color: '#F7DF1E' },
+    { name: 'TypeScript', icon: <SiTypescript size={18} />, color: '#3178C6' },
+    { name: 'SQL', icon: <SiMysql size={18} />, color: '#00618A' },
+    { name: 'React', icon: <SiReact size={18} />, color: '#61DAFB' },
+    { name: 'Next.js', icon: <SiNextdotjs size={18} />, color: '#ffffff' },
+    { name: 'Node.js', icon: <SiNodedotjs size={18} />, color: '#339933' },
+    { name: 'MongoDB', icon: <SiMongodb size={18} />, color: '#47A248' },
+    { name: 'Tailwind CSS', icon: <SiTailwindcss size={18} />, color: '#06B6D4' },
+    { name: 'AWS', icon: <SiAmazonwebservices size={18} />, color: '#FF9900' },
     { name: 'Cybersecurity', icon: <Shield size={16} />, color: '#00FF00' },
 ];
 
@@ -66,10 +79,10 @@ export default function Home() {
                         animate="animate"
                         variants={staggerContainer}
                     >
-                        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-purple-300 backdrop-blur-sm">
+                        <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-green-300 backdrop-blur-sm">
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-purple-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                             </span>
                             Available for collaborations
                         </motion.div>
@@ -124,7 +137,7 @@ export default function Home() {
                         {/* Tech Stack Marquee */}
                         <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-white/10 w-full max-w-[90vw] md:max-w-md lg:max-w-lg overflow-hidden">
                             <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Technologies</p>
-                            <TechMarquee items={techStack} />
+                            <TechMarquee items={techStack} rows={2} />
                         </motion.div>
                     </motion.div>
 
@@ -164,7 +177,7 @@ export default function Home() {
                                     <span className="text-white/60">role</span>: <span className="text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-white/60">education</span>: <span className="text-white/80">['CUHK', 'UBC']</span>,
+                                    <span className="text-white/60">education</span>: <span className="text-white/80">['CUHK', 'UBC (Exchange)']</span>,
                                 </div>
                                 <div className="pl-4">
                                     <span className="text-white/60">passions</span>: <span className="text-white/70">[</span>

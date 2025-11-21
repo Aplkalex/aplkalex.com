@@ -7,12 +7,6 @@ import { SiNextdotjs, SiTailwindcss } from 'react-icons/si';
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-const TypeScriptIcon = () => (
-    <div className="w-8 h-8 rounded-lg bg-[#3178C6] flex items-center justify-center text-white font-semibold text-[11px] tracking-tight">
-        TS
-    </div>
-);
-
 export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boolean }) {
     const [activeTab, setActiveTab] = useState('overview');
     const [isLaunching, setIsLaunching] = useState(false);
@@ -198,7 +192,7 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                     {[
                                         { name: "Next.js 16", icon: <SiNextdotjs className="w-8 h-8 text-white" /> },
-                                        { name: "TypeScript", icon: <TypeScriptIcon /> },
+                                        { name: "TypeScript", icon: <Image src="/TypeScript.svg" alt="TypeScript logo" width={32} height={32} className="w-8 h-8" /> },
                                         { name: "Tailwind CSS", icon: <SiTailwindcss className="w-8 h-8 text-[#06B6D4]" /> },
                                         { name: "Prisma", icon: <Image src="/Prisma.svg" alt="Prisma logo" width={32} height={32} className="w-8 h-8" /> },
                                         { name: "MongoDB", icon: <Image src="/MongoDB.svg" alt="MongoDB logo" width={32} height={32} className="w-8 h-8" /> },
