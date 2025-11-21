@@ -137,7 +137,7 @@ export default function Home() {
                         {/* Tech Stack Marquee */}
                         <motion.div variants={fadeInUp} className="mt-12 pt-8 border-t border-white/10 w-full max-w-[90vw] md:max-w-md lg:max-w-lg overflow-hidden">
                             <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Technologies</p>
-                            <TechMarquee items={techStack} rows={2} />
+                            <TechMarquee items={techStack} />
                         </motion.div>
                     </motion.div>
 
