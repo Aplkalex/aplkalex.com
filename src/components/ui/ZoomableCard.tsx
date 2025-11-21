@@ -11,23 +11,27 @@ interface ZoomableCardProps {
     redirectUrl?: string;
     showcaseContent?: React.ReactNode;
     expandedContent?: React.ReactNode;
+    autoRedirect?: boolean;
 }
 
-export default function ZoomableCard({ children, className, redirectUrl, showcaseContent, expandedContent }: ZoomableCardProps) {
+export default function ZoomableCard({ children, className, redirectUrl, showcaseContent, expandedContent, autoRedirect }: ZoomableCardProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
     const router = useRouter();
-
-    const handleClick = () => {
-        setIsExpanded(true);
-    };
 
     const handleRedirect = () => {
         if (!redirectUrl) return;
         setIsRedirecting(true);
         setTimeout(() => {
             router.push(redirectUrl);
-        }, 800);
+        }, 400);
+    };
+
+    const handleClick = () => {
+        setIsExpanded(true);
+        if (autoRedirect && redirectUrl) {
+            handleRedirect();
+        }
     };
 
     return (
@@ -112,7 +116,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                                     {children}
 
                                     {/* Lead me to there button (Only when expanded and no custom content) */}
-                                    {isExpanded && (
+                                    {isExpanded && !autoRedirect && (
                                         <motion.div
                                             initial={{ opacity: 0, height: 0, marginTop: 0 }}
                                             animate={{ opacity: 1, height: 'auto', marginTop: 24 }}

@@ -1,30 +1,75 @@
 'use client';
 
-import { useRef, ReactNode } from 'react';
-import { motion, useScroll, useTransform, useSpring, MotionValue } from 'framer-motion';
+import { useRef } from 'react';
+import {
+    motion,
+    useScroll,
+    useSpring,
+    useTransform,
+    useMotionValue,
+    useVelocity,
+    useAnimationFrame
+} from 'framer-motion';
+const wrap = (min: number, max: number, v: number) => {
+    const rangeSize = max - min;
+    return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
+};
 
 interface ParallaxTextProps {
-    children: ReactNode;
+    children: React.ReactNode;
     baseVelocity?: number;
     className?: string;
 }
 
 export default function ParallaxText({ children, baseVelocity = 100, className = "" }: ParallaxTextProps) {
-    const ref = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start end", "end start"]
+    const baseX = useMotionValue(0);
+    const { scrollY } = useScroll();
+    const scrollVelocity = useVelocity(scrollY);
+    const smoothVelocity = useSpring(scrollVelocity, {
+        damping: 50,
+        stiffness: 400
+    });
+    const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
+        clamp: false
     });
 
-    // Create a parallax effect by transforming Y based on scroll progress
-    // We use a spring to smooth out the movement
-    const y = useTransform(scrollYProgress, [0, 1], [0, baseVelocity]);
-    const smoothY = useSpring(y, { damping: 15, stiffness: 100 });
+    /**
+     * This is a magic number for the wrap function. If you can't see the text,
+     * you might need to adjust this. It depends on the width of the content.
+     * -20% to -45% works for 4 repetitions.
+     */
+    const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+
+    const directionFactor = useRef<number>(1);
+    useAnimationFrame((t, delta) => {
+        let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+
+        /**
+         * This is what changes the direction of the scroll once we
+         * switch scrolling directions.
+         */
+        if (velocityFactor.get() < 0) {
+            directionFactor.current = -1;
+        } else if (velocityFactor.get() > 0) {
+            directionFactor.current = 1;
+        }
+
+        moveBy += directionFactor.current * moveBy * velocityFactor.get();
+
+        baseX.set(baseX.get() + moveBy);
+    });
 
     return (
-        <div ref={ref} className={`relative ${className}`}>
-            <motion.div style={{ y: smoothY }}>
-                {children}
+        <div className={`overflow-hidden whitespace-nowrap flex flex-nowrap ${className}`}>
+            <motion.div className="flex whitespace-nowrap flex-nowrap" style={{ x }}>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
+                <span className="block mr-8">{children}</span>
             </motion.div>
         </div>
     );

@@ -47,7 +47,7 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
 
     return (
         <div className={cn(
-            "w-full h-full flex flex-col overflow-hidden relative",
+            "w-full h-full flex flex-col overflow-hidden relative pointer-events-auto",
             isCard && "bg-white/[0.03] rounded-2xl border border-white/[0.07] shadow-[0_32px_72px_-50px_rgba(15,23,42,0.55)] backdrop-blur-none",
             className
         )}>

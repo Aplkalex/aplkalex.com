@@ -19,7 +19,7 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
     };
 
     return (
-        <div className="w-full h-full flex flex-col pointer-events-none">
+        <div className="w-full flex flex-col pointer-events-none">
             {/* Launch Overlay */}
             {isLaunching && (
                 <motion.div
@@ -38,7 +38,7 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                 </motion.div>
             )}
 
-            <div className="container mx-auto px-6 py-12 pb-32 relative z-10 flex-grow flex flex-col justify-center">
+            <div className="container mx-auto px-6 py-12 pb-32 relative z-10 flex-grow flex flex-col justify-center pointer-events-none">
                 {/* Header Section */}
                 <div className="mb-12 pointer-events-auto">
                     <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
@@ -122,6 +122,19 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                                         Atlas via Prisma for enhanced performance.
                                     </p>
 
+                                    {/* Demo Video */}
+                                    <div className="mb-8 rounded-xl overflow-hidden border border-white/10 shadow-2xl bg-black/50">
+                                        <video
+                                            src="/videos/queuesis-demo.mp4"
+                                            controls
+                                            autoPlay
+                                            loop
+                                            muted
+                                            playsInline
+                                            className="w-full aspect-video object-cover"
+                                        />
+                                    </div>
+
                                     <div className="grid md:grid-cols-2 gap-6">
                                         <div className="bg-white/5 rounded-xl p-6 border border-white/5">
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-400">
@@ -181,7 +194,7 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                                         { name: "TypeScript", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#3178C6]"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM15.492 12.609h2.039c-.141 1.289-1.008 2.133-2.297 2.133-1.57 0-2.344-1.102-2.344-3.516 0-2.578.891-3.656 2.484-3.656 1.242 0 2.063.75 2.227 1.969h2.016c-.211-2.203-1.758-3.68-4.242-3.68-2.836 0-4.547 1.805-4.547 5.367 0 3.469 1.641 5.367 4.5 5.367 2.461 0 4.008-1.43 4.164-3.984zm-8.016.305c0 1.289.703 1.875 2.156 1.875 1.031 0 1.617-.469 1.617-1.266 0-.867-.61-1.242-2.063-1.688-2.016-.586-3.14-1.289-3.14-3.047 0-1.781 1.406-2.953 3.539-2.953 2.273 0 3.563 1.172 3.656 3.07h-2.039c-.094-1.031-.703-1.453-1.641-1.453-.891 0-1.43.422-1.43 1.148 0 .727.539 1.078 1.922 1.523 2.156.68 3.305 1.383 3.305 3.234 0 1.922-1.477 3.094-3.727 3.094-2.438 0-3.867-1.289-3.914-3.539h2.063z" /></svg> },
                                         { name: "Tailwind CSS", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#06B6D4]"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z" /></svg> },
                                         { name: "Prisma", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white"><path d="M2.67 19.33l8.06-16.22c.2-.4.8-.4 1 0l9.6 16.22c.2.4-.1.9-.6.9H3.27c-.5 0-.8-.5-.6-.9z" /></svg> },
-                                        { name: "MongoDB", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#47A248]"><path d="M17.193 10.08c-.56-.56-1.28-.98-2.08-1.22.24 1.22.04 2.5-.56 3.56-.2.36-.48.68-.8.94.32.76.36 1.6.12 2.38-.24.78-.72 1.46-1.36 1.96.64-.5 1.12-1.18 1.36-1.96.24-.78.2-1.62-.12-2.38.32-.26.6-.58.8-.94.6-1.06.8-2.34.56-3.56.8.24 1.52.66 2.08 1.22.56.56.88 1.32.88 2.12s-.32 1.56-.88 2.12c-.56.56-1.32.88-2.12.88-.8 0-1.56-.32-2.12-.88-.56-.56-.88-1.32-.88-2.12s.32-1.56.88-2.12c.56-.56 1.32-.88 2.12-.88.8 0 1.56.32 2.12.88zM12 1.5l-6.7 11.6c-.2.35-.2.78 0 1.13l6.7 11.6 6.7-11.6c.2-.35.2-.78 0-1.13L12 1.5z" /></svg> },
+                                        { name: "MongoDB", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#47A248]"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-20C7.582 2 4 5.582 4 10c0 4.418 3.582 8 8 8s8-3.582 8-8c0-4.418-3.582-8-8-8zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" /><path d="M12 22c-1.1 0-2-.9-2-2h4c0 1.1-.9 2-2 2z" /><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" transform="scale(0.5) translate(12,12)" /><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /><path d="M13 0h-2v24h2V0z" /></svg> },
                                         { name: "Framer Motion", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white"><path d="M12 0L24 12L12 24L0 12L12 0Z" /></svg> },
                                         { name: "Zustand", icon: <div className="w-8 h-8 rounded-full bg-[#443e38] flex items-center justify-center font-bold text-xs">🐻</div> },
                                         { name: "dnd-kit", icon: <div className="w-8 h-8 flex items-center justify-center font-bold text-xl">🖐️</div> },

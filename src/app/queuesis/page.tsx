@@ -35,7 +35,7 @@ export default function QueuesisPage() {
             <div className="fixed inset-0 z-0">
                 <QueuesisShowcase variant="fullscreen" />
                 {/* Dark overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px] pointer-events-none" />
+                <div className="absolute inset-0 bg-black/30 backdrop-blur-xl pointer-events-none" />
             </div>
 
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">

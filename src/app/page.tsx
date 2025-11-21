@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
-import QueuesisDetail from '@/components/queuesis/QueuesisDetail';
 import Link from 'next/link';
 import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
@@ -128,7 +127,7 @@ export default function Home() {
                         className="hidden lg:block relative"
                     >
                         <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20"></div>
-                        <GlassCard className="relative bg-black/60 backdrop-blur-sm font-mono text-sm overflow-hidden border-white/5">
+                        <GlassCard className="relative bg-black/30 backdrop-blur-sm font-mono text-sm overflow-hidden border-white/5">
                             <div className="flex gap-2 mb-4 border-b border-white/10 pb-4">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
@@ -184,8 +183,8 @@ export default function Home() {
             {/* About Section */}
             <section id="about" className="scroll-mt-28">
                 <div className="max-w-4xl mx-auto">
-                    <div className="mb-12 overflow-hidden">
-                        <ParallaxText baseVelocity={-2} className="opacity-10">
+                    <div className="mb-12">
+                        <ParallaxText baseVelocity={-1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
                             <span className="text-6xl md:text-8xl font-bold font-display uppercase">About Me About Me About Me</span>
                         </ParallaxText>
                         <motion.h2
@@ -246,8 +245,8 @@ export default function Home() {
                     viewport={{ once: true }}
                     variants={staggerContainer}
                 >
-                    <div className="mb-12 overflow-hidden">
-                        <ParallaxText baseVelocity={2} className="opacity-10">
+                    <div className="mb-12">
+                        <ParallaxText baseVelocity={1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
                             <span className="text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                         </ParallaxText>
                         <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Featured Project</h2>
@@ -259,7 +258,7 @@ export default function Home() {
                                 redirectUrl="/queuesis"
                                 className="h-full flex flex-col"
                                 showcaseContent={<QueuesisShowcase />}
-                                expandedContent={<QueuesisDetail />}
+                                autoRedirect={true}
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-xl font-bold font-display">Queuesis</h3>
@@ -305,8 +304,8 @@ export default function Home() {
                     variants={staggerContainer}
                     className="max-w-4xl mx-auto text-center"
                 >
-                    <div className="mb-8 overflow-hidden">
-                        <ParallaxText baseVelocity={-2} className="opacity-10">
+                    <div className="mb-8">
+                        <ParallaxText baseVelocity={-1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
                             <span className="text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
                         </ParallaxText>
                         <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Awards & Honors</h2>
