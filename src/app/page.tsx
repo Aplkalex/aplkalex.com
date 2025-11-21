@@ -100,11 +100,11 @@ export default function Home() {
                             >👋</motion.span>, I'm <span className="text-gradient">Aplkalex</span>.
                         </motion.h1>
                         <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
-                            CS Student @ CUHK & UBC <br />
-                            <span className="text-white font-medium">Full Stack Developer & Security Enthusiast.</span>
+                            IBBA & Computer Science Student @ CUHK | Exchange @ UBC <br />
+                            <span className="text-white font-medium">Full Stack Developer with interests in FinTech and Mental Health.</span>
                         </motion.h2>
                         <motion.p variants={fadeInUp} className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
-                            I build secure, intelligent systems that solve real-world problems. Passionate about FinTech, AI, and making the web a safer place.
+                            I build convenient, impactful systems that solve real-world problems. Passionate about AI, FinTech, and making the web a more human-centered space.
                         </motion.p>
                         <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -171,7 +171,7 @@ export default function Home() {
                                     <span className="text-white/60">{'{'}</span>
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Alex, Wong Ka Heiss" delay={0.5} />'</span>,
+                                    <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Alex, Wong Ka Hei" delay={0.5} />'</span>,
                                 </div>
                                 <div className="pl-4">
                                     <span className="text-white/60">role</span>: <span className="text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
