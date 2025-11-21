@@ -101,7 +101,7 @@ export default function Home() {
                         </motion.h1>
                         <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
                             CS Student @ CUHK & UBC <br />
-                            <span className="text-white font-medium">Full Stack Developer</span> & Security Enthusiast.
+                            <span className="text-white font-medium">Full Stack Developer & Security Enthusiast.</span>
                         </motion.h2>
                         <motion.p variants={fadeInUp} className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
                             I build secure, intelligent systems that solve real-world problems. Passionate about FinTech, AI, and making the web a safer place.
