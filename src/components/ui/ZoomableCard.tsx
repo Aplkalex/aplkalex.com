@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
+import { X } from 'lucide-react';
 
 interface ZoomableCardProps {
     children: React.ReactNode;
@@ -32,6 +33,11 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
         if (autoRedirect && redirectUrl) {
             handleRedirect();
         }
+    };
+
+    const handleClose = (event?: MouseEvent<HTMLButtonElement>) => {
+        event?.stopPropagation();
+        setIsExpanded(false);
     };
 
     return (
@@ -67,6 +73,22 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     y: { duration: 0.3 }
                 }}
             >
+                {isExpanded && !isRedirecting && (
+                    <motion.button
+                        initial={{ opacity: 0, scale: 0.8, y: -10 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        whileHover={{ scale: 1.05, rotate: 3 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ duration: 0.3 }}
+                        onClick={handleClose}
+                        className="pointer-events-auto absolute top-6 right-6 z-[70] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md shadow-lg"
+                        aria-label="Close details"
+                    >
+                        <X className="w-4 h-4" />
+                        Close
+                    </motion.button>
+                )}
+
                 <motion.div
                     layout="position"
                     className={cn(

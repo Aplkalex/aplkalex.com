@@ -5,7 +5,7 @@ import GlassCard from '@/components/ui/GlassCard';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
 import Link from 'next/link';
-import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin, Sparkles, Target, Trophy, Bot } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
@@ -328,6 +328,7 @@ export default function Home() {
                                 date: "Oct 2025",
                                 association: "The University of British Columbia",
                                 color: "from-blue-500 to-purple-500",
+                                icon: Sparkles,
                                 description: (
                                     <ul className="list-disc pl-5 space-y-2 text-gray-300">
                                         <li>Won Best Use of ElevenLabs at StormHacks 2025, one of Western Canada's largest hackathons.</li>
@@ -342,6 +343,7 @@ export default function Home() {
                                 date: "Aug 2025",
                                 association: "The Chinese University of Hong Kong",
                                 color: "from-green-500 to-emerald-500",
+                                icon: Target,
                                 description: (
                                     <ul className="list-disc pl-5 space-y-2 text-gray-300">
                                         <li>Developing and executing attack strategies for penetration testing and adversary simulation.</li>
@@ -360,6 +362,7 @@ export default function Home() {
                                 date: "Apr 2025",
                                 association: "The Chinese University of Hong Kong",
                                 color: "from-yellow-500 to-orange-500",
+                                icon: Bot,
                                 description: (
                                     <div className="space-y-4 text-gray-300">
                                         <p>I was awarded second runner-up in the GenAI Application in Financial Services competition organised by the Hong Kong Monetary Authority, CUHK FinTech Department, and supported by Hang Seng Bank and Cyberport.</p>
@@ -375,6 +378,7 @@ export default function Home() {
                                 date: "Dec 2022",
                                 association: "HKMA David Li Kwok Po College",
                                 color: "from-indigo-500 to-purple-500",
+                                icon: Trophy,
                                 description: (
                                     <div className="space-y-4 text-gray-300">
                                         <p>I was invited to represent my school in the Inter-School Cybersecurity Competition co-hosted by the Association of I.T. Leaders in Education, IVE Chai Wan, and Amazon Web Services. During the competition, I received a medallion in recognition of my performance and contributions.</p>
@@ -384,46 +388,50 @@ export default function Home() {
                                     </div>
                                 )
                             }
-                        ].map((award, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: index * 0.1 }}
-                            >
-                                <ZoomableCard
-                                    className="h-full flex flex-col bg-white/5 border-white/10 hover:bg-white/10 transition-colors"
-                                    expandedContent={
-                                        <div className="p-8 max-w-3xl mx-auto">
-                                            <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
-                                                {award.date}
-                                            </div>
-                                            <h3 className="text-3xl font-bold font-display mb-2">{award.title}</h3>
-                                            <div className="flex flex-col gap-1 text-gray-400 mb-8">
-                                                <span className="flex items-center gap-2"><Shield size={16} /> {award.issuer}</span>
-                                                <span className="flex items-center gap-2"><Globe size={16} /> {award.association}</span>
-                                            </div>
-                                            <div className="prose prose-invert max-w-none">
-                                                {award.description}
-                                            </div>
-                                        </div>
-                                    }
+                        ].map((award, index) => {
+                            const Icon = award.icon ?? Shield;
+
+                            return (
+                                <motion.div
+                                    key={index}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: index * 0.1 }}
                                 >
-                                    <div className="flex flex-col h-full p-2">
-                                        <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${award.color} flex items-center justify-center mb-4 shadow-lg`}>
-                                            <Shield className="text-white w-6 h-6" />
+                                    <ZoomableCard
+                                        className="h-full flex flex-col bg-white/5 border-white/10 hover:bg-white/10 transition-colors"
+                                        expandedContent={
+                                            <div className="p-8 max-w-3xl mx-auto">
+                                                <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
+                                                    {award.date}
+                                                </div>
+                                                <h3 className="text-3xl font-bold font-display mb-2">{award.title}</h3>
+                                                <div className="flex flex-col gap-1 text-gray-400 mb-8">
+                                                    <span className="flex items-center gap-2"><Icon size={16} /> {award.issuer}</span>
+                                                    <span className="flex items-center gap-2"><Globe size={16} /> {award.association}</span>
+                                                </div>
+                                                <div className="prose prose-invert max-w-none">
+                                                    {award.description}
+                                                </div>
+                                            </div>
+                                        }
+                                    >
+                                        <div className="flex flex-col h-full p-2">
+                                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${award.color} flex items-center justify-center mb-4 shadow-lg`}>
+                                                <Icon className="text-white w-6 h-6" />
+                                            </div>
+                                            <h3 className="text-xl font-bold font-display mb-2 leading-tight">{award.title}</h3>
+                                            <p className="text-sm text-gray-400 mb-4 flex-grow">{award.issuer}</p>
+                                            <div className="flex justify-between items-center mt-auto pt-4 border-t border-white/5">
+                                                <span className="text-xs text-gray-500 font-mono">{award.date}</span>
+                                                <span className="text-xs text-white bg-white/10 px-2 py-1 rounded hover:bg-white/20 transition-colors">Read More</span>
+                                            </div>
                                         </div>
-                                        <h3 className="text-xl font-bold font-display mb-2 leading-tight">{award.title}</h3>
-                                        <p className="text-sm text-gray-400 mb-4 flex-grow">{award.issuer}</p>
-                                        <div className="flex justify-between items-center mt-auto pt-4 border-t border-white/5">
-                                            <span className="text-xs text-gray-500 font-mono">{award.date}</span>
-                                            <span className="text-xs text-white bg-white/10 px-2 py-1 rounded hover:bg-white/20 transition-colors">Read More</span>
-                                        </div>
-                                    </div>
-                                </ZoomableCard>
-                            </motion.div>
-                        ))}
+                                    </ZoomableCard>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>

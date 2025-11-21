@@ -2,20 +2,14 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Zap, Clock, Layout, Database, AlertCircle } from 'lucide-react';
-import { SiNextdotjs, SiTailwindcss, SiPrisma, SiMongodb, SiFramer, SiVercel } from 'react-icons/si';
+import { ExternalLink, Github, Zap, Clock, Layout, Database, AlertCircle } from 'lucide-react';
+import { SiNextdotjs, SiTailwindcss } from 'react-icons/si';
+import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
 const TypeScriptIcon = () => (
     <div className="w-8 h-8 rounded-lg bg-[#3178C6] flex items-center justify-center text-white font-semibold text-[11px] tracking-tight">
         TS
-    </div>
-);
-
-const MongoIcon = () => (
-    <div className="w-8 h-8 rounded-lg bg-gradient-to-b from-[#00ED64] to-[#00684A] flex items-center justify-center">
-        <SiMongodb className="w-4 h-4 text-white" />
     </div>
 );
 
@@ -206,12 +200,10 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                                         { name: "Next.js 16", icon: <SiNextdotjs className="w-8 h-8 text-white" /> },
                                         { name: "TypeScript", icon: <TypeScriptIcon /> },
                                         { name: "Tailwind CSS", icon: <SiTailwindcss className="w-8 h-8 text-[#06B6D4]" /> },
-                                        { name: "Prisma", icon: <SiPrisma className="w-8 h-8 text-white" /> },
-                                        { name: "MongoDB", icon: <MongoIcon /> },
-                                        { name: "Framer Motion", icon: <SiFramer className="w-8 h-8 text-white" /> },
-                                        { name: "Zustand", icon: <div className="w-8 h-8 rounded-full bg-[#443e38] flex items-center justify-center font-bold text-xs">🐻</div> },
+                                        { name: "Prisma", icon: <Image src="/Prisma.svg" alt="Prisma logo" width={32} height={32} className="w-8 h-8" /> },
+                                        { name: "MongoDB", icon: <Image src="/MongoDB.svg" alt="MongoDB logo" width={32} height={32} className="w-8 h-8" /> },
                                         { name: "dnd-kit", icon: <div className="w-8 h-8 flex items-center justify-center font-bold text-xl">🖐️</div> },
-                                        { name: "Vercel", icon: <SiVercel className="w-8 h-8 text-white" /> }
+                                        { name: "Vercel", icon: <Image src="/vercel.svg" alt="Vercel logo" width={32} height={32} className="w-8 h-8" /> }
                                     ].map((tech, i) => (
                                         <motion.div
                                             key={i}
