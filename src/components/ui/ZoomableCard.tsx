@@ -4,7 +4,7 @@ import { useState, MouseEvent } from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
-import { X } from 'lucide-react';
+import { GripVertical, X } from 'lucide-react';
 
 interface ZoomableCardProps {
     children: React.ReactNode;
@@ -68,11 +68,18 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)"
                 } : undefined}
                 transition={{
-                    layout: { duration: 0.8, ease: [0.16, 1, 0.3, 1] },
-                    scale: { duration: 0.3 },
-                    y: { duration: 0.3 }
+                    layout: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                    scale: { duration: 0.2 },
+                    y: { duration: 0.2 }
                 }}
             >
+                {!isExpanded && (
+                    <div className="pointer-events-none absolute top-4 right-4 z-20 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/40 px-3 py-1 text-xs font-semibold text-white/80 backdrop-blur-md shadow-lg">
+                        <GripVertical className="w-3 h-3 text-white/60" />
+                        Drag to explore
+                    </div>
+                )}
+
                 {isExpanded && !isRedirecting && (
                     <motion.button
                         initial={{ opacity: 0, scale: 0.8, y: -10 }}

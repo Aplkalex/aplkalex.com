@@ -19,16 +19,7 @@ const tabs = [
 
 export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
-
     const [isLaunching, setIsLaunching] = useState(false);
-
-    const handleLaunch = (e: React.MouseEvent) => {
-        e.preventDefault();
-        setIsLaunching(true);
-        setTimeout(() => {
-            window.location.href = "https://queuesis.aplkalex.com/";
-        }, 800);
-    };
 
     return (
         <div className="min-h-screen relative">
@@ -40,24 +31,6 @@ export default function QueuesisPage() {
             </div>
 
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">
-                {/* Launch Overlay */}
-                {isLaunching && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="fixed inset-0 bg-black/90 z-[100] backdrop-blur-xl flex items-center justify-center pointer-events-auto"
-                    >
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1.5, opacity: 1 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="text-white font-display text-4xl font-bold"
-                        >
-                            Launching Queuesis...
-                        </motion.div>
-                    </motion.div>
-                )}
-
                 {/* Header Section */}
                 <div className="mb-16 pointer-events-auto">
                     <Link
@@ -92,12 +65,34 @@ export default function QueuesisPage() {
                             transition={{ delay: 0.2 }}
                             className="flex flex-wrap justify-center gap-4"
                         >
-                            <button
-                                onClick={handleLaunch}
-                                className="px-8 py-3 bg-white text-black rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
-                            >
+                            <motion.button
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsLaunching(true);
+                                    window.open("https://queuesis.aplkalex.com/", "_blank");
+                                    setTimeout(() => setIsLaunching(false), 600);
+                                }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            className="group px-8 py-3 bg-white text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
+                        >
+                            <AnimatePresence>
+                                {isLaunching && (
+                                    <motion.span
+                                        key="launch-pulse"
+                                        className="absolute inset-0 rounded-full bg-white/40"
+                                        initial={{ scale: 0.5, opacity: 0.6 }}
+                                        animate={{ scale: 1.6, opacity: 0 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: 0.5, ease: "easeOut" }}
+                                    />
+                                )}
+                            </AnimatePresence>
+                            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></span>
+                            <span className="relative flex items-center gap-2">
                                 Launch App <ExternalLink className="w-4 h-4" />
-                            </button>
+                            </span>
+                            </motion.button>
                             <a
                                 href="https://github.com/aplkalex/queuesis"
                                 target="_blank"

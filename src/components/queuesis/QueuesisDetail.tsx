@@ -9,36 +9,13 @@ import { cn } from '@/lib/utils';
 
 export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boolean }) {
     const [activeTab, setActiveTab] = useState('overview');
-    const [isLaunching, setIsLaunching] = useState(false);
 
     const handleLaunch = () => {
-        setIsLaunching(true);
-        setTimeout(() => {
-            window.open('https://queuesis.aplkalex.com', '_blank');
-            setIsLaunching(false);
-        }, 1500);
+        window.open('https://queuesis.aplkalex.com', '_blank');
     };
 
     return (
         <div className="w-full flex flex-col pointer-events-none">
-            {/* Launch Overlay */}
-            {isLaunching && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="fixed inset-0 bg-black/90 z-[100] backdrop-blur-xl flex items-center justify-center pointer-events-auto"
-                >
-                    <motion.div
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1.5, opacity: 1 }}
-                        transition={{ duration: 0.5, ease: "easeInOut" }}
-                        className="text-white font-display text-4xl font-bold"
-                    >
-                        Launching Queuesis...
-                    </motion.div>
-                </motion.div>
-            )}
-
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 flex-grow flex flex-col justify-center pointer-events-none">
                 {/* Header Section */}
                 <div className="mb-12 pointer-events-auto">
@@ -68,9 +45,12 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                         >
                             <button
                                 onClick={handleLaunch}
-                                className="px-8 py-3 bg-white text-black rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                                className="group px-8 py-3 bg-white text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
                             >
-                                Launch App <ExternalLink className="w-4 h-4" />
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></span>
+                                <span className="relative flex items-center gap-2">
+                                    Launch App <ExternalLink className="w-4 h-4" />
+                                </span>
                             </button>
                             <a
                                 href="https://github.com/aplkalex/queuesis"
