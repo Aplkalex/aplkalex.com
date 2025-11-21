@@ -171,7 +171,7 @@ export default function Home() {
                                     <span className="text-white/60">{'{'}</span>
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Aplkalex" delay={0.5} />'</span>,
+                                    <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Alex, Wong Ka Heiss" delay={0.5} />'</span>,
                                 </div>
                                 <div className="pl-4">
                                     <span className="text-white/60">role</span>: <span className="text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
