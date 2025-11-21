@@ -110,6 +110,15 @@ export default function Home() {
                                     Contact Me
                                 </Link>
                             </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <a
+                                    href="/Alex_Resume_2025_Nov.pdf"
+                                    download
+                                    className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
+                                >
+                                    Get Resume <ExternalLink size={16} />
+                                </a>
+                            </motion.div>
                         </motion.div>
 
                         {/* Tech Stack Marquee */}
