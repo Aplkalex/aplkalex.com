@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
+import AwardsGrid from '@/components/awards/AwardsGrid';
 import Link from 'next/link';
-import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin, Sparkles, Target, Trophy, Bot } from 'lucide-react';
+import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
@@ -333,119 +334,7 @@ export default function Home() {
                         <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Awards & Honors</h2>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6 px-4">
-                        {[
-                            {
-                                title: "Best use of ElevenLabs - Stormhacks 2025",
-                                issuer: "Major League Hacking (MLH), SFU Surge",
-                                date: "Oct 2025",
-                                association: "The University of British Columbia",
-                                color: "from-blue-500 to-purple-500",
-                                icon: Sparkles,
-                                description: (
-                                    <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                                        <li>Won Best Use of ElevenLabs at StormHacks 2025, one of Western Canada's largest hackathons.</li>
-                                        <li>Collaborated with a team of four to build Carrie, an AI peer counselor that integrates computer vision, ElevenLabs speech-to-text, and LiveKit for real-time, unbiased mental health support.</li>
-                                        <li>Contributed backend integration and leveraged business and mental health background for pitching and presentation.</li>
-                                    </ul>
-                                )
-                            },
-                            {
-                                title: "Cyber Attack and Defence Elite Training - Merit Award",
-                                issuer: "HKIRC, Digital Policy Office, HKPF",
-                                date: "Aug 2025",
-                                association: "The Chinese University of Hong Kong",
-                                color: "from-green-500 to-emerald-500",
-                                icon: Target,
-                                description: (
-                                    <ul className="list-disc pl-5 space-y-2 text-gray-300">
-                                        <li>Developing and executing attack strategies for penetration testing and adversary simulation.</li>
-                                        <li>Coordinating the team's defensive posture, including incident response and threat hunting.</li>
-                                        <li>Conducted log analysis and memory forensics to trace attack vectors and remediate breaches.</li>
-                                        <li>Proactively identified indicators of compromise (IOCs) within the network.</li>
-                                        <li>Executed attacks based on the OWASP Top 10, including SQL Injection (SQLi), Cross-Site Scripting (XSS), and Insecure Deserialization.</li>
-                                        <li>Performed network reconnaissance, vulnerability scanning, and exploited misconfigurations in network services.</li>
-                                        <li>Leveraged system weaknesses to gain elevated access to critical assets.</li>
-                                    </ul>
-                                )
-                            },
-                            {
-                                title: "GenAI Application in Financial Services - 2nd Runner Up",
-                                issuer: "CUHK, HKMA, Cyberport, Hang Seng Bank",
-                                date: "Apr 2025",
-                                association: "The Chinese University of Hong Kong",
-                                color: "from-yellow-500 to-orange-500",
-                                icon: Bot,
-                                description: (
-                                    <div className="space-y-4 text-gray-300">
-                                        <p>I was awarded second runner-up in the GenAI Application in Financial Services competition organised by the Hong Kong Monetary Authority, CUHK FinTech Department, and supported by Hang Seng Bank and Cyberport.</p>
-                                        <p>As team leader, I was responsible for overall project management, including coordinating team workflow, setting milestones, and ensuring effective task distribution based on each member’s strengths. I led the design and development of our prototype, which integrated a web-based user interface built with HTML and JavaScript, alongside backend functionalities powered by Python to handle data processing and AI model integration.</p>
-                                        <p>Throughout the competition, I conducted extensive legal and compliance research by communicating with law students to understand regulatory frameworks in the financial sector. This ensured our solution adhered to data privacy laws and banking regulations, strengthening its practicality and feasibility.</p>
-                                        <p>In addition, I managed our team’s pitch preparation, refining our presentation slides to align with professional standards expected by financial institutions and training team members for effective public speaking and Q&A handling.</p>
-                                    </div>
-                                )
-                            },
-                            {
-                                title: "Inter-School Cybersecurity Competition 2022 - Medallion",
-                                issuer: "AiLE, IVE Chai Wan, AWS",
-                                date: "Dec 2022",
-                                association: "HKMA David Li Kwok Po College",
-                                color: "from-indigo-500 to-purple-500",
-                                icon: Trophy,
-                                description: (
-                                    <div className="space-y-4 text-gray-300">
-                                        <p>I was invited to represent my school in the Inter-School Cybersecurity Competition co-hosted by the Association of I.T. Leaders in Education, IVE Chai Wan, and Amazon Web Services. During the competition, I received a medallion in recognition of my performance and contributions.</p>
-                                        <p>Throughout the event, I gained hands-on experience with AWS services such as EC2, IAM, and S3 buckets, learning to configure secure cloud storage environments, manage user permissions, and implement access control policies to protect sensitive data. I worked on practical cybersecurity challenges that required identifying vulnerabilities, performing privilege escalation techniques, and designing effective network defence strategies to mitigate threats.</p>
-                                        <p>The competition also included scenarios involving simulated cyber attacks, where I collaborated with teammates to analyse attack vectors, interpret logs, and propose immediate mitigation plans under strict time constraints.</p>
-                                        <p>Additionally, I researched best practices in cloud security architecture to support our team’s solutions and presented our findings and defence strategies to a panel of judges comprising educators and industry professionals.</p>
-                                    </div>
-                                )
-                            }
-                        ].map((award, index) => {
-                            const Icon = award.icon ?? Shield;
-
-                            return (
-                                <motion.div
-                                    key={index}
-                                    initial={{ opacity: 0, y: 20 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: index * 0.1 }}
-                                >
-                                    <ZoomableCard
-                                        className="h-full flex flex-col bg-white/5 border-white/10 hover:bg-white/10 transition-colors"
-                                        expandedContent={
-                                            <div className="p-8 max-w-3xl mx-auto">
-                                                <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
-                                                    {award.date}
-                                                </div>
-                                                <h3 className="text-3xl font-bold font-display mb-2">{award.title}</h3>
-                                                <div className="flex flex-col gap-1 text-gray-400 mb-8">
-                                                    <span className="flex items-center gap-2"><Icon size={16} /> {award.issuer}</span>
-                                                    <span className="flex items-center gap-2"><Globe size={16} /> {award.association}</span>
-                                                </div>
-                                                <div className="prose prose-invert max-w-none">
-                                                    {award.description}
-                                                </div>
-                                            </div>
-                                        }
-                                    >
-                                        <div className="flex flex-col h-full p-2">
-                                            <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${award.color} flex items-center justify-center mb-4 shadow-lg`}>
-                                                <Icon className="text-white w-6 h-6" />
-                                            </div>
-                                            <h3 className="text-xl font-bold font-display mb-2 leading-tight">{award.title}</h3>
-                                            <p className="text-sm text-gray-400 mb-4 flex-grow">{award.issuer}</p>
-                                            <div className="flex justify-between items-center mt-auto pt-4 border-t border-white/5">
-                                                <span className="text-xs text-gray-500 font-mono">{award.date}</span>
-                                                <span className="text-xs text-white bg-white/10 px-2 py-1 rounded hover:bg-white/20 transition-colors">Read More</span>
-                                            </div>
-                                        </div>
-                                    </ZoomableCard>
-                                </motion.div>
-                            );
-                        })}
-                    </div>
+                    <AwardsGrid className="px-4" />
                 </div>
             </section>
 
