@@ -112,8 +112,8 @@ export default function Home() {
                             </motion.div>
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                 <a
-                                    href="/Alex_Resume_2025_Nov.pdf"
-                                    download
+                                    href="/Alex%20Resume%202025.pdf"
+                                    download="Alex Resume 2025.pdf"
                                     className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors flex items-center justify-center gap-2"
                                 >
                                     Get Resume <ExternalLink size={16} />
@@ -135,16 +135,16 @@ export default function Home() {
                         transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
                         className="hidden lg:block relative"
                     >
-                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-20"></div>
-                        <GlassCard className="relative bg-black/30 backdrop-blur-sm font-mono text-sm overflow-hidden border-white/5">
+                        <div className="absolute -inset-1 bg-gradient-to-br from-white/10 via-transparent to-white/5 rounded-2xl blur-lg opacity-60"></div>
+                        <GlassCard className="relative backdrop-blur-2xl font-mono text-sm overflow-hidden border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.55)] bg-black/10">
                             <div className="flex gap-2 mb-4 border-b border-white/10 pb-4">
                                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                                <div className="w-3 h-3 rounded-full bg-yellow-400"></div>
                                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                             </div>
 
                             <motion.div
-                                className="space-y-2 text-gray-300"
+                                className="space-y-2 text-white/80"
                                 initial="initial"
                                 animate="animate"
                                 variants={{
@@ -152,37 +152,43 @@ export default function Home() {
                                 }}
                             >
                                 <div className="flex">
-                                    <span className="text-purple-400 mr-2">const</span>
-                                    <span className="text-yellow-200">developer</span>
-                                    <span className="text-white mx-2">=</span>
-                                    <span className="text-white">{'{'}</span>
+                                    <span className="text-white/70 mr-2">const</span>
+                                    <span className="text-white">developer</span>
+                                    <span className="text-white/60 mx-2">=</span>
+                                    <span className="text-white/60">{'{'}</span>
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">name</span>: <span className="text-green-300">'<Typewriter text="Aplkalex" delay={0.5} />'</span>,
+                                    <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Aplkalex" delay={0.5} />'</span>,
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">role</span>: <span className="text-green-300">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
+                                    <span className="text-white/60">role</span>: <span className="text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">education</span>: <span className="text-white">['CUHK', 'UBC']</span>,
+                                    <span className="text-white/60">education</span>: <span className="text-white/80">['CUHK', 'UBC']</span>,
                                 </div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">passions</span>: <span className="text-white">[</span>
+                                    <span className="text-white/60">passions</span>: <span className="text-white/70">[</span>
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'<Typewriter text="Cybersecurity" delay={1.5} />'</span>,
+                                    <span className="text-white/90">'<Typewriter text="Cybersecurity" delay={1.5} />'</span>,
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'<Typewriter text="FinTech" delay={2.0} />'</span>,
+                                    <span className="text-white/90">'<Typewriter text="FinTech" delay={2.0} />'</span>,
                                 </div>
                                 <div className="pl-8">
-                                    <span className="text-green-300">'<Typewriter text="AI & LLMs" delay={2.5} />'</span>
+                                    <span className="text-white/90">'<Typewriter text="AI & LLMs" delay={2.5} />'</span>,
                                 </div>
-                                <div className="pl-4 text-white">],</div>
+                                <div className="pl-8">
+                                    <span className="text-white/90">'<Typewriter text="Squash" delay={3.0} />'</span>,
+                                </div>
+                                <div className="pl-8">
+                                    <span className="text-white/90">'<Typewriter text="Handbell" delay={3.5} />'</span>
+                                </div>
+                                <div className="pl-4 text-white/70">],</div>
                                 <div className="pl-4">
-                                    <span className="text-blue-300">status</span>: <span className="text-green-300">'<Typewriter text="Building cool stuff 🚀" delay={3.0} />'</span>
+                                    <span className="text-white/60">status</span>: <span className="text-white">'<Typewriter text="Building cool stuff" delay={4.0} />'</span>
                                 </div>
-                                <div className="text-white">{'}'};</div>
+                                <div className="text-white/70">{'}'};</div>
                             </motion.div>
                         </GlassCard>
                     </motion.div>
@@ -459,4 +465,3 @@ export default function Home() {
         </div>
     );
 }
-

@@ -4,7 +4,20 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink, Github, Zap, Clock, Layout, Database, AlertCircle } from 'lucide-react';
+import { SiNextdotjs, SiTailwindcss, SiPrisma, SiMongodb, SiFramer, SiVercel } from 'react-icons/si';
 import { cn } from '@/lib/utils';
+
+const TypeScriptIcon = () => (
+    <div className="w-8 h-8 rounded-lg bg-[#3178C6] flex items-center justify-center text-white font-semibold text-[11px] tracking-tight">
+        TS
+    </div>
+);
+
+const MongoIcon = () => (
+    <div className="w-8 h-8 rounded-lg bg-gradient-to-b from-[#00ED64] to-[#00684A] flex items-center justify-center">
+        <SiMongodb className="w-4 h-4 text-white" />
+    </div>
+);
 
 export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boolean }) {
     const [activeTab, setActiveTab] = useState('overview');
@@ -190,15 +203,15 @@ export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boo
                             {activeTab === 'stack' && (
                                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                                     {[
-                                        { name: "Next.js 16", icon: <svg viewBox="0 0 180 180" className="w-8 h-8 fill-white"><mask height="180" id="mask0_408_134" maskUnits="userSpaceOnUse" width="180" x="0" y="0" style={{ maskType: 'alpha' }}><circle cx="90" cy="90" fill="black" r="90"></circle></mask><g mask="url(#mask0_408_134)"><circle cx="90" cy="90" data-circle="true" fill="black" r="90"></circle><path d="M149.508 157.52L69.142 54H54V125.97H66.1136V69.3836L139.999 164.845C143.333 162.614 146.509 160.165 149.508 157.52Z" fill="url(#paint0_linear_408_134)"></path><rect fill="url(#paint1_linear_408_134)" height="72" width="12" x="115" y="54"></rect></g><defs><linearGradient gradientUnits="userSpaceOnUse" id="paint0_linear_408_134" x1="109" x2="144.5" y1="116.5" y2="160.5"><stop stopColor="white"></stop><stop offset="1" stopColor="white" stopOpacity="0"></stop></linearGradient><linearGradient gradientUnits="userSpaceOnUse" id="paint1_linear_408_134" x1="121" x2="120.799" y1="54" y2="106.875"><stop stopColor="white"></stop><stop offset="1" stopColor="white" stopOpacity="0"></stop></linearGradient></defs></svg> },
-                                        { name: "TypeScript", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#3178C6]"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0H1.125zM15.492 12.609h2.039c-.141 1.289-1.008 2.133-2.297 2.133-1.57 0-2.344-1.102-2.344-3.516 0-2.578.891-3.656 2.484-3.656 1.242 0 2.063.75 2.227 1.969h2.016c-.211-2.203-1.758-3.68-4.242-3.68-2.836 0-4.547 1.805-4.547 5.367 0 3.469 1.641 5.367 4.5 5.367 2.461 0 4.008-1.43 4.164-3.984zm-8.016.305c0 1.289.703 1.875 2.156 1.875 1.031 0 1.617-.469 1.617-1.266 0-.867-.61-1.242-2.063-1.688-2.016-.586-3.14-1.289-3.14-3.047 0-1.781 1.406-2.953 3.539-2.953 2.273 0 3.563 1.172 3.656 3.07h-2.039c-.094-1.031-.703-1.453-1.641-1.453-.891 0-1.43.422-1.43 1.148 0 .727.539 1.078 1.922 1.523 2.156.68 3.305 1.383 3.305 3.234 0 1.922-1.477 3.094-3.727 3.094-2.438 0-3.867-1.289-3.914-3.539h2.063z" /></svg> },
-                                        { name: "Tailwind CSS", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#06B6D4]"><path d="M12.001,4.8c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 C13.666,10.618,15.027,12,18.001,12c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C16.337,6.182,14.976,4.8,12.001,4.8z M6.001,12c-3.2,0-5.2,1.6-6,4.8c1.2-1.6,2.6-2.2,4.2-1.8c0.913,0.228,1.565,0.89,2.288,1.624 c1.177,1.194,2.538,2.576,5.512,2.576c3.2,0,5.2-1.6,6-4.8c-1.2,1.6-2.6,2.2-4.2,1.8c-0.913-0.228-1.565-0.89-2.288-1.624 C10.337,13.382,8.976,12,6.001,12z" /></svg> },
-                                        { name: "Prisma", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white"><path d="M2.67 19.33l8.06-16.22c.2-.4.8-.4 1 0l9.6 16.22c.2.4-.1.9-.6.9H3.27c-.5 0-.8-.5-.6-.9z" /></svg> },
-                                        { name: "MongoDB", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-[#47A248]"><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-20C7.582 2 4 5.582 4 10c0 4.418 3.582 8 8 8s8-3.582 8-8c0-4.418-3.582-8-8-8zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z" /><path d="M12 22c-1.1 0-2-.9-2-2h4c0 1.1-.9 2-2 2z" /><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22c-5.523 0-10-4.477-10-10S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z" transform="scale(0.5) translate(12,12)" /><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /><path d="M13 0h-2v24h2V0z" /></svg> },
-                                        { name: "Framer Motion", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white"><path d="M12 0L24 12L12 24L0 12L12 0Z" /></svg> },
+                                        { name: "Next.js 16", icon: <SiNextdotjs className="w-8 h-8 text-white" /> },
+                                        { name: "TypeScript", icon: <TypeScriptIcon /> },
+                                        { name: "Tailwind CSS", icon: <SiTailwindcss className="w-8 h-8 text-[#06B6D4]" /> },
+                                        { name: "Prisma", icon: <SiPrisma className="w-8 h-8 text-white" /> },
+                                        { name: "MongoDB", icon: <MongoIcon /> },
+                                        { name: "Framer Motion", icon: <SiFramer className="w-8 h-8 text-white" /> },
                                         { name: "Zustand", icon: <div className="w-8 h-8 rounded-full bg-[#443e38] flex items-center justify-center font-bold text-xs">🐻</div> },
                                         { name: "dnd-kit", icon: <div className="w-8 h-8 flex items-center justify-center font-bold text-xl">🖐️</div> },
-                                        { name: "Vercel", icon: <svg viewBox="0 0 24 24" className="w-8 h-8 fill-white"><path d="M24 22.525H0l12-21.05 12 21.05z" /></svg> }
+                                        { name: "Vercel", icon: <SiVercel className="w-8 h-8 text-white" /> }
                                     ].map((tech, i) => (
                                         <motion.div
                                             key={i}
