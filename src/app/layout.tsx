@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Outfit, Space_Grotesk } from 'next/font/google';
+import { Analytics } from "@vercel/analytics/react";
 import './globals.css';
 import Starfield from '@/components/ui/Starfield';
 import Navbar from '@/components/Navbar';
@@ -30,6 +31,7 @@ export default function RootLayout({
                     <main className="flex-grow pt-24">{children}</main>
                     <Footer />
                 </SmoothScroll>
+                <Analytics />
             </body>
         </html>
     );
