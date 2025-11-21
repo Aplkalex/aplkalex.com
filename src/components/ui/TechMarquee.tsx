@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 interface TechItem {
     name: string;
@@ -30,14 +31,15 @@ export default function TechMarquee({ items, className }: TechMarqueeProps) {
         >
             <div className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-8 py-4">
                 {items.map((item, index) => (
-                    <div
+                    <motion.div
                         key={`item-1-${index}`}
-                        className="flex items-center gap-2 transition-colors duration-300"
+                        className="flex items-center gap-2 transition-colors duration-300 cursor-pointer"
                         style={{ color: item.color || 'rgba(255, 255, 255, 0.6)' }}
+                        whileHover={{ scale: 1.2, filter: "brightness(1.2)" }}
                     >
                         {item.icon}
                         <span className="text-lg font-medium">{item.name}</span>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
             <div
@@ -45,14 +47,15 @@ export default function TechMarquee({ items, className }: TechMarqueeProps) {
                 className="flex min-w-full shrink-0 animate-marquee items-center justify-around gap-8 py-4"
             >
                 {items.map((item, index) => (
-                    <div
+                    <motion.div
                         key={`item-2-${index}`}
-                        className="flex items-center gap-2 transition-colors duration-300"
+                        className="flex items-center gap-2 transition-colors duration-300 cursor-pointer"
                         style={{ color: item.color || 'rgba(255, 255, 255, 0.6)' }}
+                        whileHover={{ scale: 1.2, filter: "brightness(1.2)" }}
                     >
                         {item.icon}
                         <span className="text-lg font-medium">{item.name}</span>
-                    </div>
+                    </motion.div>
                 ))}
             </div>
         </div>

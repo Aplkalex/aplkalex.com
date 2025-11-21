@@ -4,8 +4,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Lock, Calendar, Clock, Zap, Layout, Database, Shield } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Clock, Zap, Layout, Database, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
 
 const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -13,171 +14,215 @@ const tabs = [
     { id: 'tech', label: 'Tech Stack' },
 ];
 
-const features = [
-    {
-        title: 'Intelligent Scheduling',
-        icon: <Calendar className="w-6 h-6 text-purple-400" />,
-        desc: 'Deterministic algorithm with 6 preference modes: Short Breaks, Long Breaks, Consistent Times, Start Late, End Early, and Days Off.',
-    },
-    {
-        title: 'Smart Conflict Detection',
-        icon: <Shield className="w-6 h-6 text-red-400" />,
-        desc: 'Real-time validation with visual indicators. Automatically detects time overlaps and provides helpful error messages.',
-    },
-    {
-        title: 'Interactive Interface',
-        icon: <Layout className="w-6 h-6 text-blue-400" />,
-        desc: 'Drag & Drop courses, snap-to-grid scheduling, and instant search filtering. Fully responsive modern UI.',
-    },
-    {
-        title: 'Lock & Constraints',
-        icon: <Lock className="w-6 h-6 text-yellow-400" />,
-        desc: 'Pin specific sections (LEC/TUT/LAB) to freeze them. The auto-generator respects these locks as hard constraints.',
-    },
-];
-
-const techStack = [
-    { name: 'TypeScript', category: 'Language' },
-    { name: 'Next.js 16', category: 'Framework' },
-    { name: 'React 19', category: 'Library' },
-    { name: 'Tailwind CSS', category: 'Styling' },
-    { name: 'MongoDB', category: 'Database' },
-    { name: 'Prisma', category: 'ORM' },
-];
+// Mock Data removed as it is now inline
 
 export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
 
+    const [isLaunching, setIsLaunching] = useState(false);
+
+    const handleLaunch = (e: React.MouseEvent) => {
+        e.preventDefault();
+        setIsLaunching(true);
+        setTimeout(() => {
+            window.location.href = "https://queuesis.aplkalex.com/";
+        }, 800);
+    };
+
     return (
-        <div className="container mx-auto px-6 py-12 pb-32">
-            <Link href="/#projects" className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors">
-                <ArrowLeft size={18} className="mr-2" /> Back to Projects
-            </Link>
+        <div className="min-h-screen relative">
+            {/* Interactive Background */}
+            <div className="fixed inset-0 z-0">
+                <QueuesisShowcase variant="fullscreen" />
+                {/* Dark overlay to ensure text readability */}
+                <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px] pointer-events-none" />
+            </div>
 
-            {/* Hero */}
-            <div className="text-center mb-16">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    <h1 className="text-5xl md:text-7xl font-bold mb-6 font-display">Queuesis</h1>
-                    <p className="text-xl text-gray-400 max-w-2xl mx-auto mb-8">
-                        A modern course-queueing experience built to fix everything CUSIS didn’t.
-                    </p>
-                    <div className="flex justify-center gap-4">
-                        <a
-                            href="https://queuesis.aplkalex.com/"
-                            target="_blank"
-                            className="px-8 py-3 bg-white text-black rounded-full font-bold hover:scale-105 transition-transform flex items-center gap-2"
+            <div className="container mx-auto px-6 py-12 pb-32 relative z-10">
+                {/* Launch Overlay */}
+                {isLaunching && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="fixed inset-0 bg-black/90 z-[100] backdrop-blur-xl flex items-center justify-center"
+                    >
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1.5, opacity: 1 }}
+                            transition={{ duration: 0.5, ease: "easeInOut" }}
+                            className="text-white font-display text-4xl font-bold"
                         >
-                            Launch App <ExternalLink size={18} />
-                        </a>
-                        <a
-                            href="https://github.com/Aplkalex/Queuesis"
-                            target="_blank"
-                            className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-bold hover:bg-white/10 transition-colors flex items-center gap-2"
+                            Launching Queuesis...
+                        </motion.div>
+                    </motion.div>
+                )}
+
+                {/* Header Section */}
+                <div className="mb-16">
+                    <Link
+                        href="/"
+                        className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-8 group"
+                    >
+                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+                        Back to Projects
+                    </Link>
+
+                    <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+                        <motion.h1
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            className="text-6xl md:text-8xl font-bold font-display mb-6 tracking-tight"
                         >
-                            <Github size={18} /> Source Code
-                        </a>
+                            Queuesis
+                        </motion.h1>
+
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="text-xl text-gray-400 mb-10 max-w-2xl"
+                        >
+                            A modern course-queueing experience built to fix everything CUSIS didn't.
+                        </motion.p>
+
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="flex flex-wrap justify-center gap-4"
+                        >
+                            <button
+                                onClick={handleLaunch}
+                                className="px-8 py-3 bg-white text-black rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all flex items-center gap-2"
+                            >
+                                Launch App <ExternalLink className="w-4 h-4" />
+                            </button>
+                            <a
+                                href="https://github.com/aplkalex/queuesis"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-8 py-3 bg-white/10 text-white rounded-full font-bold text-lg hover:bg-white/20 transition-all flex items-center gap-2 border border-white/10"
+                            >
+                                <Github className="w-5 h-5" />
+                                Source Code
+                            </a>
+                        </motion.div>
                     </div>
-                </motion.div>
-            </div>
-
-            {/* Tabs */}
-            <div className="flex justify-center mb-12">
-                <div className="bg-white/5 p-1 rounded-full border border-white/10 backdrop-blur-md">
-                    {tabs.map((tab) => (
-                        <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={cn(
-                                'px-6 py-2 rounded-full text-sm font-medium transition-all duration-300',
-                                activeTab === tab.id ? 'bg-white text-black shadow-lg' : 'text-gray-400 hover:text-white'
-                            )}
-                        >
-                            {tab.label}
-                        </button>
-                    ))}
                 </div>
-            </div>
 
-            {/* Content */}
-            <AnimatePresence mode="wait">
-                <motion.div
-                    key={activeTab}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.3 }}
-                >
-                    {activeTab === 'overview' && (
-                        <div className="max-w-4xl mx-auto space-y-8">
-                            <GlassCard>
-                                <h3 className="text-2xl font-bold mb-4 font-display">Project Overview</h3>
-                                <p className="text-gray-300 leading-relaxed mb-6">
-                                    Queuesis is a CUHK-focused timetable planner that combines intuitive drag-and-drop editing with a powerful deterministic schedule generator. Course data is sourced from CUSIS and can optionally be synced to MongoDB Atlas via Prisma for enhanced performance.
-                                </p>
-                                <div className="grid md:grid-cols-2 gap-6">
-                                    <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                        <h4 className="font-bold mb-2 flex items-center gap-2"><Zap className="text-yellow-400" /> Why Queuesis?</h4>
-                                        <ul className="list-disc list-inside text-sm text-gray-400 space-y-2">
-                                            <li>Smart Scheduling with 6 modes</li>
-                                            <li>Real-time conflict validation</li>
-                                            <li>Works with or without database</li>
-                                            <li>Modern Next.js 16 Stack</li>
-                                        </ul>
-                                    </div>
-                                    <div className="bg-white/5 p-4 rounded-xl border border-white/10">
-                                        <h4 className="font-bold mb-2 flex items-center gap-2"><Clock className="text-green-400" /> Current Support</h4>
-                                        <p className="text-sm text-gray-400">
-                                            Currently supports <strong>2025-2026 Term 2</strong> course data. Support for additional terms will be added in future updates.
-                                        </p>
-                                    </div>
-                                </div>
-                            </GlassCard>
-
-                            {/* Video Placeholder */}
-                            <GlassCard className="aspect-video flex items-center justify-center bg-black/50">
-                                <div className="text-center">
-                                    <p className="text-gray-500 mb-2">Video Showcase</p>
-                                    <p className="text-xs text-gray-600">Queuesis.Showcase.Video.mp4</p>
-                                </div>
-                            </GlassCard>
-                        </div>
-                    )}
-
-                    {activeTab === 'features' && (
-                        <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-                            {features.map((feature, idx) => (
-                                <GlassCard key={idx} className="h-full">
-                                    <div className="mb-4 p-3 bg-white/5 rounded-lg w-fit border border-white/10">
-                                        {feature.icon}
-                                    </div>
-                                    <h3 className="text-xl font-bold mb-3 font-display">{feature.title}</h3>
-                                    <p className="text-gray-400 text-sm leading-relaxed">{feature.desc}</p>
-                                </GlassCard>
+                {/* Content Tabs */}
+                <div className="max-w-4xl mx-auto">
+                    <div className="flex justify-center mb-12">
+                        <div className="p-1 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
+                            {['overview', 'features', 'stack'].map((tab) => (
+                                <button
+                                    key={tab}
+                                    onClick={() => setActiveTab(tab)}
+                                    className={cn(
+                                        "px-6 py-2 rounded-full text-sm font-medium transition-all",
+                                        activeTab === tab
+                                            ? "bg-white text-black shadow-lg"
+                                            : "text-gray-400 hover:text-white"
+                                    )}
+                                >
+                                    {tab.charAt(0).toUpperCase() + tab.slice(1).replace('stack', ' Tech Stack').replace('features', ' Key Features')}
+                                </button>
                             ))}
                         </div>
-                    )}
+                    </div>
 
-                    {activeTab === 'tech' && (
-                        <div className="max-w-4xl mx-auto">
-                            <GlassCard>
-                                <h3 className="text-2xl font-bold mb-8 font-display text-center">Technology Stack</h3>
-                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                                    {techStack.map((tech, idx) => (
-                                        <div key={idx} className="p-4 bg-white/5 border border-white/10 rounded-xl text-center hover:bg-white/10 transition-colors">
-                                            <p className="font-bold text-lg mb-1">{tech.name}</p>
-                                            <p className="text-xs text-gray-500 uppercase tracking-wider">{tech.category}</p>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={activeTab}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            {activeTab === 'overview' && (
+                                <div className="bg-black/40 border border-white/10 rounded-2xl p-8 backdrop-blur-md">
+                                    <h2 className="text-2xl font-bold mb-4 font-display">Project Overview</h2>
+                                    <p className="text-gray-300 leading-relaxed mb-8">
+                                        Queuesis is a CUHK-focused timetable planner that combines intuitive drag-and-drop editing with a powerful
+                                        deterministic schedule generator. Course data is sourced from CUSIS and can optionally be synced to MongoDB
+                                        Atlas via Prisma for enhanced performance.
+                                    </p>
+
+                                    <div className="grid md:grid-cols-2 gap-6">
+                                        <div className="bg-white/5 rounded-xl p-6 border border-white/5">
+                                            <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-400">
+                                                <Zap className="w-5 h-5" /> Why Queuesis?
+                                            </h3>
+                                            <ul className="space-y-2 text-sm text-gray-400">
+                                                <li className="flex items-center gap-2">• Smart Scheduling with 6 modes</li>
+                                                <li className="flex items-center gap-2">• Real-time conflict validation</li>
+                                                <li className="flex items-center gap-2">• Works with or without database</li>
+                                                <li className="flex items-center gap-2">• Modern Next.js 16 Stack</li>
+                                            </ul>
                                         </div>
+                                        <div className="bg-white/5 rounded-xl p-6 border border-white/5">
+                                            <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-green-400">
+                                                <Clock className="w-5 h-5" /> Current Support
+                                            </h3>
+                                            <p className="text-sm text-gray-400">
+                                                Currently supports <span className="text-white font-bold">2025-2026 Term 2</span> course data.
+                                                Support for additional terms will be added in future updates.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {activeTab === 'features' && (
+                                <div className="grid gap-4">
+                                    {[
+                                        { title: "Drag & Drop Interface", desc: "Intuitive timetable management with dnd-kit", icon: <Layout className="w-6 h-6 text-purple-400" /> },
+                                        { title: "Smart Generator", desc: "Generate conflict-free schedules automatically", icon: <Zap className="w-6 h-6 text-yellow-400" /> },
+                                        { title: "Real-time Validation", desc: "Instant feedback on course conflicts", icon: <AlertCircle className="w-6 h-6 text-red-400" /> },
+                                        { title: "Data Sync", desc: "Optional MongoDB sync for persistence", icon: <Database className="w-6 h-6 text-blue-400" /> }
+                                    ].map((feature, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: i * 0.1 }}
+                                            className="bg-black/40 border border-white/10 rounded-xl p-6 flex items-start gap-4 backdrop-blur-md hover:bg-white/5 transition-colors"
+                                        >
+                                            <div className="p-3 bg-white/5 rounded-lg">
+                                                {feature.icon}
+                                            </div>
+                                            <div>
+                                                <h3 className="text-lg font-bold mb-1">{feature.title}</h3>
+                                                <p className="text-gray-400 text-sm">{feature.desc}</p>
+                                            </div>
+                                        </motion.div>
                                     ))}
                                 </div>
-                            </GlassCard>
-                        </div>
-                    )}
-                </motion.div>
-            </AnimatePresence>
+                            )}
+
+                            {activeTab === 'stack' && (
+                                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                    {[
+                                        "Next.js 16", "TypeScript", "Tailwind CSS",
+                                        "Prisma", "MongoDB", "Framer Motion",
+                                        "Zustand", "dnd-kit", "Vercel"
+                                    ].map((tech, i) => (
+                                        <motion.div
+                                            key={i}
+                                            initial={{ opacity: 0, scale: 0.9 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ delay: i * 0.05 }}
+                                            className="bg-black/40 border border-white/10 rounded-xl p-4 text-center hover:border-white/30 transition-colors backdrop-blur-md"
+                                        >
+                                            <span className="font-mono text-sm text-gray-300">{tech}</span>
+                                        </motion.div>
+                                    ))}
+                                </div>
+                            )}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
+            </div>
         </div>
     );
 }

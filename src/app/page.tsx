@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
+import ZoomableCard from '@/components/ui/ZoomableCard';
+import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
 import Link from 'next/link';
 import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
@@ -92,18 +94,22 @@ export default function Home() {
                             I build secure, intelligent systems that solve real-world problems. Passionate about FinTech, AI, and making the web a safer place.
                         </motion.p>
                         <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-                            <Link
-                                href="#projects"
-                                className="px-8 py-3 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform flex items-center gap-2"
-                            >
-                                View Work <ArrowRight size={18} />
-                            </Link>
-                            <Link
-                                href="#contact"
-                                className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors"
-                            >
-                                Contact Me
-                            </Link>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Link
+                                    href="#projects"
+                                    className="px-8 py-3 bg-white text-black rounded-full font-semibold flex items-center gap-2 border border-transparent"
+                                >
+                                    View Work <ArrowRight size={18} />
+                                </Link>
+                            </motion.div>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <Link
+                                    href="#contact"
+                                    className="px-8 py-3 bg-white/5 border border-white/10 text-white rounded-full font-semibold hover:bg-white/10 transition-colors flex items-center justify-center"
+                                >
+                                    Contact Me
+                                </Link>
+                            </motion.div>
                         </motion.div>
 
                         {/* Tech Stack Marquee */}
@@ -219,7 +225,8 @@ export default function Home() {
                                     <motion.span
                                         key={tag}
                                         variants={popIn}
-                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300"
+                                        whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 cursor-pointer"
                                     >
                                         {tag}
                                     </motion.span>
@@ -247,7 +254,11 @@ export default function Home() {
                     <div className="max-w-2xl mx-auto">
                         {/* Project 1: Queuesis */}
                         <motion.div variants={popIn}>
-                            <GlassCard className="h-full flex flex-col">
+                            <ZoomableCard
+                                redirectUrl="https://queuesis.aplkalex.com"
+                                className="h-full flex flex-col"
+                                showcaseContent={<QueuesisShowcase />}
+                            >
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-xl font-bold font-display">Queuesis</h3>
                                     <span className="text-xs text-gray-500 border border-white/10 px-2 py-1 rounded">Nov 2025 - Present</span>
@@ -261,23 +272,23 @@ export default function Home() {
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Tailwind</span>
                                 </div>
                                 <div className="flex gap-4 mt-auto flex-wrap">
-                                    <Link href="/queuesis" className="text-sm font-semibold hover:text-white text-gray-300 flex items-center gap-1">
-                                        View Details <ArrowRight size={14} />
-                                    </Link>
-                                    <a href="https://queuesis.aplkalex.com" target="_blank" className="text-sm hover:text-white text-gray-300 flex items-center gap-1">
+
+                                    <span className="text-sm hover:text-white text-gray-300 flex items-center gap-1">
                                         <ExternalLink size={14} /> Live
-                                    </a>
-                                    <a href="https://github.com/Aplkalex/Queuesis" target="_blank" className="text-sm hover:text-white text-gray-300 flex items-center gap-1">
+                                    </span>
+                                    <a href="https://github.com/Aplkalex/Queuesis" target="_blank" className="text-sm hover:text-white text-gray-300 flex items-center gap-1 z-20 relative" onClick={(e) => e.stopPropagation()}>
                                         <Github size={14} /> Code
                                     </a>
                                 </div>
-                            </GlassCard>
+                            </ZoomableCard>
                         </motion.div>
 
                         <div className="mt-12 text-center">
-                            <Link href="/projects" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
-                                View All Projects <ArrowRight size={16} />
-                            </Link>
+                            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+                                <Link href="/projects" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
+                                    View All Projects <ArrowRight size={16} />
+                                </Link>
+                            </motion.div>
                         </div>
                     </div>
                 </motion.div>
@@ -301,9 +312,11 @@ export default function Home() {
                     <p className="text-gray-400 mb-8">
                         I have participated in various hackathons and competitions. Check out my achievements!
                     </p>
-                    <Link href="/awards" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
-                        View All Awards <ArrowRight size={16} />
-                    </Link>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+                        <Link href="/awards" className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white/10 transition-colors">
+                            View All Awards <ArrowRight size={16} />
+                        </Link>
+                    </motion.div>
                 </motion.div>
             </section>
 
@@ -321,19 +334,23 @@ export default function Home() {
                         I'm always open to discussing security challenges, data analytics, and potential collaborations.
                     </p>
                     <div className="flex justify-center gap-6">
-                        <a
+                        <motion.a
                             href="mailto:contact@aplkalex.com"
-                            className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:scale-105 transition-transform"
+                            className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             Get in Touch
-                        </a>
-                        <a
+                        </motion.a>
+                        <motion.a
                             href="https://www.linkedin.com/in/ka-hei-wong-5a5322309/"
                             target="_blank"
-                            className="inline-flex items-center gap-2 px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-lg hover:scale-105 transition-transform"
+                            className="inline-flex items-center gap-2 px-10 py-4 bg-blue-600 text-white rounded-full font-bold text-lg"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
                         >
                             <Linkedin size={20} /> LinkedIn
-                        </a>
+                        </motion.a>
                     </div>
                 </motion.div>
             </section>

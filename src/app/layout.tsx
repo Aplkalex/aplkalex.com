@@ -25,7 +25,6 @@ export default function RootLayout({
             <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
                 <SmoothScroll>
                     <CustomCursor />
-                    <div className="grain-overlay"></div>
                     <Starfield />
                     <Navbar />
                     <main className="flex-grow pt-24">{children}</main>
