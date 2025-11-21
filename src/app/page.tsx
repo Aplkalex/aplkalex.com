@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
+import ParallaxText from '@/components/ui/ParallaxText';
 
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb } from 'react-icons/si';
 
@@ -176,15 +177,20 @@ export default function Home() {
             {/* About Section */}
             <section id="about" className="scroll-mt-28">
                 <div className="max-w-4xl mx-auto">
-                    <motion.h2
-                        initial="initial"
-                        whileInView="animate"
-                        viewport={{ once: true }}
-                        variants={fadeInUp}
-                        className="text-3xl md:text-4xl font-bold mb-12 text-center font-display"
-                    >
-                        About Me
-                    </motion.h2>
+                    <div className="mb-12 overflow-hidden">
+                        <ParallaxText baseVelocity={-2} className="opacity-10">
+                            <span className="text-6xl md:text-8xl font-bold font-display uppercase">About Me About Me About Me</span>
+                        </ParallaxText>
+                        <motion.h2
+                            initial="initial"
+                            whileInView="animate"
+                            viewport={{ once: true }}
+                            variants={fadeInUp}
+                            className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
+                        >
+                            About Me
+                        </motion.h2>
+                    </div>
                     <GlassCard className="overflow-hidden">
                         <div className="grid md:grid-cols-3 gap-8">
                             <motion.div
@@ -232,7 +238,12 @@ export default function Home() {
                     viewport={{ once: true }}
                     variants={staggerContainer}
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center font-display">Featured Project</h2>
+                    <div className="mb-12 overflow-hidden">
+                        <ParallaxText baseVelocity={2} className="opacity-10">
+                            <span className="text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
+                        </ParallaxText>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Featured Project</h2>
+                    </div>
                     <div className="max-w-2xl mx-auto">
                         {/* Project 1: Queuesis */}
                         <motion.div variants={popIn}>
@@ -281,7 +292,12 @@ export default function Home() {
                     variants={staggerContainer}
                     className="max-w-4xl mx-auto text-center"
                 >
-                    <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center font-display">Awards & Honors</h2>
+                    <div className="mb-8 overflow-hidden">
+                        <ParallaxText baseVelocity={-2} className="opacity-10">
+                            <span className="text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
+                        </ParallaxText>
+                        <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Awards & Honors</h2>
+                    </div>
                     <p className="text-gray-400 mb-8">
                         I have participated in various hackathons and competitions. Check out my achievements!
                     </p>

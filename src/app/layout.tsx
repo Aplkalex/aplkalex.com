@@ -4,6 +4,8 @@ import './globals.css';
 import Starfield from '@/components/ui/Starfield';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import SmoothScroll from '@/components/ui/SmoothScroll';
+import CustomCursor from '@/components/ui/CustomCursor';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space-grotesk' });
@@ -19,12 +21,16 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+        <html lang="en" suppressHydrationWarning>
             <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
-                <Starfield />
-                <Navbar />
-                <main className="flex-grow pt-24">{children}</main>
-                <Footer />
+                <SmoothScroll>
+                    <CustomCursor />
+                    <div className="grain-overlay"></div>
+                    <Starfield />
+                    <Navbar />
+                    <main className="flex-grow pt-24">{children}</main>
+                    <Footer />
+                </SmoothScroll>
             </body>
         </html>
     );
