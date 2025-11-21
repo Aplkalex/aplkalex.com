@@ -2,71 +2,45 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
-import { ArrowLeft, ExternalLink, Github, Clock, Zap, Layout, Database, AlertCircle } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, Zap, Clock, Layout, Database, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
 
-const tabs = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'features', label: 'Key Features' },
-    { id: 'tech', label: 'Tech Stack' },
-];
-
-// Mock Data removed as it is now inline
-
-export default function QueuesisPage() {
+export default function QueuesisDetail({ isExpanded = true }: { isExpanded?: boolean }) {
     const [activeTab, setActiveTab] = useState('overview');
-
     const [isLaunching, setIsLaunching] = useState(false);
 
-    const handleLaunch = (e: React.MouseEvent) => {
-        e.preventDefault();
+    const handleLaunch = () => {
         setIsLaunching(true);
         setTimeout(() => {
-            window.location.href = "https://queuesis.aplkalex.com/";
-        }, 800);
+            window.open('https://queuesis.aplkalex.com', '_blank');
+            setIsLaunching(false);
+        }, 1500);
     };
 
     return (
-        <div className="min-h-screen relative">
-            {/* Interactive Background */}
-            <div className="fixed inset-0 z-0">
-                <QueuesisShowcase variant="fullscreen" />
-                {/* Dark overlay to ensure text readability */}
-                <div className="absolute inset-0 bg-black/70 backdrop-blur-[2px] pointer-events-none" />
-            </div>
-
-            <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">
-                {/* Launch Overlay */}
-                {isLaunching && (
+        <div className="w-full h-full flex flex-col pointer-events-none">
+            {/* Launch Overlay */}
+            {isLaunching && (
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="fixed inset-0 bg-black/90 z-[100] backdrop-blur-xl flex items-center justify-center pointer-events-auto"
+                >
                     <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="fixed inset-0 bg-black/90 z-[100] backdrop-blur-xl flex items-center justify-center pointer-events-auto"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1.5, opacity: 1 }}
+                        transition={{ duration: 0.5, ease: "easeInOut" }}
+                        className="text-white font-display text-4xl font-bold"
                     >
-                        <motion.div
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1.5, opacity: 1 }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
-                            className="text-white font-display text-4xl font-bold"
-                        >
-                            Launching Queuesis...
-                        </motion.div>
+                        Launching Queuesis...
                     </motion.div>
-                )}
+                </motion.div>
+            )}
 
+            <div className="container mx-auto px-6 py-12 pb-32 relative z-10 flex-grow flex flex-col justify-center">
                 {/* Header Section */}
-                <div className="mb-16 pointer-events-auto">
-                    <Link
-                        href="/"
-                        className="inline-flex items-center text-sm text-gray-400 hover:text-white transition-colors mb-8 group"
-                    >
-                        <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-                        Back to Projects
-                    </Link>
-
+                <div className="mb-12 pointer-events-auto">
                     <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
@@ -111,7 +85,7 @@ export default function QueuesisPage() {
                 </div>
 
                 {/* Content Tabs */}
-                <div className="max-w-4xl mx-auto pointer-events-auto">
+                <div className="max-w-4xl mx-auto w-full pointer-events-auto">
                     <div className="flex justify-center mb-12">
                         <div className="p-1 bg-white/5 rounded-full border border-white/10 backdrop-blur-sm">
                             {['overview', 'features', 'stack'].map((tab) => (

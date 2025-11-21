@@ -8,11 +8,12 @@ import { useRouter } from 'next/navigation';
 interface ZoomableCardProps {
     children: React.ReactNode;
     className?: string;
-    redirectUrl: string;
+    redirectUrl?: string;
     showcaseContent?: React.ReactNode;
+    expandedContent?: React.ReactNode;
 }
 
-export default function ZoomableCard({ children, className, redirectUrl, showcaseContent }: ZoomableCardProps) {
+export default function ZoomableCard({ children, className, redirectUrl, showcaseContent, expandedContent }: ZoomableCardProps) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isRedirecting, setIsRedirecting] = useState(false);
     const router = useRouter();
@@ -22,10 +23,11 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
     };
 
     const handleRedirect = () => {
+        if (!redirectUrl) return;
         setIsRedirecting(true);
         setTimeout(() => {
-            window.location.href = redirectUrl;
-        }, 1000);
+            router.push(redirectUrl);
+        }, 800);
     };
 
     return (
@@ -92,30 +94,45 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                         {/* Original Content - Enable pointer events for interactive elements */}
                         <div className={cn(
                             "pointer-events-auto transition-all duration-500",
-                            isExpanded ? "bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-white/10 max-w-2xl w-full shadow-2xl" : ""
+                            isExpanded ? "w-full h-full" : ""
                         )}>
-                            {children}
-
-                            {/* Lead me to there button (Only when expanded) */}
-                            {isExpanded && (
+                            {isExpanded && expandedContent ? (
                                 <motion.div
-                                    initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                                    animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
-                                    transition={{ delay: 0.3 }}
-                                    className="flex justify-center pt-4 border-t border-white/10"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 0.5, delay: 0.2 }}
+                                    className="w-full h-full"
                                 >
-                                    <motion.button
-                                        whileHover={{ scale: 1.05 }}
-                                        whileTap={{ scale: 0.95 }}
-                                        onClick={(e) => {
-                                            e.stopPropagation();
-                                            handleRedirect();
-                                        }}
-                                        className="px-8 py-3 bg-white text-black rounded-full font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow flex items-center gap-2"
-                                    >
-                                        Lead me to there! 🚀
-                                    </motion.button>
+                                    {expandedContent}
                                 </motion.div>
+                            ) : (
+                                <div className={cn(
+                                    isExpanded ? "bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-white/10 max-w-2xl w-full shadow-2xl mx-auto mt-20" : ""
+                                )}>
+                                    {children}
+
+                                    {/* Lead me to there button (Only when expanded and no custom content) */}
+                                    {isExpanded && (
+                                        <motion.div
+                                            initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                                            animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
+                                            transition={{ delay: 0.3 }}
+                                            className="flex justify-center pt-4 border-t border-white/10"
+                                        >
+                                            <motion.button
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.95 }}
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    handleRedirect();
+                                                }}
+                                                className="px-8 py-3 bg-white text-black rounded-full font-bold text-lg shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:shadow-[0_0_30px_rgba(255,255,255,0.5)] transition-shadow flex items-center gap-2"
+                                            >
+                                                Lead me to there! 🚀
+                                            </motion.button>
+                                        </motion.div>
+                                    )}
+                                </div>
                             )}
                         </div>
                     </motion.div>

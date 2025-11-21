@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
+import QueuesisDetail from '@/components/queuesis/QueuesisDetail';
 import Link from 'next/link';
 import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
@@ -255,9 +256,10 @@ export default function Home() {
                         {/* Project 1: Queuesis */}
                         <motion.div variants={popIn}>
                             <ZoomableCard
-                                redirectUrl="https://queuesis.aplkalex.com"
+                                redirectUrl="/queuesis"
                                 className="h-full flex flex-col"
                                 showcaseContent={<QueuesisShowcase />}
+                                expandedContent={<QueuesisDetail />}
                             >
                                 <div className="flex justify-between items-start mb-4">
                                     <h3 className="text-xl font-bold font-display">Queuesis</h3>
