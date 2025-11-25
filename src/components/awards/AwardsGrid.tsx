@@ -64,9 +64,6 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                             }
                         >
                             <div className="flex flex-col h-full p-2">
-                                <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${award.color} flex items-center justify-center mb-4 shadow-lg`}>
-                                    <Icon className="text-white w-6 h-6" />
-                                </div>
                                 <h3 className="text-xl font-bold font-display mb-2 leading-tight">{award.title}</h3>
                                 <p className="text-sm text-gray-400 mb-4 flex-grow">{award.issuer}</p>
                                 <div className="flex justify-between items-center mt-auto pt-4 border-t border-white/5">

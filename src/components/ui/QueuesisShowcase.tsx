@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { MapPin, Lock } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
 const HOURS = Array.from({ length: 9 }, (_, i) => i + 9); // 09:00 to 17:00
@@ -44,6 +45,15 @@ const DEMO_COURSES = [
 
 export default function QueuesisShowcase({ className, variant = 'card' }: { className?: string, variant?: 'card' | 'fullscreen' }) {
     const isCard = variant === 'card';
+
+    const [isBlurred, setIsBlurred] = useState(false);
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsBlurred(true);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, []);
 
     return (
         <div className={cn(
@@ -115,8 +125,8 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                                     key={course.id}
                                     drag
                                     dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
-                                    dragElastic={0.2}
-                                    whileHover={{ scale: 1.02, zIndex: 50, cursor: 'grab' }}
+                                    dragElastic={0.5}
+                                    whileHover={{ scale: 1.05, zIndex: 50, cursor: 'grab' }}
                                     whileDrag={{ scale: 1.05, zIndex: 100, cursor: 'grabbing', opacity: 0.9 }}
                                     className="absolute p-1 pointer-events-auto"
                                     style={{
@@ -127,7 +137,10 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                                     }}
                                 >
                                     <div
-                                        className="w-full h-full rounded-[7px] p-2 flex flex-col border backdrop-blur-[22px] shadow-none transition-all duration-200"
+                                        className={cn(
+                                            "w-full h-full rounded-[7px] p-2 flex flex-col border shadow-none transition-all duration-1000",
+                                            isBlurred ? "backdrop-blur-[22px]" : "backdrop-blur-none"
+                                        )}
                                         style={{
                                             backgroundColor: course.style.bg,
                                             borderColor: course.style.border,

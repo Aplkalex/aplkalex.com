@@ -255,7 +255,7 @@ export default function Home() {
                                         key={tag}
                                         variants={popIn}
                                         whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300 cursor-pointer"
+                                        className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-sm text-gray-300"
                                     >
                                         {tag}
                                     </motion.span>
@@ -296,7 +296,7 @@ export default function Home() {
                                 <p className="text-gray-400 text-sm mb-6 flex-grow">
                                     A modern web application built to address long-standing usability and performance issues in CUHK’s system (CUSIS).
                                 </p>
-                                <div className="flex gap-2 mb-6 flex-wrap">
+                                <div className="flex gap-2 mb-6 flex-wrap justify-center">
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Next.js</span>
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">TypeScript</span>
                                     <span className="text-xs px-2 py-1 bg-white/5 rounded text-gray-300">Tailwind</span>
