@@ -66,10 +66,6 @@ export default function ParallaxText({ children, baseVelocity = 100, className =
                 <span className="block mr-8">{children}</span>
                 <span className="block mr-8">{children}</span>
                 <span className="block mr-8">{children}</span>
-                <span className="block mr-8">{children}</span>
-                <span className="block mr-8">{children}</span>
-                <span className="block mr-8">{children}</span>
-                <span className="block mr-8">{children}</span>
             </motion.div>
         </div>
     );

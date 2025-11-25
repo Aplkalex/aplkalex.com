@@ -20,7 +20,7 @@ export default function Starfield() {
         canvas.height = height;
 
         const stars: { x: number; y: number; radius: number; alpha: number; speed: number }[] = [];
-        const numStars = Math.floor((width * height) / 12000);
+        const numStars = Math.floor((width * height) / 25000);
 
         for (let i = 0; i < numStars; i++) {
             stars.push({

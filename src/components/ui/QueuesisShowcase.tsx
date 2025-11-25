@@ -47,13 +47,24 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
     const isCard = variant === 'card';
 
     const [isBlurred, setIsBlurred] = useState(false);
+    const [isDragging, setIsDragging] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsBlurred(true);
-        }, 2000);
+        }, 500);
         return () => clearTimeout(timer);
     }, []);
+
+    const handleDragStart = () => {
+        setIsDragging(true);
+        setIsBlurred(false);
+    };
+
+    const handleDragEnd = () => {
+        setIsDragging(false);
+        setIsBlurred(true);
+    };
 
     return (
         <div className={cn(
@@ -126,9 +137,11 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                                     drag
                                     dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
                                     dragElastic={0.5}
+                                    onDragStart={handleDragStart}
+                                    onDragEnd={handleDragEnd}
                                     whileHover={{ scale: 1.05, zIndex: 50, cursor: 'grab' }}
-                                    whileDrag={{ scale: 1.05, zIndex: 100, cursor: 'grabbing', opacity: 0.9 }}
-                                    className="absolute p-1 pointer-events-auto"
+                                    whileDrag={{ scale: 1.05, zIndex: 100, cursor: 'grabbing', opacity: 1 }}
+                                    className="absolute p-1 pointer-events-auto will-change-transform"
                                     style={{
                                         top,
                                         left,
@@ -138,8 +151,8 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                                 >
                                     <div
                                         className={cn(
-                                            "w-full h-full rounded-[7px] p-2 flex flex-col border shadow-none transition-all duration-1000",
-                                            isBlurred ? "backdrop-blur-[22px]" : "backdrop-blur-none"
+                                            "w-full h-full rounded-[7px] p-2 flex flex-col border shadow-none transition-all duration-200",
+                                            isBlurred && !isDragging ? "backdrop-blur-[12px] scale-100" : "backdrop-blur-none scale-105"
                                         )}
                                         style={{
                                             backgroundColor: course.style.bg,
