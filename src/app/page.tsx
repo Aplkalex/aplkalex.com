@@ -89,7 +89,7 @@ export default function Home() {
         setZoomingId('queuesis');
         setTimeout(() => {
             router.push('/queuesis');
-        }, 450); // Faster zoom
+        }, 250); // Even faster zoom
     };
 
     const handleResumeClick = (e: React.MouseEvent) => {
@@ -98,11 +98,11 @@ export default function Home() {
         // Delay opening new tab to let animation play briefly
         setTimeout(() => {
             window.open('/Alex%20Resume%202025.pdf', '_blank');
-        }, 450);
+        }, 250);
 
         setTimeout(() => {
             setZoomingId(null);
-        }, 1200); // Reset after a while
+        }, 900); // Reset after a while
     };
 
     return (
@@ -114,7 +114,7 @@ export default function Home() {
                         className="fixed inset-0 z-[9999] bg-white dark:bg-black"
                         initial={{ borderRadius: 16 }}
                         animate={{ borderRadius: 0 }}
-                        transition={{ duration: 0.45, ease: "easeInOut" }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                     />
                 )}
                 {zoomingId === 'resume' && (
@@ -123,7 +123,7 @@ export default function Home() {
                         initial={{ clipPath: 'circle(0% at 50% 50%)' }}
                         animate={{ clipPath: 'circle(150% at 50% 50%)' }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.45, ease: "easeInOut" }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                     />
                 )}
             </AnimatePresence>
