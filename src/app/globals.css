@@ -4,8 +4,11 @@
     /* Light Mode Defaults */
     --background: #ffffff;
     --foreground: #050505;
-    --glass-bg: rgba(0, 0, 0, 0.05);
-    --glass-border: rgba(0, 0, 0, 0.1);
+    --foreground-strong: #111827;
+    --foreground-muted: #6b7280;
+    --foreground-soft: #9ca3af;
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(15, 23, 42, 0.08);
     --gradient-start: #000000;
     --gradient-end: #666666;
 }
@@ -14,8 +17,11 @@
     /* Dark Mode Defaults */
     --background: #050505;
     --foreground: #ffffff;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
+    --foreground-strong: #f8fafc;
+    --foreground-muted: #cbd5f5;
+    --foreground-soft: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-border: rgba(255, 255, 255, 0.15);
     --gradient-start: #ffffff;
     --gradient-end: #777777;
 }
@@ -73,13 +79,26 @@ body {
 
 /* Custom Utilities */
 .glass-card {
-    background: var(--glass-bg);
+    background-color: var(--glass-bg);
     border: 1px solid var(--glass-border);
     backdrop-filter: blur(12px);
+    color: var(--foreground-strong);
 }
 
 .text-gradient {
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.theme-text-strong {
+    color: var(--foreground-strong);
+}
+
+.theme-text-muted {
+    color: var(--foreground-muted);
+}
+
+.theme-text-soft {
+    color: var(--foreground-soft);
 }

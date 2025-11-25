@@ -291,7 +291,7 @@ export default function Home() {
                                 <ScrambleText text="About Me" />
                             </motion.div>
                         </div>
-                        <GlassCard className="overflow-hidden bg-white/80 dark:bg-white/5">
+                        <GlassCard className="overflow-hidden">
                             <div className="grid md:grid-cols-3 gap-8">
                                 <motion.div
                                     className="md:col-span-2 max-w-none space-y-6"
@@ -300,11 +300,11 @@ export default function Home() {
                                     viewport={{ once: true }}
                                     variants={slideInLeft}
                                 >
-                                    <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        I am a second‑year Computer Science student at <strong className="text-gray-900 dark:text-white">The Chinese University of Hong Kong</strong>, pursuing a double degree in Integrated BBA and a minor in Mathematics. Currently, I am studying as an exchange student at the <strong className="text-gray-900 dark:text-white">University of British Columbia</strong>, Vancouver.
+                                    <p className="text-lg theme-text-muted leading-relaxed">
+                                        I am a second‑year Computer Science student at <strong className="theme-text-strong">The Chinese University of Hong Kong</strong>, pursuing a double degree in Integrated BBA and a minor in Mathematics. Currently, I am studying as an exchange student at the <strong className="theme-text-strong">University of British Columbia</strong>, Vancouver.
                                     </p>
-                                    <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                                        I am passionate about <strong className="text-gray-900 dark:text-white">cybersecurity, financial technology, AI and LLM applications</strong>, and interdisciplinary innovations. Feel free to find me discuss security challenges, data analytics, and potential collaborations!
+                                    <p className="text-lg theme-text-muted leading-relaxed">
+                                        I am passionate about <strong className="theme-text-strong">cybersecurity, financial technology, AI and LLM applications</strong>, and interdisciplinary innovations. Feel free to find me discuss security challenges, data analytics, and potential collaborations!
                                     </p>
                                 </motion.div>
                                 <motion.div
@@ -319,7 +319,7 @@ export default function Home() {
                                             key={tag}
                                             variants={popIn}
                                             whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                                            className="px-3 py-1 bg-black/5 border border-black/10 rounded-full text-sm text-gray-700 dark:bg-white/5 dark:border-white/10 dark:text-gray-200"
+                                            className="px-3 py-1 rounded-full text-sm theme-text-muted bg-white/70 border border-black/10 dark:bg-white/10 dark:border-white/10 dark:text-white"
                                         >
                                             {tag}
                                         </motion.span>

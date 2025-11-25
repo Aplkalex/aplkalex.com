@@ -47,8 +47,8 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.5 }}
-                    className="fixed inset-0 bg-black/95 backdrop-blur-sm z-50"
+                    transition={{ duration: 0.3 }}
+                    className="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-sm z-50"
                     onClick={!isRedirecting ? () => setIsExpanded(false) : undefined}
                 />
             )}
@@ -57,18 +57,18 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 layout
                 onClick={!isExpanded ? handleClick : undefined}
                 className={cn(
-                    'relative bg-black/40 backdrop-blur-md border border-white/10 overflow-hidden',
-                    (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-white/30',
+                    'relative bg-white/80 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white',
+                    (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-black/30 dark:hover:border-white/30',
                     className
                 )}
                 whileHover={!isExpanded ? {
                     scale: 1.02,
                     y: -5,
-                    borderColor: "rgba(255, 255, 255, 0.3)",
-                    boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)"
+                    borderColor: "rgba(0, 0, 0, 0.15)",
+                    boxShadow: "0 10px 30px -10px rgba(0,0,0,0.35)"
                 } : undefined}
                 transition={{
-                    layout: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+                    layout: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
                     scale: { duration: 0.2 },
                     y: { duration: 0.2 }
                 }}
@@ -81,7 +81,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                         whileTap={{ scale: 0.95 }}
                         transition={{ duration: 0.3 }}
                         onClick={handleClose}
-                        className="pointer-events-auto absolute top-6 right-6 z-[70] inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white backdrop-blur-md shadow-lg"
+                        className="pointer-events-auto absolute top-6 right-6 z-[70] inline-flex items-center gap-2 rounded-full border border-black/10 dark:border-white/20 bg-white/80 dark:bg-white/10 px-4 py-2 text-sm font-semibold text-black dark:text-white backdrop-blur-md shadow-lg"
                         aria-label="Close details"
                     >
                         <X className="w-4 h-4" />
@@ -133,7 +133,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                                 </motion.div>
                             ) : (
                                 <div className={cn(
-                                    isExpanded ? "bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-white/10 max-w-2xl w-full shadow-2xl mx-auto mt-20" : ""
+                                    isExpanded ? "bg-white/85 dark:bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-black/10 dark:border-white/10 max-w-2xl w-full shadow-2xl mx-auto mt-20" : ""
                                 )}>
                                     {children}
 
@@ -143,7 +143,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                                             initial={{ opacity: 0, height: 0, marginTop: 0 }}
                                             animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
                                             transition={{ delay: 0.3 }}
-                                            className="flex justify-center pt-4 border-t border-white/10"
+                                            className="flex justify-center pt-4 border-t border-black/10 dark:border-white/10"
                                         >
                                             <motion.button
                                                 whileHover={{ scale: 1.05 }}
