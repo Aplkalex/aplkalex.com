@@ -1,16 +1,17 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import AwardsGrid from '@/components/awards/AwardsGrid';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight, Github, ExternalLink, Terminal, Code2, Database, Cpu, Globe, Shield, Linkedin } from 'lucide-react';
 import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
+import ScrambleText from '@/components/ui/ScrambleText';
 
 
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
@@ -74,6 +75,14 @@ const techStack = [
 export default function Home() {
     const [zoomingId, setZoomingId] = useState<string | null>(null);
     const router = useRouter();
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end start"]
+    });
+
+    const heroTextX = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
+    const heroOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
     const handleQueuesisClick = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -119,7 +128,7 @@ export default function Home() {
                 )}
             </AnimatePresence>
 
-            <div className="container mx-auto px-6 space-y-32 pb-20 relative">
+            <div ref={containerRef} className="container mx-auto px-6 space-y-32 pb-20 relative">
                 {/* Hero Section */}
                 <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
                     {/* Background Animations */}
@@ -133,6 +142,7 @@ export default function Home() {
                             initial="initial"
                             animate="animate"
                             variants={staggerContainer}
+                            style={{ x: heroTextX, opacity: heroOpacity }}
                         >
                             <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-white/10 bg-white/5 text-sm text-green-300 backdrop-blur-sm">
                                 <span className="relative flex h-2 w-2">
@@ -152,13 +162,14 @@ export default function Home() {
                                         repeat: Infinity,
                                         repeatDelay: 1
                                     }}
-                                >👋</motion.span>, I'm <span className="text-gradient">Aplkalex</span>.
+                                >👋</motion.span>, I'm <br />
+                                <ScrambleText text="Aplkalex" className="text-gradient" />.
                             </motion.h1>
-                            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl text-gray-300 mb-6 font-light">
+                            <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl text-gray-600 dark:text-gray-100 mb-6 font-light">
                                 IBBA & Computer Science Student @ CUHK | Exchange @ UBC <br />
-                                <span className="text-white font-medium">Full Stack Developer with interests in FinTech and Mental Health.</span>
+                                <span className="text-black dark:text-white font-medium">Full Stack Developer with interests in FinTech and Mental Health.</span>
                             </motion.h2>
-                            <motion.p variants={fadeInUp} className="text-lg text-gray-400 mb-8 max-w-lg leading-relaxed">
+                            <motion.p variants={fadeInUp} className="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-lg leading-relaxed">
                                 I build convenient, impactful systems that solve real-world problems. Passionate about AI, FinTech, and making the web a more human-centered space.
                             </motion.p>
                             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
@@ -212,7 +223,7 @@ export default function Home() {
                                 </div>
 
                                 <motion.div
-                                    className="space-y-2 text-white/80"
+                                    className="space-y-2 text-gray-800 dark:text-white/80"
                                     initial="initial"
                                     animate="animate"
                                     variants={{
@@ -220,43 +231,43 @@ export default function Home() {
                                     }}
                                 >
                                     <div className="flex">
-                                        <span className="text-white/70 mr-2">const</span>
-                                        <span className="text-white">developer</span>
-                                        <span className="text-white/60 mx-2">=</span>
-                                        <span className="text-white/60">{'{'}</span>
+                                        <span className="text-gray-600 dark:text-white/70 mr-2">const</span>
+                                        <span className="text-black dark:text-white">developer</span>
+                                        <span className="text-gray-500 dark:text-white/60 mx-2">=</span>
+                                        <span className="text-gray-500 dark:text-white/60">{'{'}</span>
                                     </div>
                                     <div className="pl-4">
-                                        <span className="text-white/60">name</span>: <span className="text-white">'<Typewriter text="Alex, Wong Ka Hei" delay={0.5} />'</span>,
+                                        <span className="text-gray-500 dark:text-white/60">name</span>: <span className="text-black dark:text-white">'<Typewriter text="Alex, Wong Ka Hei" delay={0.5} />'</span>,
                                     </div>
                                     <div className="pl-4">
-                                        <span className="text-white/60">role</span>: <span className="text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
+                                        <span className="text-gray-500 dark:text-white/60">role</span>: <span className="text-black dark:text-white">'<Typewriter text="Full Stack Developer" delay={1.0} />'</span>,
                                     </div>
                                     <div className="pl-4">
-                                        <span className="text-white/60">education</span>: <span className="text-white/80">['CUHK', 'UBC (Exchange)']</span>,
+                                        <span className="text-gray-500 dark:text-white/60">education</span>: <span className="text-gray-700 dark:text-white/80">['CUHK', 'UBC (Exchange)']</span>,
                                     </div>
                                     <div className="pl-4">
-                                        <span className="text-white/60">passions</span>: <span className="text-white/70">[</span>
+                                        <span className="text-gray-500 dark:text-white/60">passions</span>: <span className="text-gray-600 dark:text-white/70">[</span>
                                     </div>
                                     <div className="pl-8">
-                                        <span className="text-white/90">'<Typewriter text="Cybersecurity" delay={1.5} />'</span>,
+                                        <span className="text-gray-800 dark:text-white/90">'<Typewriter text="Cybersecurity" delay={1.5} />'</span>,
                                     </div>
                                     <div className="pl-8">
-                                        <span className="text-white/90">'<Typewriter text="FinTech" delay={2.0} />'</span>,
+                                        <span className="text-gray-800 dark:text-white/90">'<Typewriter text="FinTech" delay={2.0} />'</span>,
                                     </div>
                                     <div className="pl-8">
-                                        <span className="text-white/90">'<Typewriter text="AI & LLMs" delay={2.5} />'</span>,
+                                        <span className="text-gray-800 dark:text-white/90">'<Typewriter text="AI & LLMs" delay={2.5} />'</span>,
                                     </div>
                                     <div className="pl-8">
-                                        <span className="text-white/90">'<Typewriter text="Squash" delay={3.0} />'</span>,
+                                        <span className="text-gray-800 dark:text-white/90">'<Typewriter text="Squash" delay={3.0} />'</span>,
                                     </div>
                                     <div className="pl-8">
-                                        <span className="text-white/90">'<Typewriter text="Handbell" delay={3.5} />'</span>
+                                        <span className="text-gray-800 dark:text-white/90">'<Typewriter text="Handbell" delay={3.5} />'</span>
                                     </div>
-                                    <div className="pl-4 text-white/70">],</div>
+                                    <div className="pl-4 text-gray-600 dark:text-white/70">],</div>
                                     <div className="pl-4">
-                                        <span className="text-white/60">status</span>: <span className="text-white">'<Typewriter text="Building cool stuff" delay={4.0} />'</span>
+                                        <span className="text-gray-500 dark:text-white/60">status</span>: <span className="text-black dark:text-white">'<Typewriter text="Building cool stuff" delay={4.0} />'</span>
                                     </div>
-                                    <div className="text-white/70">{'}'};</div>
+                                    <div className="text-gray-600 dark:text-white/70">{'}'};</div>
                                 </motion.div>
                             </GlassCard>
                         </motion.div>
@@ -270,15 +281,15 @@ export default function Home() {
                             <ParallaxText baseVelocity={-1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="text-6xl md:text-8xl font-bold font-display uppercase">About Me About Me About Me</span>
                             </ParallaxText>
-                            <motion.h2
+                            <motion.div
                                 initial="initial"
                                 whileInView="animate"
                                 viewport={{ once: true }}
                                 variants={fadeInUp}
                                 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
                             >
-                                About Me
-                            </motion.h2>
+                                <ScrambleText text="About Me" />
+                            </motion.div>
                         </div>
                         <GlassCard className="overflow-hidden">
                             <div className="grid md:grid-cols-3 gap-8">
@@ -332,7 +343,15 @@ export default function Home() {
                             <ParallaxText baseVelocity={1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                             </ParallaxText>
-                            <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Featured Project</h2>
+                            <motion.div
+                                initial="initial"
+                                whileInView="animate"
+                                viewport={{ once: true }}
+                                variants={fadeInUp}
+                                className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
+                            >
+                                <ScrambleText text="Featured Project" />
+                            </motion.div>
                         </div>
                         <div className="max-w-2xl mx-auto">
                             {/* Project 1: Queuesis */}
@@ -343,25 +362,34 @@ export default function Home() {
                                             {/* Content Overlay */}
                                             <div className="relative z-10 flex flex-col h-full p-6">
                                                 <div className="flex justify-between items-start mb-4">
-                                                    <h3 className="text-xl font-bold font-display text-white">Queuesis</h3>
-                                                    <span className="text-xs text-gray-500 border border-white/10 px-2 py-1 rounded bg-white/5 backdrop-blur-sm">Nov 2025 - Present</span>
+                                                    <h3 className="text-xl font-bold font-display text-black dark:text-white">Queuesis</h3>
+                                                    <span className="text-xs text-gray-600 dark:text-gray-500 border border-black/10 dark:border-white/10 px-2 py-1 rounded bg-black/5 dark:bg-white/5 backdrop-blur-sm">Nov 2025 - Present</span>
                                                 </div>
-                                                <p className="text-gray-300 text-sm mb-6 flex-grow max-w-[90%]">
+                                                <p className="text-gray-600 dark:text-gray-400 text-sm mb-6 flex-grow">
                                                     A modern web application built to address long-standing usability and performance issues in CUHK’s system (CUSIS).
                                                 </p>
-                                                <div className="flex gap-2 mb-6 flex-wrap">
-                                                    <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-md rounded text-gray-200 border border-white/5">Next.js</span>
-                                                    <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-md rounded text-gray-200 border border-white/5">TypeScript</span>
-                                                    <span className="text-xs px-2 py-1 bg-white/10 backdrop-blur-md rounded text-gray-200 border border-white/5">Tailwind</span>
+                                                <div className="flex gap-2 mb-6">
+                                                    {['Next.js', 'TypeScript', 'Tailwind'].map((tech) => (
+                                                        <span key={tech} className="text-xs px-2 py-1 rounded bg-black/5 dark:bg-white/5 text-gray-600 dark:text-gray-300">
+                                                            {tech}
+                                                        </span>
+                                                    ))}
                                                 </div>
-                                                <div className="flex gap-4 mt-auto flex-wrap pointer-events-auto">
-                                                    <span className="text-sm hover:text-white text-gray-300 flex items-center gap-1 transition-colors">
-                                                        <ExternalLink size={14} /> Live
-                                                    </span>
+                                                <div className="flex gap-4">
                                                     <a
-                                                        href="https://github.com/Aplkalex/Queuesis"
+                                                        href="https://queuesis.aplkalex.com"
                                                         target="_blank"
-                                                        className="text-sm hover:text-white text-gray-300 flex items-center gap-1 z-20 relative transition-colors"
+                                                        rel="noopener noreferrer"
+                                                        className="flex items-center gap-1 text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors"
+                                                        onClick={(e) => e.stopPropagation()}
+                                                    >
+                                                        <ExternalLink size={14} /> Live
+                                                    </a>
+                                                    <a
+                                                        href="https://github.com/aplkalex/queuesis"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="flex items-center gap-1 text-sm text-gray-500 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors"
                                                         onClick={(e) => e.stopPropagation()}
                                                     >
                                                         <Github size={14} /> Code

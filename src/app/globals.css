@@ -1,10 +1,23 @@
 @import "tailwindcss";
 
 :root {
+    /* Light Mode Defaults */
+    --background: #ffffff;
+    --foreground: #050505;
+    --glass-bg: rgba(0, 0, 0, 0.05);
+    --glass-border: rgba(0, 0, 0, 0.1);
+    --gradient-start: #000000;
+    --gradient-end: #666666;
+}
+
+.dark {
+    /* Dark Mode Defaults */
     --background: #050505;
     --foreground: #ffffff;
     --glass-bg: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --gradient-start: #ffffff;
+    --gradient-end: #777777;
 }
 
 @theme {
@@ -66,7 +79,7 @@ body {
 }
 
 .text-gradient {
-    background: linear-gradient(90deg, #fff, #777);
+    background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }

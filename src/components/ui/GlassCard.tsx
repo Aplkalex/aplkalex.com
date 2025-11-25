@@ -12,7 +12,7 @@ export default function GlassCard({ children, className, hoverEffect = true, ...
     return (
         <motion.div
             className={cn(
-                'glass-card rounded-2xl p-8 border border-white/10',
+                'glass-card rounded-2xl p-8 border border-black/10 dark:border-white/10',
                 hoverEffect && 'cursor-pointer',
                 className
             )}

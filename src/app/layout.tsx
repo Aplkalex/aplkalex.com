@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     description: 'Computer Science Student & Full Stack Developer',
 };
 
+import { ThemeProvider } from '@/components/ThemeProvider';
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -24,14 +26,21 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
             <body className={`${outfit.variable} ${spaceGrotesk.variable} antialiased min-h-screen flex flex-col`} suppressHydrationWarning>
-                <SmoothScroll>
-                    <CustomCursor />
-                    <Starfield />
-                    <Navbar />
-                    <main className="flex-grow pt-24">{children}</main>
-                    <Footer />
-                </SmoothScroll>
-                <Analytics />
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="dark"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <SmoothScroll>
+                        <CustomCursor />
+                        <Starfield />
+                        <Navbar />
+                        <main className="flex-grow pt-24">{children}</main>
+                        <Footer />
+                    </SmoothScroll>
+                    <Analytics />
+                </ThemeProvider>
             </body>
         </html>
     );
