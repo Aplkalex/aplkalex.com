@@ -21,12 +21,14 @@ export default function Navbar() {
     return (
         <nav
             className={cn(
-                'fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent',
-                scrolled ? 'bg-white/80 dark:bg-black backdrop-blur-md border-black/5 dark:border-white/10 py-4' : 'bg-transparent py-6'
+                'fixed top-0 w-full z-50 transition-all duration-300 border-b',
+                scrolled
+                    ? 'bg-white dark:bg-black border-black/10 dark:border-white/10 py-4 shadow-lg'
+                    : 'bg-white dark:bg-black border-transparent py-6'
             )}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold tracking-tighter font-display">
+                <Link href="/" className="text-2xl font-bold tracking-tighter font-display text-gray-900 dark:text-white">
                     Aplkalex
                 </Link>
 
