@@ -20,9 +20,22 @@ const tabs = [
 export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [isLaunching, setIsLaunching] = useState(false);
+    const [zooming, setZooming] = useState(false);
 
     return (
         <div className="min-h-screen relative">
+            <AnimatePresence>
+                {zooming && (
+                    <motion.div
+                        className="fixed inset-0 z-[9999] bg-black"
+                        initial={{ clipPath: 'circle(0% at 50% 50%)' }}
+                        animate={{ clipPath: 'circle(150% at 50% 50%)' }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                    />
+                )}
+            </AnimatePresence>
+
             {/* Interactive Background */}
             <div className="fixed inset-0 z-0">
                 <QueuesisShowcase variant="fullscreen" />
@@ -69,29 +82,37 @@ export default function QueuesisPage() {
                                 onClick={(e) => {
                                     e.preventDefault();
                                     setIsLaunching(true);
-                                    window.open("https://queuesis.aplkalex.com/", "_blank");
-                                    setTimeout(() => setIsLaunching(false), 600);
+                                    setZooming(true);
+
+                                    setTimeout(() => {
+                                        window.open("https://queuesis.aplkalex.com/", "_blank");
+                                    }, 800);
+
+                                    setTimeout(() => {
+                                        setIsLaunching(false);
+                                        setZooming(false);
+                                    }, 2000);
                                 }}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                            className="group px-8 py-3 bg-white text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
-                        >
-                            <AnimatePresence>
-                                {isLaunching && (
-                                    <motion.span
-                                        key="launch-pulse"
-                                        className="absolute inset-0 rounded-full bg-white/40"
-                                        initial={{ scale: 0.5, opacity: 0.6 }}
-                                        animate={{ scale: 1.6, opacity: 0 }}
-                                        exit={{ opacity: 0 }}
-                                        transition={{ duration: 0.5, ease: "easeOut" }}
-                                    />
-                                )}
-                            </AnimatePresence>
-                            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></span>
-                            <span className="relative flex items-center gap-2">
-                                Launch App <ExternalLink className="w-4 h-4" />
-                            </span>
+                                className="group px-8 py-3 bg-white text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(255,255,255,0.25)] hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
+                            >
+                                <AnimatePresence>
+                                    {isLaunching && (
+                                        <motion.span
+                                            key="launch-pulse"
+                                            className="absolute inset-0 rounded-full bg-white/40"
+                                            initial={{ scale: 0.5, opacity: 0.6 }}
+                                            animate={{ scale: 1.6, opacity: 0 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.5, ease: "easeOut" }}
+                                        />
+                                    )}
+                                </AnimatePresence>
+                                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-0 group-hover:opacity-100 blur-lg transition-opacity duration-500"></span>
+                                <span className="relative flex items-center gap-2">
+                                    Launch App <ExternalLink className="w-4 h-4" />
+                                </span>
                             </motion.button>
                             <a
                                 href="https://github.com/aplkalex/queuesis"
