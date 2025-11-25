@@ -50,7 +50,7 @@ function MarqueeRow({ items, reverse = false, speed }: MarqueeRowProps) {
                 <div
                     key={`${animationClass}-${dup}`}
                     className={cn(
-                        "flex min-w-full shrink-0 items-center gap-10 py-4 px-10",
+                        "flex min-w-full shrink-0 items-center gap-10 py-2 px-10",
                         animationClass
                     )}
                     style={animationStyle}

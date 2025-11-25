@@ -139,6 +139,7 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                                     dragElastic={0.5}
                                     onDragStart={handleDragStart}
                                     onDragEnd={handleDragEnd}
+                                    onClick={(e) => e.stopPropagation()}
                                     whileHover={{ scale: 1.05, zIndex: 50, cursor: 'grab' }}
                                     whileDrag={{ scale: 1.05, zIndex: 100, cursor: 'grabbing', opacity: 1 }}
                                     className="absolute p-1 pointer-events-auto will-change-transform"
