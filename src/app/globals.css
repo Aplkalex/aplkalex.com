@@ -1,16 +1,32 @@
 @import "tailwindcss";
 
 :root {
-    /* Light Mode Defaults */
-    --background: #ffffff;
-    --foreground: #050505;
-    --foreground-strong: #111827;
-    --foreground-muted: #6b7280;
-    --foreground-soft: #9ca3af;
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-border: rgba(15, 23, 42, 0.08);
-    --gradient-start: #000000;
-    --gradient-end: #666666;
+    /* Light Mode Defaults - Premium Redesign */
+    --background: #f8f9fa;
+    /* Soft off-white for depth */
+    --foreground: #0f172a;
+    /* Slate 900 - Deep, rich black */
+    --foreground-strong: #020617;
+    /* Slate 950 - Sharpest contrast */
+    --foreground-muted: #64748b;
+    /* Slate 500 - Balanced muted text */
+    --foreground-soft: #94a3b8;
+    /* Slate 400 - Softer secondary text */
+
+    /* Glass Effects */
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    /* More transparent for modern feel */
+    --glass-border: rgba(0, 0, 0, 0.06);
+    /* Subtle definition */
+    --glass-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    /* Soft ambient shadow */
+
+    /* Gradients & Accents */
+    --gradient-start: #0f172a;
+    --gradient-end: #475569;
+
+    /* Interactive */
+    --hover-border: rgba(0, 0, 0, 0.12);
 }
 
 .dark {

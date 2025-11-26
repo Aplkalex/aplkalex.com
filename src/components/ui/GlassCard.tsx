@@ -19,8 +19,8 @@ export default function GlassCard({ children, className, hoverEffect = true, ...
             whileHover={hoverEffect ? {
                 scale: 1.02,
                 y: -5,
-                borderColor: "rgba(255, 255, 255, 0.3)",
-                boxShadow: "0 10px 30px -10px rgba(0,0,0,0.5)"
+                borderColor: "var(--hover-border)",
+                boxShadow: "0 10px 30px -10px rgba(0,0,0,0.15)"
             } : undefined}
             whileTap={hoverEffect ? { scale: 0.98 } : undefined}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}

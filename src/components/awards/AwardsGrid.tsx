@@ -33,7 +33,7 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                         transition={{ delay: index * 0.1 }}
                     >
                         <ZoomableCard
-                            className="h-full flex flex-col bg-white/90 text-gray-900 border border-black/5 backdrop-blur-md shadow-lg hover:border-black/10 dark:bg-white/5 dark:text-white dark:border-white/10 hover:bg-white/10 transition-colors"
+                            className="h-full flex flex-col glass-card transition-colors hover:border-[var(--hover-border)]"
                             expandedContent={
                                 <div className="p-8 max-w-3xl mx-auto">
                                     <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
@@ -66,7 +66,7 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                             <div className="flex flex-col h-full p-4">
                                 <h3 className="text-xl font-bold font-display mb-2 leading-tight theme-text-strong">{award.title}</h3>
                                 <p className="text-sm theme-text-muted mb-4 flex-grow">{award.issuer}</p>
-                                <div className="flex justify-between items-center mt-auto pt-4 border-t border-black/10 dark:border-white/10">
+                                <div className="flex justify-between items-center mt-auto pt-4 border-t border-[var(--glass-border)]">
                                     <span className="text-xs theme-text-soft font-mono">{award.date}</span>
                                     <span className="text-xs px-3 py-1 rounded-full bg-black/5 text-black hover:bg-black/10 dark:bg-white/10 dark:text-white dark:hover:bg-white/20 transition-colors">Read More</span>
                                 </div>

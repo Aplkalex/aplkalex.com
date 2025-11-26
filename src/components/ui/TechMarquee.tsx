@@ -59,7 +59,7 @@ function MarqueeRow({ items, reverse = false, speed }: MarqueeRowProps) {
                         <motion.div
                             key={`${dup}-${index}`}
                             className="flex items-center gap-2 transition-colors duration-300 cursor-pointer"
-                            style={{ color: item.color || 'rgba(255, 255, 255, 0.6)' }}
+                            style={{ color: item.color || 'var(--foreground-muted)' }}
                             whileHover={{ scale: 1.15, filter: "brightness(1.2)" }}
                         >
                             {item.icon}

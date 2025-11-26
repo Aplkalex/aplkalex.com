@@ -64,8 +64,8 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 whileHover={!isExpanded ? {
                     scale: 1.02,
                     y: -5,
-                    borderColor: "rgba(0, 0, 0, 0.15)",
-                    boxShadow: "0 10px 30px -10px rgba(0,0,0,0.35)"
+                    borderColor: "var(--hover-border)",
+                    boxShadow: "var(--glass-shadow)"
                 } : undefined}
                 transition={{
                     layout: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
