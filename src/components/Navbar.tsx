@@ -30,7 +30,7 @@ export default function Navbar() {
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <Link
                     href="/"
-                    className="text-2xl font-bold tracking-tighter font-display text-[var(--foreground-strong)] dark:text-white"
+                    className="text-2xl font-bold tracking-tighter font-display text-black dark:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
                 >
                     Aplkalex
                 </Link>
