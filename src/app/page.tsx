@@ -163,7 +163,7 @@ export default function Home() {
                                         repeatDelay: 1
                                     }}
                                 >👋</motion.span>, I'm <br />
-                                <ScrambleText text="Aplkalex" className="text-black dark:text-white drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)]" />.
+                                <ScrambleText text="Aplkalex" className="bg-gradient-to-r from-black via-gray-800 to-black dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)]" />.
                             </motion.h1>
                             <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl theme-text-muted mb-6 font-light">
                                 IBBA & Computer Science Student @ CUHK | Exchange @ UBC <br />

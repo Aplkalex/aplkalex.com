@@ -48,7 +48,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 bg-white/95 dark:bg-black/95 backdrop-blur-md z-50"
+                    className="fixed inset-0 !bg-white/95 dark:!bg-black/95 backdrop-blur-md z-50"
                     onClick={!isRedirecting ? () => setIsExpanded(false) : undefined}
                 />
             )}
