@@ -144,7 +144,7 @@ export default function Home() {
                             variants={staggerContainer}
                             style={{ x: heroTextX, opacity: heroOpacity }}
                         >
-                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-black/10 dark:border-white/10 bg-black/5 dark:bg-white/5 text-sm text-green-700 dark:text-green-300 backdrop-blur-sm">
+                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-emerald-200 dark:border-white/10 bg-emerald-50/90 dark:bg-white/5 text-sm text-emerald-700 dark:text-emerald-300 shadow-sm">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -184,7 +184,7 @@ export default function Home() {
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#contact"
-                                        className="px-8 py-3 bg-black/5 border border-black/10 text-black rounded-full font-semibold hover:bg-black/10 dark:bg-white/5 dark:border-white/10 dark:text-white transition-colors flex items-center justify-center"
+                                        className="px-8 py-3 bg-white/90 border border-black/20 theme-text-strong dark:text-white rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/5 dark:border-white/10 transition-colors flex items-center justify-center"
                                     >
                                         Contact Me
                                     </Link>
@@ -193,7 +193,7 @@ export default function Home() {
                                     <motion.button
                                         type="button"
                                         onClick={handleResumeClick}
-                                        className="px-8 py-3 bg-black/5 border border-black/10 text-black rounded-full font-semibold hover:bg-black/10 dark:bg-white/5 dark:border-white/10 dark:text-white transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer"
+                                        className="px-8 py-3 bg-white/90 border border-black/20 theme-text-strong dark:text-white rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/5 dark:border-white/10 transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer"
                                     >
                                         Get Resume <ExternalLink size={16} />
                                     </motion.button>
@@ -291,7 +291,7 @@ export default function Home() {
                                 <ScrambleText text="About Me" />
                             </motion.div>
                         </div>
-                        <GlassCard className="overflow-hidden">
+                        <GlassCard className="overflow-hidden bg-white/90 border border-black/5 shadow-lg dark:bg-white/5 dark:border-white/10">
                             <div className="grid md:grid-cols-3 gap-8">
                                 <motion.div
                                     className="md:col-span-2 max-w-none space-y-6"
@@ -357,7 +357,7 @@ export default function Home() {
                             <motion.div variants={popIn} className="h-full">
                                 <div onClick={handleQueuesisClick} className="block h-full group cursor-pointer">
                                     <motion.div layoutId="queuesis-card" className="h-full">
-                                        <GlassCard className="h-full flex flex-col relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.02] group-hover:border-white/20 bg-white dark:bg-[#111] text-gray-800 dark:text-gray-200 backdrop-blur-xl">
+                                        <GlassCard className="h-full flex flex-col relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.02] group-hover:border-white/20 bg-white/90 border border-black/5 dark:bg-[#111] dark:border-white/10 text-gray-800 dark:text-gray-200 backdrop-blur-xl shadow-lg">
                                             {/* Content Overlay */}
                                             <div className="relative z-10 flex flex-col h-full p-6">
                                                 <div className="flex justify-between items-start mb-4">
