@@ -27,6 +27,9 @@
 
     /* Interactive */
     --hover-border: rgba(0, 0, 0, 0.12);
+
+    /* Navbar */
+    --navbar-bg-scrolled: rgba(255, 255, 255, 0.75);
 }
 
 .dark {
@@ -40,6 +43,9 @@
     --glass-border: rgba(255, 255, 255, 0.15);
     --gradient-start: #ffffff;
     --gradient-end: #777777;
+
+    /* Navbar */
+    --navbar-bg-scrolled: rgba(0, 0, 0, 0.75);
 }
 
 @theme {

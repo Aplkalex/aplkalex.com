@@ -21,16 +21,20 @@ export default function Navbar() {
     return (
         <nav
             className={cn(
-                'fixed top-0 w-full z-50 transition-all duration-300 border-b',
+                'fixed top-0 w-full z-50 transition-all duration-500 border-b',
                 scrolled
-                    ? 'bg-white/70 dark:bg-black/70 backdrop-blur-xl border-black/5 dark:border-white/10 py-4 shadow-sm dark:shadow-lg'
+                    ? 'backdrop-blur-xl border-black/5 dark:border-white/10 py-4 shadow-sm dark:shadow-lg'
                     : 'bg-transparent border-transparent py-6'
             )}
+            style={{
+                backgroundColor: scrolled ? 'var(--navbar-bg-scrolled)' : 'transparent'
+            }}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
                 <Link
                     href="/"
-                    className="text-2xl font-bold tracking-tighter font-display text-black dark:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]"
+                    className="text-2xl font-bold tracking-tighter font-display transition-colors duration-500"
+                    style={{ color: 'var(--foreground-strong)' }}
                 >
                     Aplkalex
                 </Link>
@@ -46,8 +50,9 @@ export default function Navbar() {
                     <Link href="/awards" className="text-sm text-gray-700 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors">
                         Awards
                     </Link>
-                    <ThemeToggle />
-
+                    <div className="transition-opacity duration-500 opacity-100">
+                        <ThemeToggle />
+                    </div>
                     <Link
                         href="/#contact"
                         className="px-5 py-2 bg-black text-white dark:bg-white dark:text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform"
@@ -60,7 +65,7 @@ export default function Navbar() {
                 <div className="md:hidden flex items-center gap-4">
                     <ThemeToggle />
                     <button
-                        className="text-black dark:text-white"
+                        className="text-black dark:text-white transition-colors duration-500"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
                         {mobileMenuOpen ? <X /> : <Menu />}

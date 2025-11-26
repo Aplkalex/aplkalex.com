@@ -47,8 +47,8 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ duration: 0.3 }}
-                    className="fixed inset-0 bg-white/90 dark:bg-black/95 backdrop-blur-sm z-50"
+                    transition={{ duration: 0.2 }}
+                    className="fixed inset-0 bg-white/95 dark:bg-black/95 backdrop-blur-md z-50"
                     onClick={!isRedirecting ? () => setIsExpanded(false) : undefined}
                 />
             )}
@@ -68,7 +68,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     boxShadow: "var(--glass-shadow)"
                 } : undefined}
                 transition={{
-                    layout: { duration: 0.35, ease: [0.4, 0, 0.2, 1] },
+                    layout: { duration: 0.25, ease: [0.2, 0, 0.2, 1] }, // Ultra-fast, snappy
                     scale: { duration: 0.2 },
                     y: { duration: 0.2 }
                 }}

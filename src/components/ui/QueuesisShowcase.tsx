@@ -69,22 +69,22 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
     return (
         <div className={cn(
             "w-full h-full flex flex-col overflow-hidden relative pointer-events-auto",
-            isCard && "bg-white/[0.03] rounded-2xl border border-white/[0.07] shadow-[0_32px_72px_-50px_rgba(15,23,42,0.55)] backdrop-blur-none",
+            isCard && "bg-black/[0.03] dark:bg-white/[0.03] rounded-2xl border border-black/[0.07] dark:border-white/[0.07] shadow-[0_32px_72px_-50px_rgba(15,23,42,0.1)] dark:shadow-[0_32px_72px_-50px_rgba(15,23,42,0.55)] backdrop-blur-none",
             className
         )}>
             {/* Grid Header */}
             <div className={cn(
                 "flex border-b bg-transparent",
-                isCard ? "border-white/[0.05]" : "border-white/10"
+                isCard ? "border-black/[0.05] dark:border-white/[0.05]" : "border-black/10 dark:border-white/10"
             )}>
                 <div className={cn(
                     "w-16 border-r flex items-center justify-end pr-2 py-2",
-                    isCard ? "border-white/[0.05]" : "border-white/10"
+                    isCard ? "border-black/[0.05] dark:border-white/[0.05]" : "border-black/10 dark:border-white/10"
                 )}>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-200/70">Time</span>
+                    <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-slate-500/70 dark:text-slate-200/70">Time</span>
                 </div>
                 {DAYS.map(day => (
-                    <div key={day} className="flex-1 py-2 text-center text-xs font-semibold uppercase tracking-[0.22em] text-slate-100/85">
+                    <div key={day} className="flex-1 py-2 text-center text-xs font-semibold uppercase tracking-[0.22em] text-slate-700/85 dark:text-slate-100/85">
                         {day}
                     </div>
                 ))}
@@ -96,12 +96,12 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                     {/* Time Column */}
                     <div className={cn(
                         "w-16 flex-shrink-0 border-r bg-transparent",
-                        isCard ? "border-white/[0.05]" : "border-white/10"
+                        isCard ? "border-black/[0.05] dark:border-white/[0.05]" : "border-black/10 dark:border-white/10"
                     )}>
                         {HOURS.map(hour => (
                             <div key={hour} className={cn(
-                                "h-[11.11%] border-b text-[10px] font-semibold uppercase tracking-[0.22em] font-mono text-right text-slate-300/75 pr-2 pt-1 relative",
-                                isCard ? "border-white/[0.05]" : "border-white/10"
+                                "h-[11.11%] border-b text-[10px] font-semibold uppercase tracking-[0.22em] font-mono text-right text-slate-500/75 dark:text-slate-300/75 pr-2 pt-1 relative",
+                                isCard ? "border-black/[0.05] dark:border-white/[0.05]" : "border-black/10 dark:border-white/10"
                             )}>
                                 <span className="-top-2 relative">{hour}:00</span>
                             </div>
@@ -112,12 +112,12 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                     {DAYS.map((_, index) => (
                         <div key={index} className={cn(
                             "flex-1 border-r relative",
-                            isCard ? "border-white/[0.05]" : "border-white/10"
+                            isCard ? "border-black/[0.05] dark:border-white/[0.05]" : "border-black/10 dark:border-white/10"
                         )}>
                             {HOURS.map(hour => (
                                 <div key={hour} className={cn(
                                     "h-[11.11%] border-b",
-                                    isCard ? "border-white/[0.08]" : "border-white/10"
+                                    isCard ? "border-black/[0.08] dark:border-white/[0.08]" : "border-black/10 dark:border-white/10"
                                 )} />
                             ))}
                         </div>
