@@ -23,12 +23,15 @@ export default function Navbar() {
             className={cn(
                 'fixed top-0 w-full z-50 transition-all duration-300 border-b',
                 scrolled
-                    ? 'bg-white dark:bg-black border-black/10 dark:border-white/10 py-4 shadow-lg'
-                    : 'bg-white dark:bg-black border-transparent py-6'
+                    ? 'bg-white/70 dark:bg-black/70 backdrop-blur-xl border-black/5 dark:border-white/10 py-4 shadow-sm dark:shadow-lg'
+                    : 'bg-transparent border-transparent py-6'
             )}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-bold tracking-tighter font-display text-gray-900 dark:text-white">
+                <Link
+                    href="/"
+                    className="text-2xl font-bold tracking-tighter font-display text-[var(--foreground-strong)] dark:text-white"
+                >
                     Aplkalex
                 </Link>
 
@@ -44,6 +47,7 @@ export default function Navbar() {
                         Awards
                     </Link>
                     <ThemeToggle />
+
                     <Link
                         href="/#contact"
                         className="px-5 py-2 bg-black text-white dark:bg-white dark:text-black rounded-full text-sm font-semibold hover:scale-105 transition-transform"
