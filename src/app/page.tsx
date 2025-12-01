@@ -17,9 +17,9 @@ import ScrambleText from '@/components/ui/ScrambleText';
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
 
 const fadeInUp = {
-    initial: { opacity: 0, y: 20 },
+    initial: { opacity: 0, y: 40 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5 }
+    transition: { type: "spring", stiffness: 100, damping: 15, mass: 0.8 }
 };
 
 const slideInLeft = {
@@ -111,7 +111,7 @@ export default function Home() {
                 {zoomingId === 'queuesis' && (
                     <motion.div
                         layoutId="queuesis-card"
-                        className="fixed inset-0 z-[9999] bg-white dark:bg-black"
+                        className="fixed inset-0 z-[9999] !bg-white dark:!bg-black"
                         initial={{ borderRadius: 16 }}
                         animate={{ borderRadius: 0 }}
                         transition={{ duration: 0.25, ease: "easeInOut" }}
@@ -119,7 +119,7 @@ export default function Home() {
                 )}
                 {zoomingId === 'resume' && (
                     <motion.div
-                        className="fixed inset-0 z-[9999] bg-white dark:bg-black"
+                        className="fixed inset-0 z-[9999] !bg-white dark:!bg-black"
                         initial={{ clipPath: 'circle(0% at 50% 50%)' }}
                         animate={{ clipPath: 'circle(150% at 50% 50%)' }}
                         exit={{ opacity: 0 }}
@@ -163,7 +163,7 @@ export default function Home() {
                                         repeatDelay: 1
                                     }}
                                 >👋</motion.span>, I'm <br />
-                                <ScrambleText text="Aplkalex" className="bg-gradient-to-r from-black via-gray-800 to-black dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-[0_4px_12px_rgba(0,0,0,0.25)]" />.
+                                <ScrambleText text="Aplkalex" className="bg-gradient-to-r from-black via-gray-600 to-black dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-sm" />.
                             </motion.h1>
                             <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl theme-text-muted mb-6 font-light">
                                 IBBA & Computer Science Student @ CUHK | Exchange @ UBC <br />
@@ -173,7 +173,7 @@ export default function Home() {
                                 I build convenient, impactful systems that solve real-world problems. Passionate about AI, FinTech, and making the web a more human-centered space.
                             </motion.p>
                             <motion.div variants={fadeInUp} className="flex flex-wrap gap-4">
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <motion.div whileHover={{ scale: 1.05, rotate: -2 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#projects"
                                         className="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold flex items-center gap-2 border border-black/10 dark:border-transparent"
@@ -181,7 +181,7 @@ export default function Home() {
                                         View Work <ArrowRight size={18} />
                                     </Link>
                                 </motion.div>
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <motion.div whileHover={{ scale: 1.05, rotate: 2 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#contact"
                                         className="px-8 py-3 bg-white/90 border border-black/20 theme-text-strong dark:text-white rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/5 dark:border-white/10 transition-colors flex items-center justify-center"
@@ -189,7 +189,7 @@ export default function Home() {
                                         Contact Me
                                     </Link>
                                 </motion.div>
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                                <motion.div whileHover={{ scale: 1.05, rotate: -2 }} whileTap={{ scale: 0.95 }}>
                                     <motion.button
                                         type="button"
                                         onClick={handleResumeClick}
@@ -401,7 +401,7 @@ export default function Home() {
                             </motion.div>
 
                             <div className="mt-12 text-center">
-                                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="inline-block">
+                                <motion.div whileHover={{ scale: 1.05, rotate: 2 }} whileTap={{ scale: 0.95 }} className="inline-block">
                                     <Link href="/projects" className="inline-flex items-center gap-2 px-6 py-3 bg-black/5 border border-black/10 rounded-full text-black hover:bg-black/10 dark:bg-white/5 dark:border-white/10 dark:text-white dark:hover:bg-white/10 transition-colors">
                                         View All Projects <ArrowRight size={16} />
                                     </Link>
