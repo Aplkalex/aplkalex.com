@@ -40,7 +40,7 @@ export default function QueuesisPage() {
             <div className="fixed inset-0 z-0 !bg-white dark:!bg-black">
                 <QueuesisShowcase variant="fullscreen" />
                 {/* Overlay - Bright White in light mode, Dark in dark mode */}
-                <div className="absolute inset-0 bg-white/60 dark:bg-black/40 backdrop-blur-md pointer-events-none" />
+                <div className="absolute inset-0 bg-white/90 dark:bg-black/40 backdrop-blur-md pointer-events-none" />
             </div>
 
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">
