@@ -43,16 +43,15 @@ export default function QueuesisPage() {
             <div className="fixed inset-0 z-0 overflow-hidden">
                 <div className="absolute inset-0 bg-white dark:bg-black" />
 
-                <div className="absolute inset-0 flex">
-                    <QueuesisShowcase
-                        variant="fullscreen"
-                        className="w-full h-full"
-                    />
-                </div>
+                <QueuesisShowcase
+                    variant="fullscreen"
+                    className="absolute inset-0 pointer-events-auto select-none opacity-100"
+                />
 
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute inset-0 bg-white/80 dark:bg-black/70 backdrop-blur-[120px]" />
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.85),_transparent_65%)] dark:bg-[radial-gradient(circle_at_top,_rgba(9,9,9,0.95),_transparent_65%)]" />
+                    <div className="absolute inset-0 queuesis-blur-mask bg-white/8 dark:bg-black/35" />
+                    <div className="absolute inset-x-0 top-0 h-[55%] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.28),_transparent_58%)] dark:bg-[radial-gradient(circle_at_top,_rgba(0,0,0,0.82),_transparent_60%)]" />
+                    <div className="absolute inset-x-0 bottom-0 h-[35%] bg-[radial-gradient(circle_at_bottom,_rgba(255,255,255,0.15),_transparent_60%)] dark:bg-[radial-gradient(circle_at_bottom,_rgba(0,0,0,0.85),_transparent_60%)]" />
                 </div>
             </div>
 

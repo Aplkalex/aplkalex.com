@@ -30,6 +30,10 @@
 
     /* Navbar */
     --navbar-bg-scrolled: rgba(255, 255, 255, 0.75);
+
+    /* Queuesis Overlay */
+    --queuesis-blur-amount: 18px;
+    --queuesis-blur-opacity: 0.35;
 }
 
 .dark {
@@ -46,6 +50,10 @@
 
     /* Navbar */
     --navbar-bg-scrolled: rgba(0, 0, 0, 0.75);
+
+    /* Queuesis Overlay */
+    --queuesis-blur-amount: 24px;
+    --queuesis-blur-opacity: 0.52;
 }
 
 @theme {
@@ -90,6 +98,12 @@ body {
 
     .loop-heading-alt {
         animation-delay: 2s;
+    }
+
+    .queuesis-blur-mask {
+        backdrop-filter: blur(var(--queuesis-blur-amount, 18px));
+        opacity: var(--queuesis-blur-opacity, 0.35);
+        transition: backdrop-filter 0.3s ease, opacity 0.3s ease;
     }
 
     .hero-title {
