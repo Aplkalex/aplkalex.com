@@ -40,11 +40,20 @@ export default function QueuesisPage() {
             </AnimatePresence>
 
             {/* Interactive Background */}
-            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f5f7ff] to-[#e8edff] dark:from-black dark:via-slate-900 dark:to-black" />
-                <QueuesisShowcase variant="fullscreen" className="opacity-45 mix-blend-multiply pointer-events-none select-none dark:opacity-30" />
-                <div className="absolute inset-0 bg-white/75 dark:bg-black/60 backdrop-blur-2xl" />
-                <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.85),_transparent_65%)] dark:bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.85),_transparent_65%)]" />
+            <div className="fixed inset-0 z-0 overflow-hidden">
+                <div className="absolute inset-0 bg-white dark:bg-black" />
+
+                <div className="absolute inset-0 flex">
+                    <QueuesisShowcase
+                        variant="fullscreen"
+                        className="w-full h-full"
+                    />
+                </div>
+
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute inset-0 bg-white/80 dark:bg-black/70 backdrop-blur-[120px]" />
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.85),_transparent_65%)] dark:bg-[radial-gradient(circle_at_top,_rgba(9,9,9,0.95),_transparent_65%)]" />
+                </div>
             </div>
 
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">
