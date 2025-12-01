@@ -23,7 +23,7 @@ export default function QueuesisPage() {
     const [zooming, setZooming] = useState(false);
 
     return (
-        <div className="min-h-screen relative">
+        <div className="min-h-screen relative overflow-hidden bg-[#f7f8fd] dark:bg-black text-slate-900 dark:text-white">
             <AnimatePresence>
                 {zooming && (
                     <motion.div
@@ -37,10 +37,11 @@ export default function QueuesisPage() {
             </AnimatePresence>
 
             {/* Interactive Background */}
-            <div className="fixed inset-0 z-0 !bg-white dark:!bg-black">
-                <QueuesisShowcase variant="fullscreen" />
-                {/* Overlay - Bright White in light mode, Dark in dark mode */}
-                <div className="absolute inset-0 bg-white/90 dark:bg-black/40 backdrop-blur-md pointer-events-none" />
+            <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+                <div className="absolute inset-0 bg-gradient-to-b from-white via-[#f5f7ff] to-[#e8edff] dark:from-black dark:via-slate-900 dark:to-black" />
+                <QueuesisShowcase variant="fullscreen" className="opacity-45 mix-blend-multiply pointer-events-none select-none dark:opacity-30" />
+                <div className="absolute inset-0 bg-white/75 dark:bg-black/60 backdrop-blur-2xl" />
+                <div className="absolute inset-x-0 top-0 h-1/2 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.85),_transparent_65%)] dark:bg-[radial-gradient(circle_at_top,_rgba(17,24,39,0.85),_transparent_65%)]" />
             </div>
 
             <div className="container mx-auto px-6 py-12 pb-32 relative z-10 pointer-events-none">
@@ -48,7 +49,7 @@ export default function QueuesisPage() {
                 <div className="mb-16 pointer-events-auto">
                     <Link
                         href="/"
-                        className="inline-flex items-center text-sm text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white transition-colors mb-8 group"
+                        className="inline-flex items-center text-sm text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white transition-colors mb-8 group"
                     >
                         <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
                         Back to Projects
@@ -67,7 +68,7 @@ export default function QueuesisPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-xl text-gray-700 dark:text-gray-400 mb-10 max-w-2xl"
+                            className="text-xl text-slate-600 dark:text-gray-400 mb-10 max-w-2xl"
                         >
                             A modern course-queueing experience built to fix everything CUSIS didn't.
                         </motion.p>
@@ -118,7 +119,7 @@ export default function QueuesisPage() {
                                 href="https://github.com/aplkalex/queuesis"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-8 py-3 bg-black/5 text-black border border-black/10 hover:bg-black/10 dark:bg-white/10 dark:text-white dark:border-white/10 dark:hover:bg-white/20 transition-all flex items-center gap-2 rounded-full"
+                                className="px-8 py-3 bg-white/80 text-slate-800 border border-black/10 hover:bg-white shadow-sm dark:bg-white/10 dark:text-white dark:border-white/10 dark:hover:bg-white/20 transition-all flex items-center gap-2 rounded-full"
                             >
                                 <Github className="w-5 h-5" />
                                 Source Code
@@ -130,7 +131,7 @@ export default function QueuesisPage() {
                 {/* Content Tabs */}
                 <div className="max-w-4xl mx-auto pointer-events-auto">
                     <div className="flex justify-center mb-12">
-                        <div className="p-1 bg-black/5 border border-black/10 dark:bg-white/5 dark:border-white/10 rounded-full backdrop-blur-sm">
+                        <div className="p-1 bg-white/95 border border-black/5 shadow-lg rounded-full backdrop-blur-sm dark:bg-white/5 dark:border-white/10 dark:shadow-none">
                             {['overview', 'features', 'stack'].map((tab) => (
                                 <button
                                     key={tab}
@@ -138,8 +139,8 @@ export default function QueuesisPage() {
                                     className={cn(
                                         "px-6 py-2 rounded-full text-sm font-medium transition-all",
                                         activeTab === tab
-                                            ? "bg-white text-black shadow-md"
-                                            : "text-gray-600 hover:text-black dark:text-gray-400 dark:hover:text-white"
+                                            ? "bg-gradient-to-r from-white to-[#eef2ff] text-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.08)] dark:from-white/10 dark:to-white/20 dark:text-white"
+                                            : "text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white"
                                     )}
                                 >
                                     {tab.charAt(0).toUpperCase() + tab.slice(1).replace('stack', ' Tech Stack').replace('features', ' Key Features')}
@@ -157,32 +158,32 @@ export default function QueuesisPage() {
                             transition={{ duration: 0.3 }}
                         >
                             {activeTab === 'overview' && (
-                                <div className="bg-white/70 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-sm dark:shadow-none">
-                                    <h2 className="text-2xl font-bold mb-4 font-display text-black dark:text-white">Project Overview</h2>
-                                    <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8">
+                                <div className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-xl dark:shadow-none">
+                                    <h2 className="text-2xl font-bold mb-4 font-display text-slate-900 dark:text-white">Project Overview</h2>
+                                    <p className="text-slate-600 dark:text-gray-300 leading-relaxed mb-8">
                                         Queuesis is a CUHK-focused timetable planner that combines intuitive drag-and-drop editing with a powerful
                                         deterministic schedule generator. Course data is sourced from CUSIS and can optionally be synced to MongoDB
                                         Atlas via Prisma for enhanced performance.
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="bg-black/5 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6">
+                                        <div className="bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
                                                 <Zap className="w-5 h-5" /> Why Queuesis?
                                             </h3>
-                                            <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                                            <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
                                                 <li className="flex items-center gap-2">• Smart Scheduling with 6 modes</li>
                                                 <li className="flex items-center gap-2">• Real-time conflict validation</li>
                                                 <li className="flex items-center gap-2">• Works with or without database</li>
                                                 <li className="flex items-center gap-2">• Modern Next.js 16 Stack</li>
                                             </ul>
                                         </div>
-                                        <div className="bg-black/5 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6">
+                                        <div className="bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-green-600 dark:text-green-400">
                                                 <Clock className="w-5 h-5" /> Current Support
                                             </h3>
-                                            <p className="text-sm text-gray-600 dark:text-gray-400">
-                                                Currently supports <span className="text-black dark:text-white font-bold">2025-2026 Term 2</span> course data.
+                                            <p className="text-sm text-slate-600 dark:text-gray-400">
+                                                Currently supports <span className="text-slate-900 dark:text-white font-bold">2025-2026 Term 2</span> course data.
                                                 Support for additional terms will be added in future updates.
                                             </p>
                                         </div>
@@ -203,14 +204,14 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.1 }}
-                                            className="bg-white/70 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex items-start gap-4 backdrop-blur-md hover:bg-black/5 dark:hover:bg-white/5 transition-colors shadow-sm dark:shadow-none"
+                                            className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex items-start gap-4 backdrop-blur-md hover:shadow-xl hover:-translate-y-0.5 dark:hover:bg-white/10 transition-all shadow-lg dark:shadow-none"
                                         >
-                                            <div className="p-3 bg-black/5 dark:bg-white/5 rounded-lg">
+                                            <div className="p-3 bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/10 rounded-lg">
                                                 {feature.icon}
                                             </div>
                                             <div>
-                                                <h3 className="text-lg font-bold mb-1 text-black dark:text-white">{feature.title}</h3>
-                                                <p className="text-gray-600 dark:text-gray-400 text-sm">{feature.desc}</p>
+                                                <h3 className="text-lg font-bold mb-1 text-slate-900 dark:text-white">{feature.title}</h3>
+                                                <p className="text-slate-600 dark:text-gray-400 text-sm">{feature.desc}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -233,12 +234,12 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: i * 0.05 }}
-                                            className="bg-white/70 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex flex-col items-center gap-3 hover:border-black/30 dark:hover:border-white/30 transition-colors backdrop-blur-md group shadow-sm dark:shadow-none"
+                                            className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex flex-col items-center gap-3 hover:border-black/30 dark:hover:border-white/30 transition-all backdrop-blur-md group shadow-lg dark:shadow-none"
                                         >
                                             <div className="group-hover:scale-110 transition-transform duration-300">
                                                 {tech.icon}
                                             </div>
-                                            <span className="font-mono text-sm text-gray-700 dark:text-gray-300">{tech.name}</span>
+                                            <span className="font-mono text-sm text-slate-700 dark:text-gray-300">{tech.name}</span>
                                         </motion.div>
                                     ))}
                                 </div>

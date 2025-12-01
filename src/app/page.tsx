@@ -163,7 +163,7 @@ export default function Home() {
                                         repeatDelay: 1
                                     }}
                                 >👋</motion.span>, I'm <br />
-                                <ScrambleText text="Aplkalex" className="bg-gradient-to-r from-black via-gray-800 to-black dark:from-white dark:via-gray-200 dark:to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient drop-shadow-sm" />.
+                                <ScrambleText text="Aplkalex" className="hero-title" />.
                             </motion.h1>
                             <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl theme-text-muted mb-6 font-light">
                                 IBBA & Computer Science Student @ CUHK | Exchange @ UBC <br />
@@ -278,8 +278,8 @@ export default function Home() {
                 <section id="about" className="scroll-mt-28">
                     <div className="max-w-4xl mx-auto">
                         <div className="mb-12">
-                            <ParallaxText baseVelocity={-1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
-                                <span className="text-6xl md:text-8xl font-bold font-display uppercase">About Me About Me About Me</span>
+                            <ParallaxText baseVelocity={-1.5} className="opacity-20 dark:opacity-40 w-screen -ml-[calc(50vw-50%)]">
+                                <span className="loop-heading text-6xl md:text-8xl font-bold font-display uppercase">About Me About Me About Me</span>
                             </ParallaxText>
                             <motion.div
                                 initial="initial"
@@ -339,8 +339,8 @@ export default function Home() {
                         variants={staggerContainer}
                     >
                         <div className="mb-12">
-                            <ParallaxText baseVelocity={1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
-                                <span className="text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
+                            <ParallaxText baseVelocity={1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
+                                <span className="loop-heading loop-heading-alt text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                             </ParallaxText>
                             <motion.div
                                 initial="initial"
@@ -415,8 +415,8 @@ export default function Home() {
                 < section id="awards" className="scroll-mt-28" >
                     <div className="max-w-6xl mx-auto">
                         <div className="mb-8">
-                            <ParallaxText baseVelocity={-1.5} className="opacity-10 w-screen -ml-[calc(50vw-50%)]">
-                                <span className="text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
+                            <ParallaxText baseVelocity={-1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
+                                <span className="loop-heading text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
                             </ParallaxText>
                             <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Awards & Honors</h2>
                         </div>
