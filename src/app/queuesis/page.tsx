@@ -8,6 +8,7 @@ import { ArrowLeft, ExternalLink, Github, Clock, Zap, Layout, Database, AlertCir
 import { cn } from '@/lib/utils';
 import QueuesisShowcase from '@/components/ui/QueuesisShowcase';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 
 const tabs = [
     { id: 'overview', label: 'Overview' },
@@ -21,13 +22,15 @@ export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [isLaunching, setIsLaunching] = useState(false);
     const [zooming, setZooming] = useState(false);
+    const { resolvedTheme } = useTheme();
+    const zoomOverlayBg = resolvedTheme === 'dark' ? 'bg-black' : 'bg-white';
 
     return (
         <div className="min-h-screen relative overflow-hidden bg-[#f7f8fd] dark:bg-black text-slate-900 dark:text-white">
             <AnimatePresence>
                 {zooming && (
                     <motion.div
-                        className="fixed inset-0 z-[9999] bg-white dark:bg-black"
+                        className={`fixed inset-0 z-[9999] ${zoomOverlayBg}`}
                         initial={{ clipPath: 'circle(0% at 50% 50%)' }}
                         animate={{ clipPath: 'circle(150% at 50% 50%)' }}
                         exit={{ opacity: 0 }}

@@ -12,6 +12,7 @@ import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
 import ScrambleText from '@/components/ui/ScrambleText';
+import { useTheme } from 'next-themes';
 
 
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
@@ -76,6 +77,8 @@ export default function Home() {
     const [zoomingId, setZoomingId] = useState<string | null>(null);
     const router = useRouter();
     const containerRef = useRef(null);
+    const { resolvedTheme } = useTheme();
+    const zoomOverlayBg = resolvedTheme === 'dark' ? '!bg-black' : '!bg-white';
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
@@ -111,7 +114,7 @@ export default function Home() {
                 {zoomingId === 'queuesis' && (
                     <motion.div
                         layoutId="queuesis-card"
-                        className="fixed inset-0 z-[9999] !bg-white dark:!bg-black"
+                        className={`fixed inset-0 z-[9999] ${zoomOverlayBg}`}
                         initial={{ borderRadius: 16 }}
                         animate={{ borderRadius: 0 }}
                         transition={{ duration: 0.25, ease: "easeInOut" }}
@@ -119,7 +122,7 @@ export default function Home() {
                 )}
                 {zoomingId === 'resume' && (
                     <motion.div
-                        className="fixed inset-0 z-[9999] !bg-white dark:!bg-black"
+                        className={`fixed inset-0 z-[9999] ${zoomOverlayBg}`}
                         initial={{ clipPath: 'circle(0% at 50% 50%)' }}
                         animate={{ clipPath: 'circle(150% at 50% 50%)' }}
                         exit={{ opacity: 0 }}
