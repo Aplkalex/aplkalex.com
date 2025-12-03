@@ -12,8 +12,8 @@ import Typewriter from '@/components/ui/Typewriter';
 import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
 import ScrambleText from '@/components/ui/ScrambleText';
-import { useTheme } from 'next-themes';
 import AnimatedSectionTitle from '@/components/ui/AnimatedSectionTitle';
+import { useTheme } from 'next-themes';
 
 
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
@@ -40,16 +40,6 @@ const popIn = {
     initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1 },
     transition: { duration: 0.4, ease: "easeOut" }
-};
-
-const sectionTitleVariants = {
-    hidden: { opacity: 0, x: -100, scale: 0.8 },
-    visible: {
-        opacity: 1,
-        x: 0,
-        scale: 1,
-        transition: { type: "spring" as const, stiffness: 60, damping: 15 }
-    }
 };
 
 const staggerContainer = {
@@ -356,10 +346,15 @@ export default function Home() {
                             <ParallaxText baseVelocity={1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="loop-heading loop-heading-alt text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                             </ParallaxText>
-                            <AnimatedSectionTitle
-                                text="Featured Project"
+                            <motion.div
+                                initial="initial"
+                                whileInView="animate"
+                                viewport={{ once: true }}
+                                variants={fadeInUp}
                                 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
-                            />
+                            >
+                                <AnimatedSectionTitle text="Featured Project" />
+                            </motion.div>
                         </div>
                         <div className="max-w-2xl mx-auto">
                             {/* Project 1: Queuesis */}
@@ -427,10 +422,9 @@ export default function Home() {
                             <ParallaxText baseVelocity={-1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="loop-heading text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
                             </ParallaxText>
-                            <AnimatedSectionTitle
-                                text="Awards & Honors"
-                                className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
-                            />
+                            <div className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">
+                                <AnimatedSectionTitle text="Awards & Honors" />
+                            </div>
                         </div>
 
                         <AwardsGrid className="px-4" />

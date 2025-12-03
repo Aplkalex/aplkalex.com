@@ -98,8 +98,8 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
 
     const fullscreenBackgroundClass = !isCard
         ? (isDark
-            ? "bg-[#020205]/95 text-white shadow-[0_50px_140px_rgba(0,0,0,0.85)]"
-            : "bg-white/90 text-slate-900 backdrop-blur-[60px]")
+            ? "bg-[#020205]/95 text-white"
+            : "bg-white/95 text-slate-900")
         : "";
 
     const fullscreenBackgroundStyle = undefined;
@@ -113,8 +113,9 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
 
     useEffect(() => {
         const root = document.documentElement;
-        const blurAmount = isBlurred ? (isDark ? '26px' : '18px') : '8px';
-        const blurOpacity = isBlurred ? (isDark ? '0.5' : '0.2') : (isDark ? '0.2' : '0.08');
+        // Blur removed as requested
+        const blurAmount = '0px';
+        const blurOpacity = '0';
         root.style.setProperty('--queuesis-blur-amount', blurAmount);
         root.style.setProperty('--queuesis-blur-opacity', blurOpacity);
     }, [isBlurred, isDark]);
