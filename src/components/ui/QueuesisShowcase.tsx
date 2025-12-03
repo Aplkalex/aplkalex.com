@@ -99,18 +99,10 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
     const fullscreenBackgroundClass = !isCard
         ? (isDark
             ? "bg-[#020205]/95 text-white shadow-[0_50px_140px_rgba(0,0,0,0.85)]"
-            : "bg-white/85 text-slate-900 shadow-[0_60px_80px_rgba(15,23,42,0.15)] backdrop-blur-[60px]")
+            : "bg-white/90 text-slate-900 backdrop-blur-[60px]")
         : "";
 
-    const fullscreenBackgroundStyle = !isCard
-        ? (isDark
-            ? {
-                backgroundImage: "radial-gradient(circle at 15% -10%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(circle at 80% 10%, rgba(59,130,246,0.12), transparent 55%)"
-            }
-            : {
-                backgroundImage: "radial-gradient(circle at 20% -15%, rgba(59,130,246,0.12), transparent 55%), radial-gradient(circle at 80% 0%, rgba(16,185,129,0.08), transparent 50%)"
-            })
-        : undefined;
+    const fullscreenBackgroundStyle = undefined;
 
     useEffect(() => {
         const timer = setTimeout(() => {

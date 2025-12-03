@@ -50,8 +50,7 @@ export default function QueuesisPage() {
 
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute inset-0 queuesis-blur-mask bg-white/8 dark:bg-black/35" />
-                    <div className="absolute inset-x-0 top-0 h-[55%] bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.28),_transparent_58%)] dark:bg-[radial-gradient(circle_at_top,_rgba(0,0,0,0.82),_transparent_60%)]" />
-                    <div className="absolute inset-x-0 bottom-0 h-[35%] bg-[radial-gradient(circle_at_bottom,_rgba(255,255,255,0.15),_transparent_60%)] dark:bg-[radial-gradient(circle_at_bottom,_rgba(0,0,0,0.85),_transparent_60%)]" />
+
                 </div>
             </div>
 
