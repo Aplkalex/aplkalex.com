@@ -152,17 +152,17 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                 "flex border-b bg-transparent",
                 headerBorder
             )}>
-                    <div
-                        className={cn(
-                            "w-16 border-r flex items-center justify-end pr-2 py-2 bg-transparent",
-                            timelineBorder
-                        )}
-                    >
-                        <span className={cn(
-                            "text-[10px] font-semibold uppercase tracking-[0.25em]",
-                            isDark ? "text-slate-200/70" : "text-slate-600/70"
-                        )}>Time</span>
-                    </div>
+                <div
+                    className={cn(
+                        "w-16 border-r flex items-center justify-end pr-2 py-2 bg-transparent",
+                        timelineBorder
+                    )}
+                >
+                    <span className={cn(
+                        "text-[10px] font-semibold uppercase tracking-[0.25em]",
+                        isDark ? "text-slate-200/70" : "text-slate-600/70"
+                    )}>Time</span>
+                </div>
                 {DAYS.map(day => (
                     <div
                         key={day}
@@ -216,7 +216,7 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                             const height = `${(course.duration / 9) * 100}%`;
                             const left = `${(course.day / 5) * 100}%`;
                             const width = `${100 / 5}%`;
-                            const palette = COURSE_STYLES[course.style][isDark ? 'dark' : 'light'];
+                            const palette = COURSE_STYLES[course.style as keyof typeof COURSE_STYLES][isDark ? 'dark' : 'light'];
 
                             return (
                                 <motion.div

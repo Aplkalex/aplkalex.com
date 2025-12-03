@@ -41,6 +41,16 @@ const popIn = {
     transition: { duration: 0.4, ease: "easeOut" }
 };
 
+const sectionTitleVariants = {
+    hidden: { opacity: 0, x: -100, scale: 0.8 },
+    visible: {
+        opacity: 1,
+        x: 0,
+        scale: 1,
+        transition: { type: "spring" as const, stiffness: 60, damping: 15 }
+    }
+};
+
 const staggerContainer = {
     animate: {
         transition: {
@@ -346,10 +356,10 @@ export default function Home() {
                                 <span className="loop-heading loop-heading-alt text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                             </ParallaxText>
                             <motion.div
-                                initial="initial"
-                                whileInView="animate"
-                                viewport={{ once: true }}
-                                variants={fadeInUp}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: false, margin: "-50px" }}
+                                variants={sectionTitleVariants}
                                 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
                             >
                                 <ScrambleText text="Featured Project" />
@@ -421,7 +431,15 @@ export default function Home() {
                             <ParallaxText baseVelocity={-1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="loop-heading text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
                             </ParallaxText>
-                            <h2 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10">Awards & Honors</h2>
+                            <motion.h2
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: false, margin: "-50px" }}
+                                variants={sectionTitleVariants}
+                                className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
+                            >
+                                Awards & Honors
+                            </motion.h2>
                         </div>
 
                         <AwardsGrid className="px-4" />
