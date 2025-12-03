@@ -13,6 +13,7 @@ import TechMarquee from '@/components/ui/TechMarquee';
 import ParallaxText from '@/components/ui/ParallaxText';
 import ScrambleText from '@/components/ui/ScrambleText';
 import { useTheme } from 'next-themes';
+import AnimatedSectionTitle from '@/components/ui/AnimatedSectionTitle';
 
 
 import { SiNextdotjs, SiTypescript, SiReact, SiTailwindcss, SiPython, SiNodedotjs, SiMongodb, SiJavascript, SiCplusplus, SiC, SiAmazonwebservices, SiMysql } from 'react-icons/si';
@@ -355,15 +356,10 @@ export default function Home() {
                             <ParallaxText baseVelocity={1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="loop-heading loop-heading-alt text-6xl md:text-8xl font-bold font-display uppercase">Projects Projects Projects</span>
                             </ParallaxText>
-                            <motion.div
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: false, margin: "-50px" }}
-                                variants={sectionTitleVariants}
+                            <AnimatedSectionTitle
+                                text="Featured Project"
                                 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
-                            >
-                                <ScrambleText text="Featured Project" />
-                            </motion.div>
+                            />
                         </div>
                         <div className="max-w-2xl mx-auto">
                             {/* Project 1: Queuesis */}
@@ -431,15 +427,10 @@ export default function Home() {
                             <ParallaxText baseVelocity={-1.5} className="opacity-20 dark:opacity-35 w-screen -ml-[calc(50vw-50%)]">
                                 <span className="loop-heading text-6xl md:text-8xl font-bold font-display uppercase">Awards Awards Awards</span>
                             </ParallaxText>
-                            <motion.h2
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: false, margin: "-50px" }}
-                                variants={sectionTitleVariants}
+                            <AnimatedSectionTitle
+                                text="Awards & Honors"
                                 className="text-3xl md:text-4xl font-bold text-center font-display -mt-8 relative z-10"
-                            >
-                                Awards & Honors
-                            </motion.h2>
+                            />
                         </div>
 
                         <AwardsGrid className="px-4" />
