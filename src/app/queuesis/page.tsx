@@ -69,7 +69,7 @@ export default function QueuesisPage() {
                         <motion.h1
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="text-6xl md:text-8xl font-bold font-display mb-6 tracking-tight text-black dark:text-white"
+                            className="text-6xl md:text-8xl font-bold font-display mb-6 tracking-tight text-slate-900 dark:text-white"
                         >
                             Queuesis
                         </motion.h1>
@@ -78,7 +78,7 @@ export default function QueuesisPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-600 dark:text-gray-400 mb-10 max-w-2xl"
+                            className="text-xl !text-black !opacity-100 font-medium dark:text-gray-400 mb-10 max-w-2xl relative z-50"
                         >
                             A modern course-queueing experience built to fix everything CUSIS didn't.
                         </motion.p>
@@ -106,7 +106,7 @@ export default function QueuesisPage() {
                                 }}
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
-                                className="group px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(0,0,0,0.1)] hover:shadow-[0_0_45px_rgba(0,0,0,0.2)] dark:shadow-[0_0_25px_rgba(255,255,255,0.25)] dark:hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
+                                className="group px-8 py-3 bg-slate-900 text-white dark:bg-white dark:text-black rounded-full font-bold text-lg transition-all flex items-center gap-2 shadow-[0_0_25px_rgba(0,0,0,0.1)] hover:shadow-[0_0_45px_rgba(0,0,0,0.2)] dark:shadow-[0_0_25px_rgba(255,255,255,0.25)] dark:hover:shadow-[0_0_45px_rgba(255,255,255,0.4)] relative overflow-hidden"
                             >
                                 <AnimatePresence>
                                     {isLaunching && (
@@ -129,7 +129,7 @@ export default function QueuesisPage() {
                                 href="https://github.com/aplkalex/queuesis"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-8 py-3 bg-white/80 text-slate-800 border border-black/10 hover:bg-white shadow-sm dark:bg-white/10 dark:text-white dark:border-white/10 dark:hover:bg-white/20 transition-all flex items-center gap-2 rounded-full"
+                                className="px-8 py-3 bg-white/50 text-slate-900 border border-white/20 hover:bg-white shadow-sm backdrop-blur-md dark:bg-white/10 dark:text-white dark:border-white/10 dark:hover:bg-white/20 transition-all flex items-center gap-2 rounded-full"
                             >
                                 <Github className="w-5 h-5" />
                                 Source Code
@@ -150,7 +150,7 @@ export default function QueuesisPage() {
                                         "px-6 py-2 rounded-full text-sm font-medium transition-all",
                                         activeTab === tab
                                             ? "bg-gradient-to-r from-white to-[#eef2ff] text-slate-900 shadow-[0_10px_30px_rgba(15,23,42,0.08)] dark:from-white/10 dark:to-white/20 dark:text-white"
-                                            : "text-slate-500 hover:text-slate-900 dark:text-gray-400 dark:hover:text-white"
+                                            : "text-slate-900 hover:text-black dark:text-gray-400 dark:hover:text-white"
                                     )}
                                 >
                                     {tab.charAt(0).toUpperCase() + tab.slice(1).replace('stack', ' Tech Stack').replace('features', ' Key Features')}
@@ -168,7 +168,7 @@ export default function QueuesisPage() {
                             transition={{ duration: 0.3 }}
                         >
                             {activeTab === 'overview' && (
-                                <div className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-2xl p-8 backdrop-blur-md shadow-xl dark:shadow-none">
+                                <div className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-2xl p-8 shadow-xl dark:shadow-none">
                                     <h2 className="text-2xl font-bold mb-4 font-display text-slate-900 dark:text-white">Project Overview</h2>
                                     <p className="text-slate-600 dark:text-gray-300 leading-relaxed mb-8">
                                         Queuesis is a CUHK-focused timetable planner that combines intuitive drag-and-drop editing with a powerful
@@ -177,7 +177,7 @@ export default function QueuesisPage() {
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
+                                        <div className="bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
                                                 <Zap className="w-5 h-5" /> Why Queuesis?
                                             </h3>
@@ -188,7 +188,7 @@ export default function QueuesisPage() {
                                                 <li className="flex items-center gap-2">• Modern Next.js 16 Stack</li>
                                             </ul>
                                         </div>
-                                        <div className="bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
+                                        <div className="bg-white/60 border border-white/20 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-green-600 dark:text-green-400">
                                                 <Clock className="w-5 h-5" /> Current Support
                                             </h3>
@@ -214,9 +214,9 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.1 }}
-                                            className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex items-start gap-4 backdrop-blur-md hover:shadow-xl hover:-translate-y-0.5 dark:hover:bg-white/10 transition-all shadow-lg dark:shadow-none"
+                                            className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex items-start gap-4 hover:shadow-2xl hover:-translate-y-0.5 dark:hover:bg-white/10 transition-all shadow-lg dark:shadow-none"
                                         >
-                                            <div className="p-3 bg-white/80 border border-black/5 dark:bg-white/5 dark:border-white/10 rounded-lg">
+                                            <div className="p-3 bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 rounded-lg">
                                                 {feature.icon}
                                             </div>
                                             <div>
@@ -244,7 +244,7 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: i * 0.05 }}
-                                            className="bg-white/90 border border-black/5 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex flex-col items-center gap-3 hover:border-black/30 dark:hover:border-white/30 transition-all backdrop-blur-md group shadow-lg dark:shadow-none"
+                                            className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex flex-col items-center gap-3 hover:border-slate-300 dark:hover:border-white/30 transition-all group shadow-lg dark:shadow-none"
                                         >
                                             <div className="group-hover:scale-110 transition-transform duration-300">
                                                 {tech.icon}
