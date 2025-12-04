@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
@@ -16,15 +16,34 @@ const tabs = [
     { id: 'tech', label: 'Tech Stack' },
 ];
 
-// Mock Data removed as it is now inline
-
 export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [isLaunching, setIsLaunching] = useState(false);
     const [zooming, setZooming] = useState(false);
     const { resolvedTheme } = useTheme();
-    const isLightMode = resolvedTheme === 'light';
-    const zoomOverlayBg = resolvedTheme === 'dark' ? 'bg-black' : 'bg-white';
+    const isDarkMode = resolvedTheme === 'dark';
+    const zoomOverlayBg = isDarkMode ? 'bg-black' : 'bg-white';
+    const glassClasses = useMemo(() => {
+        if (isDarkMode) {
+            return {
+                overview: "bg-black/40 border border-white/10 shadow-none",
+                card: "bg-white/5 border border-white/10 shadow-none",
+                feature: "bg-black/40 border border-white/10 dark:hover:bg-white/10 dark:shadow-none",
+                featureIcon: "bg-white/5 border border-white/10",
+                text: "text-gray-300",
+                stack: "bg-black/40 border border-white/10 dark:hover:border-white/30 dark:shadow-none",
+            };
+        }
+        return {
+            overview: "bg-white/90 border border-white/70 shadow-[0_30px_75px_rgba(15,23,42,0.12)] backdrop-blur-2xl",
+            card: "bg-white/95 border border-white/70 shadow-[0_25px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl",
+            feature: "bg-white/95 border border-white/70 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl",
+            featureIcon: "bg-slate-50 border border-slate-200",
+            text: "text-slate-700",
+            stack: "bg-white/95 border border-white/70 shadow-[0_15px_35px_rgba(15,23,42,0.08)] hover:border-slate-300 backdrop-blur",
+        };
+    }, [isDarkMode]);
+    const isLightMode = !isDarkMode;
 
     return (
         <div className="min-h-screen relative overflow-hidden bg-[#f7f8fd] dark:bg-black text-slate-900 dark:text-white">
