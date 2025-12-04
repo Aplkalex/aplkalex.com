@@ -2,10 +2,22 @@
 
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
+    const { resolvedTheme } = useTheme();
+    const isDarkMode = resolvedTheme === 'dark';
+
+    const cursorStyles = {
+        baseBorder: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(15, 23, 42, 0.35)',
+        hoverBorder: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
+        baseBackground: 'transparent',
+        hoverBackground: isDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(15, 23, 42, 0.1)',
+        baseShadow: isDarkMode ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 20px rgba(15, 23, 42, 0.18)',
+        hoverShadow: isDarkMode ? '0 0 30px rgba(255, 255, 255, 0.45)' : '0 0 30px rgba(15, 23, 42, 0.25)',
+    };
 
     useEffect(() => {
         const updateMousePosition = (e: MouseEvent) => {
@@ -32,13 +44,14 @@ export default function CustomCursor() {
 
     return (
         <motion.div
-            className="fixed top-0 left-0 w-6 h-6 border border-white/50 rounded-full pointer-events-none z-[9999] hidden md:block shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+            className="fixed top-0 left-0 w-6 h-6 border rounded-full pointer-events-none z-[9999] hidden md:block"
             animate={{
                 x: mousePosition.x - 12,
                 y: mousePosition.y - 12,
                 scale: isHovering ? 3 : 1,
-                backgroundColor: isHovering ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-                borderColor: isHovering ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.5)',
+                backgroundColor: isHovering ? cursorStyles.hoverBackground : cursorStyles.baseBackground,
+                borderColor: isHovering ? cursorStyles.hoverBorder : cursorStyles.baseBorder,
+                boxShadow: isHovering ? cursorStyles.hoverShadow : cursorStyles.baseShadow,
             }}
             transition={{
                 type: "spring",
