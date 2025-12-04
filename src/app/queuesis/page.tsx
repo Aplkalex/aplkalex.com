@@ -23,6 +23,7 @@ export default function QueuesisPage() {
     const [isLaunching, setIsLaunching] = useState(false);
     const [zooming, setZooming] = useState(false);
     const { resolvedTheme } = useTheme();
+    const isLightMode = resolvedTheme === 'light';
     const zoomOverlayBg = resolvedTheme === 'dark' ? 'bg-black' : 'bg-white';
 
     return (
@@ -78,7 +79,7 @@ export default function QueuesisPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-xl !text-black !opacity-100 font-medium dark:text-gray-400 mb-10 max-w-2xl relative z-50"
+                            className="text-xl text-slate-800 dark:text-gray-300 font-medium mb-10 max-w-2xl relative z-50"
                         >
                             A modern course-queueing experience built to fix everything CUSIS didn't.
                         </motion.p>
@@ -168,31 +169,52 @@ export default function QueuesisPage() {
                             transition={{ duration: 0.3 }}
                         >
                             {activeTab === 'overview' && (
-                                <div className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-2xl p-8 shadow-xl dark:shadow-none">
-                                    <h2 className="text-2xl font-bold mb-4 font-display text-slate-900 dark:text-white">Project Overview</h2>
-                                    <p className="text-slate-600 dark:text-gray-300 leading-relaxed mb-8">
+                                <div
+                                    className={cn(
+                                        "rounded-2xl p-8 transition-all duration-300",
+                                        isLightMode
+                                            ? "bg-white/90 border border-white/70 shadow-[0_30px_75px_rgba(15,23,42,0.12)] backdrop-blur-2xl"
+                                            : "bg-black/40 border border-white/10 shadow-none"
+                                    )}
+                                >
+                                    <h2 className="text-2xl font-bold mb-4 font-display text-[#0b1220] dark:text-white">Project Overview</h2>
+                                    <p className="text-slate-800 dark:text-gray-300 leading-relaxed mb-8">
                                         Queuesis is a CUHK-focused timetable planner that combines intuitive drag-and-drop editing with a powerful
                                         deterministic schedule generator. Course data is sourced from CUSIS and can optionally be synced to MongoDB
                                         Atlas via Prisma for enhanced performance.
                                     </p>
 
                                     <div className="grid md:grid-cols-2 gap-6">
-                                        <div className="bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
+                                        <div
+                                            className={cn(
+                                                "rounded-xl p-6 transition-all duration-300",
+                                                isLightMode
+                                                    ? "bg-white/95 border border-white/70 shadow-[0_25px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    : "bg-white/5 border border-white/5 shadow-none"
+                                            )}
+                                        >
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
                                                 <Zap className="w-5 h-5" /> Why Queuesis?
                                             </h3>
-                                            <ul className="space-y-2 text-sm text-slate-600 dark:text-gray-400">
+                                            <ul className="space-y-2 text-sm text-[#1e293b] dark:text-gray-300">
                                                 <li className="flex items-center gap-2">• Smart Scheduling with 6 modes</li>
                                                 <li className="flex items-center gap-2">• Real-time conflict validation</li>
                                                 <li className="flex items-center gap-2">• Works with or without database</li>
                                                 <li className="flex items-center gap-2">• Modern Next.js 16 Stack</li>
                                             </ul>
                                         </div>
-                                        <div className="bg-white/60 border border-white/20 dark:bg-white/5 dark:border-white/5 rounded-xl p-6 shadow-sm dark:shadow-none">
+                                        <div
+                                            className={cn(
+                                                "rounded-xl p-6 transition-all duration-300",
+                                                isLightMode
+                                                    ? "bg-white/95 border border-white/70 shadow-[0_25px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    : "bg-white/5 border border-white/5 shadow-none"
+                                            )}
+                                        >
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-green-600 dark:text-green-400">
                                                 <Clock className="w-5 h-5" /> Current Support
                                             </h3>
-                                            <p className="text-sm text-slate-600 dark:text-gray-400">
+                                            <p className="text-sm text-[#1e293b] dark:text-gray-300">
                                                 Currently supports <span className="text-slate-900 dark:text-white font-bold">2025-2026 Term 2</span> course data.
                                                 Support for additional terms will be added in future updates.
                                             </p>
@@ -214,14 +236,22 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, x: -20 }}
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ delay: i * 0.1 }}
-                                            className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex items-start gap-4 hover:shadow-2xl hover:-translate-y-0.5 dark:hover:bg-white/10 transition-all shadow-lg dark:shadow-none"
+                                            className={cn(
+                                                "rounded-xl p-6 flex items-start gap-4 hover:-translate-y-0.5 transition-all",
+                                                isLightMode
+                                                    ? "bg-white/95 border border-white/70 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    : "bg-black/40 border border-white/10 dark:hover:bg-white/10 dark:shadow-none"
+                                            )}
                                         >
-                                            <div className="p-3 bg-slate-50 border border-slate-200 dark:bg-white/5 dark:border-white/10 rounded-lg">
+                                            <div className={cn(
+                                                "p-3 rounded-lg",
+                                                isLightMode ? "bg-slate-50 border border-slate-200" : "bg-white/5 border border-white/10"
+                                            )}>
                                                 {feature.icon}
                                             </div>
                                             <div>
                                                 <h3 className="text-lg font-bold mb-1 text-slate-900 dark:text-white">{feature.title}</h3>
-                                                <p className="text-slate-600 dark:text-gray-400 text-sm">{feature.desc}</p>
+                                                <p className="text-slate-700 dark:text-gray-300 text-sm">{feature.desc}</p>
                                             </div>
                                         </motion.div>
                                     ))}
@@ -244,12 +274,20 @@ export default function QueuesisPage() {
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             animate={{ opacity: 1, scale: 1 }}
                                             transition={{ delay: i * 0.05 }}
-                                            className="bg-white border border-slate-200 dark:bg-black/40 dark:border-white/10 rounded-xl p-6 flex flex-col items-center gap-3 hover:border-slate-300 dark:hover:border-white/30 transition-all group shadow-lg dark:shadow-none"
+                                            className={cn(
+                                                "rounded-xl p-6 flex flex-col items-center gap-3 transition-all group",
+                                                isLightMode
+                                                    ? "bg-white/95 border border-white/70 shadow-[0_15px_35px_rgba(15,23,42,0.08)] hover:border-slate-300 backdrop-blur"
+                                                    : "bg-black/40 border border-white/10 dark:hover:border-white/30 dark:shadow-none"
+                                            )}
                                         >
-                                            <div className="group-hover:scale-110 transition-transform duration-300">
+                                            <div className={cn(
+                                                "group-hover:scale-110 transition-transform duration-300",
+                                                isLightMode ? "text-slate-900" : "text-white"
+                                            )}>
                                                 {tech.icon}
                                             </div>
-                                            <span className="font-mono text-sm text-slate-700 dark:text-gray-300">{tech.name}</span>
+                                            <span className="font-mono text-sm text-slate-800 dark:text-gray-300">{tech.name}</span>
                                         </motion.div>
                                     ))}
                                 </div>
