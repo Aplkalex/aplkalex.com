@@ -69,7 +69,7 @@ export default function QueuesisPage() {
                 />
 
                 <div className="absolute inset-0 pointer-events-none">
-                    <div className="absolute inset-0 queuesis-blur-mask bg-white/8 dark:bg-black/35" />
+                    <div className="absolute inset-0 queuesis-blur-mask bg-white/60 dark:bg-black/35" />
 
                 </div>
             </div>
@@ -98,7 +98,7 @@ export default function QueuesisPage() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
-                            className="text-xl text-slate-800 dark:text-gray-300 font-medium mb-10 max-w-2xl relative z-50"
+                            className="text-xl text-slate-700 dark:text-gray-300 font-medium mb-10 max-w-2xl relative z-50"
                         >
                             A modern course-queueing experience built to fix everything CUSIS didn't.
                         </motion.p>

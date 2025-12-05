@@ -189,7 +189,7 @@ export default function Home() {
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#contact"
-                                        className="px-8 py-3 bg-white/90 border border-black/20 theme-text-strong dark:text-white rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/5 dark:border-white/10 transition-colors flex items-center justify-center"
+                                        className="px-8 py-3 bg-white/90 border border-black/20 text-black rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center"
                                     >
                                         Contact Me
                                     </Link>
@@ -198,7 +198,7 @@ export default function Home() {
                                     <motion.button
                                         type="button"
                                         onClick={handleResumeClick}
-                                        className="px-8 py-3 bg-white/90 border border-black/20 theme-text-strong dark:text-white rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/5 dark:border-white/10 transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer"
+                                        className="px-8 py-3 bg-white/90 border border-black/20 text-black rounded-full font-semibold shadow-md hover:bg-white dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer"
                                     >
                                         Get Resume <ExternalLink size={16} />
                                     </motion.button>
