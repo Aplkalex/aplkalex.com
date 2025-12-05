@@ -180,9 +180,10 @@ export default function Home() {
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#projects"
-                                        className="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold flex items-center gap-2 border border-black/10 dark:border-transparent"
+                                        className="px-8 py-3 bg-black text-white dark:bg-white dark:text-black rounded-full font-semibold flex items-center gap-2 border border-black/10 dark:border-transparent relative overflow-hidden group"
                                     >
-                                        View Work <ArrowRight size={18} />
+                                        <span className="absolute inset-0 animate-shimmer pointer-events-none"></span>
+                                        View Work <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                                     </Link>
                                 </motion.div>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
@@ -216,7 +217,7 @@ export default function Home() {
                             initial={{ opacity: 0, x: 30 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-                            className="hidden lg:block relative"
+                            className="hidden lg:block relative animate-float"
                         >
                             <div className="absolute -inset-1 bg-gradient-to-br from-white/10 via-transparent to-white/5 rounded-2xl blur-lg opacity-60"></div>
                             <GlassCard className="relative backdrop-blur-2xl font-mono text-sm overflow-hidden border-black/10 dark:border-white/15 shadow-[0_25px_70px_rgba(0,0,0,0.55)] bg-white/85 dark:bg-white/10 theme-text-strong">
@@ -361,7 +362,7 @@ export default function Home() {
                             <motion.div variants={popIn} className="h-full">
                                 <div onClick={handleQueuesisClick} className="block h-full group cursor-pointer">
                                     <motion.div layoutId="queuesis-card" className="h-full">
-                                        <GlassCard className="h-full flex flex-col relative overflow-hidden transition-transform duration-300 group-hover:scale-[1.02] group-hover:border-white/20 bg-white/90 border border-black/5 dark:bg-[#111] dark:border-white/10 text-gray-800 dark:text-gray-200 backdrop-blur-xl shadow-lg">
+                                        <GlassCard className="h-full flex flex-col relative overflow-hidden transition-all duration-300 group-hover:scale-[1.02] group-hover:border-white/20 group-hover:shadow-xl bg-white/90 border border-black/5 dark:bg-[#111] dark:border-white/10 text-gray-800 dark:text-gray-200 backdrop-blur-xl shadow-lg gpu-accelerated">
                                             {/* Content Overlay */}
                                             <div className="relative z-10 flex flex-col h-full p-6">
                                                 <div className="flex justify-between items-start mb-4">
@@ -447,10 +448,11 @@ export default function Home() {
                         <div className="flex justify-center gap-6">
                             <motion.a
                                 href="mailto:contact@aplkalex.com"
-                                className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg"
+                                className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg relative overflow-hidden group hover:shadow-lg transition-shadow"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
+                                <span className="absolute inset-0 animate-shimmer pointer-events-none"></span>
                                 Get in Touch
                             </motion.a>
                             <motion.a

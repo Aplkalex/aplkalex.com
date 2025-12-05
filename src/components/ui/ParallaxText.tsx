@@ -61,7 +61,14 @@ export default function ParallaxText({ children, baseVelocity = 100, className =
 
     return (
         <div className={`overflow-hidden whitespace-nowrap flex flex-nowrap ${className}`}>
-            <motion.div className="flex whitespace-nowrap flex-nowrap" style={{ x }}>
+            <motion.div
+                className="flex whitespace-nowrap flex-nowrap"
+                style={{
+                    x,
+                    willChange: 'transform',
+                    transform: 'translateZ(0)'
+                }}
+            >
                 <span className="block mr-8">{children}</span>
                 <span className="block mr-8">{children}</span>
                 <span className="block mr-8">{children}</span>

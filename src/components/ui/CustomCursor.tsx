@@ -45,19 +45,23 @@ export default function CustomCursor() {
     return (
         <motion.div
             className="fixed top-0 left-0 w-6 h-6 border rounded-full pointer-events-none z-[9999] hidden md:block"
+            style={{
+                willChange: 'transform',
+                transform: 'translateZ(0)',
+            }}
             animate={{
                 x: mousePosition.x - 12,
                 y: mousePosition.y - 12,
-                scale: isHovering ? 3 : 1,
+                scale: isHovering ? 2.5 : 1,
                 backgroundColor: isHovering ? cursorStyles.hoverBackground : cursorStyles.baseBackground,
                 borderColor: isHovering ? cursorStyles.hoverBorder : cursorStyles.baseBorder,
                 boxShadow: isHovering ? cursorStyles.hoverShadow : cursorStyles.baseShadow,
             }}
             transition={{
                 type: "spring",
-                damping: 30,
-                stiffness: 400,
-                mass: 0.5
+                damping: 25,
+                stiffness: 300,
+                mass: 0.4
             }}
         />
     );
