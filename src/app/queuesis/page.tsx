@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import GlassCard from '@/components/ui/GlassCard';
 import Link from 'next/link';
@@ -20,8 +20,11 @@ export default function QueuesisPage() {
     const [activeTab, setActiveTab] = useState('overview');
     const [isLaunching, setIsLaunching] = useState(false);
     const [zooming, setZooming] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
-    const isDarkMode = resolvedTheme === 'dark';
+
+    // Prevent hydration mismatch by only using theme after mount
+    const isDarkMode = mounted ? resolvedTheme === 'dark' : true;
     const zoomOverlayBg = isDarkMode ? 'bg-black' : 'bg-white';
     const glassClasses = useMemo(() => {
         if (isDarkMode) {
@@ -44,6 +47,11 @@ export default function QueuesisPage() {
         };
     }, [isDarkMode]);
     const isLightMode = !isDarkMode;
+
+    // Set mounted state after hydration
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     return (
         <div className="min-h-screen relative overflow-hidden bg-[#f7f8fd] dark:bg-black text-slate-900 dark:text-white">
@@ -192,7 +200,7 @@ export default function QueuesisPage() {
                                     className={cn(
                                         "rounded-2xl p-8 transition-all duration-300",
                                         isLightMode
-                                            ? "bg-white/90 border border-white/70 shadow-[0_30px_75px_rgba(15,23,42,0.12)] backdrop-blur-2xl"
+                                            ? "bg-white border border-slate-200 shadow-[0_30px_75px_rgba(15,23,42,0.12)]"
                                             : "bg-black/40 border border-white/10 shadow-none"
                                     )}
                                 >
@@ -208,14 +216,14 @@ export default function QueuesisPage() {
                                             className={cn(
                                                 "rounded-xl p-6 transition-all duration-300",
                                                 isLightMode
-                                                    ? "bg-white/95 border border-white/70 shadow-[0_25px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    ? "bg-slate-50 border border-slate-200 shadow-[0_25px_55px_rgba(15,23,42,0.06)]"
                                                     : "bg-white/5 border border-white/5 shadow-none"
                                             )}
                                         >
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-yellow-600 dark:text-yellow-400">
                                                 <Zap className="w-5 h-5" /> Why Queuesis?
                                             </h3>
-                                            <ul className="space-y-2 text-sm text-[#1e293b] dark:text-gray-300">
+                                            <ul className="space-y-2 text-sm text-slate-700 dark:text-gray-300">
                                                 <li className="flex items-center gap-2">• Smart Scheduling with 6 modes</li>
                                                 <li className="flex items-center gap-2">• Real-time conflict validation</li>
                                                 <li className="flex items-center gap-2">• Works with or without database</li>
@@ -226,14 +234,14 @@ export default function QueuesisPage() {
                                             className={cn(
                                                 "rounded-xl p-6 transition-all duration-300",
                                                 isLightMode
-                                                    ? "bg-white/95 border border-white/70 shadow-[0_25px_55px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    ? "bg-slate-50 border border-slate-200 shadow-[0_25px_55px_rgba(15,23,42,0.06)]"
                                                     : "bg-white/5 border border-white/5 shadow-none"
                                             )}
                                         >
                                             <h3 className="text-lg font-bold mb-3 flex items-center gap-2 text-green-600 dark:text-green-400">
                                                 <Clock className="w-5 h-5" /> Current Support
                                             </h3>
-                                            <p className="text-sm text-[#1e293b] dark:text-gray-300">
+                                            <p className="text-sm text-slate-700 dark:text-gray-300">
                                                 Currently supports <span className="text-slate-900 dark:text-white font-bold">2025-2026 Term 2</span> course data.
                                                 Support for additional terms will be added in future updates.
                                             </p>
@@ -245,10 +253,10 @@ export default function QueuesisPage() {
                             {activeTab === 'features' && (
                                 <div className="grid gap-4">
                                     {[
-                                        { title: "Drag & Drop Interface", desc: "Intuitive timetable management with dnd-kit", icon: <Layout className="w-6 h-6 text-purple-400" /> },
-                                        { title: "Smart Generator", desc: "Generate conflict-free schedules automatically", icon: <Zap className="w-6 h-6 text-yellow-400" /> },
-                                        { title: "Real-time Validation", desc: "Instant feedback on course conflicts", icon: <AlertCircle className="w-6 h-6 text-red-400" /> },
-                                        { title: "Data Sync", desc: "Optional MongoDB sync for persistence", icon: <Database className="w-6 h-6 text-blue-400" /> }
+                                        { title: "Drag & Drop Interface", desc: "Intuitive timetable management with dnd-kit", icon: <Layout className="w-6 h-6 text-purple-600 dark:text-purple-400" /> },
+                                        { title: "Smart Generator", desc: "Generate conflict-free schedules automatically", icon: <Zap className="w-6 h-6 text-amber-600 dark:text-yellow-400" /> },
+                                        { title: "Real-time Validation", desc: "Instant feedback on course conflicts", icon: <AlertCircle className="w-6 h-6 text-red-600 dark:text-red-400" /> },
+                                        { title: "Data Sync", desc: "Optional MongoDB sync for persistence", icon: <Database className="w-6 h-6 text-blue-600 dark:text-blue-400" /> }
                                     ].map((feature, i) => (
                                         <motion.div
                                             key={i}
@@ -258,7 +266,7 @@ export default function QueuesisPage() {
                                             className={cn(
                                                 "rounded-xl p-6 flex items-start gap-4 hover:-translate-y-0.5 transition-all",
                                                 isLightMode
-                                                    ? "bg-white/95 border border-white/70 shadow-[0_20px_50px_rgba(15,23,42,0.08)] backdrop-blur-xl"
+                                                    ? "bg-white border border-slate-200 shadow-[0_20px_50px_rgba(15,23,42,0.06)]"
                                                     : "bg-black/40 border border-white/10 dark:hover:bg-white/10 dark:shadow-none"
                                             )}
                                         >
@@ -296,7 +304,7 @@ export default function QueuesisPage() {
                                             className={cn(
                                                 "rounded-xl p-6 flex flex-col items-center gap-3 transition-all group",
                                                 isLightMode
-                                                    ? "bg-white/95 border border-white/70 shadow-[0_15px_35px_rgba(15,23,42,0.08)] hover:border-slate-300 backdrop-blur"
+                                                    ? "bg-white border border-slate-200 shadow-[0_15px_35px_rgba(15,23,42,0.06)] hover:border-slate-300"
                                                     : "bg-black/40 border border-white/10 dark:hover:border-white/30 dark:shadow-none"
                                             )}
                                         >

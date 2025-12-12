@@ -81,9 +81,13 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
 
     const [isBlurred, setIsBlurred] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const { resolvedTheme } = useTheme();
-    const isDark = resolvedTheme === 'dark';
 
+    // Prevent hydration mismatch by only using theme after mount
+    const isDark = mounted ? resolvedTheme === 'dark' : true;
+
+    // Use Tailwind classes for card variant to avoid hydration issues
     const headerBorder = isCard
         ? "border-black/[0.05] dark:border-white/[0.05]"
         : isDark ? "border-white/10" : "border-slate-300/40";
@@ -103,6 +107,11 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
         : "";
 
     const fullscreenBackgroundStyle = undefined;
+
+    // Set mounted state after hydration
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -260,6 +269,24 @@ export default function QueuesisShowcase({ className, variant = 'card' }: { clas
                         })}
                     </div>
                 </div>
+
+                {/* Frosted Glass Overlay - adds premium blur effect */}
+                {!isCard && (
+                    <div
+                        className={cn(
+                            "absolute inset-0 pointer-events-none z-[5]",
+                            isDark
+                                ? "bg-gradient-to-b from-black/10 via-black/5 to-black/20"
+                                : "bg-gradient-to-b from-white/20 via-white/10 to-white/30"
+                        )}
+                        style={{
+                            backdropFilter: 'blur(1.5px)',
+                            WebkitBackdropFilter: 'blur(1.5px)',
+                            maskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, transparent 30%, black 100%)',
+                            WebkitMaskImage: 'radial-gradient(ellipse 80% 70% at 50% 40%, transparent 30%, black 100%)',
+                        }}
+                    />
+                )}
             </div>
         </div>
     );
