@@ -30,7 +30,7 @@ export default function Navbar() {
                 backgroundColor: scrolled ? 'var(--navbar-bg-scrolled)' : 'transparent'
             }}
         >
-            <div className="container mx-auto px-6 flex justify-between items-center">
+            <div className="container mx-auto px-6 flex justify-between items-center max-w-full overflow-x-hidden">
                 <Link
                     href="/"
                     className="text-2xl font-bold tracking-tighter font-display transition-colors duration-500"

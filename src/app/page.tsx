@@ -132,7 +132,7 @@ export default function Home() {
                 )}
             </AnimatePresence>
 
-            <div ref={containerRef} className="container mx-auto px-6 space-y-32 pb-20 relative">
+            <div ref={containerRef} className="container mx-auto px-6 space-y-32 pb-20 relative max-w-[100vw] overflow-x-hidden">
                 {/* Hero Section */}
                 <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
                     {/* Background Animations */}
@@ -155,7 +155,7 @@ export default function Home() {
                                 </span>
                                 Available for collaborations
                             </motion.div>
-                            <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 font-display leading-tight">
+                            <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 font-hero leading-tight">
                                 Hi <motion.span
                                     style={{ display: 'inline-block', transformOrigin: '70% 70%' }}
                                     animate={{ rotate: [0, 14, -8, 14, -4, 10, 0, 0] }}
