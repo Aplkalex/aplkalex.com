@@ -10,6 +10,9 @@ interface SmoothScrollProps {
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
     useEffect(() => {
+        // Reset scroll position on page load
+        window.scrollTo(0, 0);
+        
         const lenis = new Lenis({
             duration: 0.9,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -20,6 +23,9 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
             wheelMultiplier: 1.2,
             touchMultiplier: 2,
         });
+
+        // Ensure scroll starts at top
+        lenis.scrollTo(0, { immediate: true });
 
         function raf(time: number) {
             lenis.raf(time);
