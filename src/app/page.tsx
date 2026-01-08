@@ -189,7 +189,7 @@ export default function Home() {
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                     <Link
                                         href="#contact"
-                                        className="px-8 py-3 bg-white border border-gray-300 text-black rounded-full font-semibold shadow-lg hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center !text-black"
+                                        className="px-8 py-3 bg-white border border-gray-300 text-black rounded-full font-semibold shadow-lg hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center"
                                     >
                                         Contact Me
                                     </Link>
@@ -198,7 +198,7 @@ export default function Home() {
                                     <motion.button
                                         type="button"
                                         onClick={handleResumeClick}
-                                        className="px-8 py-3 bg-white border border-gray-300 text-black rounded-full font-semibold shadow-lg hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer !text-black"
+                                        className="px-8 py-3 bg-white border border-gray-300 text-black rounded-full font-semibold shadow-lg hover:bg-gray-50 dark:bg-white/10 dark:text-white dark:border-white/20 dark:hover:bg-white/20 dark:hover:text-white transition-colors flex items-center justify-center gap-2 relative z-10 cursor-pointer"
                                     >
                                         Get Resume <ExternalLink size={16} />
                                     </motion.button>
