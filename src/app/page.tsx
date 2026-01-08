@@ -101,7 +101,7 @@ export default function Home() {
         setZoomingId('resume');
         // Delay opening new tab to let animation play briefly
         setTimeout(() => {
-            window.open('/Alex%20Resume%202025.pdf', '_blank');
+            window.open('/WONGKaHei-CV.pdf', '_blank');
         }, 250);
 
         setTimeout(() => {
