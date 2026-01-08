@@ -62,10 +62,10 @@
     --queuesis-blur-opacity: 0.52;
 
     /* CTA secondary (dark) */
-    --cta-secondary-bg: rgba(255, 255, 255, 0.1);
+    --cta-secondary-bg: rgba(255, 255, 255, 0.12);
     --cta-secondary-text: #ffffff;
-    --cta-secondary-border: rgba(255, 255, 255, 0.2);
-    --cta-secondary-hover: rgba(255, 255, 255, 0.2);
+    --cta-secondary-border: rgba(255, 255, 255, 0.28);
+    --cta-secondary-hover: rgba(255, 255, 255, 0.18);
 }
 
 @theme {
@@ -137,7 +137,7 @@ body {
 
 @layer components {
     .cta-base {
-        @apply px-8 py-3 rounded-full font-semibold shadow-lg transition-colors flex items-center justify-center gap-2 border;
+        @apply inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold shadow-lg transition-colors border backdrop-blur;
     }
 
     .cta-secondary {
