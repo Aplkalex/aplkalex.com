@@ -148,7 +148,7 @@ export default function Home() {
                             variants={staggerContainer}
                             style={{ x: heroTextX, opacity: heroOpacity }}
                         >
-                            <motion.div variants={fadeInUp} className="inline-flex items-center gap-2 px-3 py-1 mb-6 rounded-full border border-emerald-200 dark:border-white/10 bg-emerald-50/90 dark:bg-white/5 text-sm text-emerald-700 dark:text-emerald-300 shadow-sm">
+                            <motion.div variants={fadeInUp} className="pill-badge mb-6">
                                 <span className="relative flex h-2 w-2">
                                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                                     <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -448,7 +448,7 @@ export default function Home() {
                         <div className="flex justify-center gap-6">
                             <motion.a
                                 href="mailto:contact@aplkalex.com"
-                                className="inline-block px-10 py-4 bg-white text-black rounded-full font-bold text-lg relative overflow-hidden group hover:shadow-lg transition-shadow"
+                                className="cta-base cta-secondary relative overflow-hidden group"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >

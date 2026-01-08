@@ -36,10 +36,16 @@
     --queuesis-blur-opacity: 0.65;
 
     /* CTA secondary (light) */
-    --cta-secondary-bg: #ffffff;
+    --cta-secondary-bg: #f8fafc;
     --cta-secondary-text: #0f172a;
-    --cta-secondary-border: #d1d5db;
-    --cta-secondary-hover: #f5f5f5;
+    --cta-secondary-border: #cbd5e1;
+    --cta-secondary-hover: #e2e8f0;
+
+    /* Pill badge (light) */
+    --badge-bg: #ecfdf3;
+    --badge-text: #065f46;
+    --badge-border: #a7f3d0;
+    --badge-glow: rgba(16, 185, 129, 0.18);
 }
 
 .dark {
@@ -66,6 +72,12 @@
     --cta-secondary-text: #ffffff;
     --cta-secondary-border: rgba(255, 255, 255, 0.28);
     --cta-secondary-hover: rgba(255, 255, 255, 0.18);
+
+    /* Pill badge (dark) */
+    --badge-bg: rgba(255, 255, 255, 0.08);
+    --badge-text: #d1fae5;
+    --badge-border: rgba(255, 255, 255, 0.18);
+    --badge-glow: rgba(16, 185, 129, 0.25);
 }
 
 @theme {
@@ -148,6 +160,14 @@ body {
 
     .cta-secondary:hover {
         background: var(--cta-secondary-hover);
+    }
+
+    .pill-badge {
+        @apply inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium border shadow-sm transition-colors;
+        background: var(--badge-bg);
+        color: var(--badge-text);
+        border-color: var(--badge-border);
+        box-shadow: 0 8px 24px -12px var(--badge-glow);
     }
 }
 
