@@ -33,7 +33,7 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                         transition={{ delay: index * 0.1 }}
                     >
                         <ZoomableCard
-                            className="h-full flex flex-col transition-colors hover:border-[var(--hover-border)]"
+                            className="h-full flex flex-col glass-card transition-colors hover:border-[var(--hover-border)]"
                             expandedContent={
                                 <div className="p-8 max-w-3xl mx-auto text-[var(--foreground-strong)]">
                                     <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
