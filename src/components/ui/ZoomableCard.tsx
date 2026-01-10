@@ -136,6 +136,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                                     animate={{ opacity: 1 }}
                                     transition={{ duration: 0.5, delay: 0.2 }}
                                     className="w-full h-full"
+                                    style={{ color: isDark ? '#ffffff' : '#000000' }}
                                 >
                                     {expandedContent}
                                 </motion.div>
