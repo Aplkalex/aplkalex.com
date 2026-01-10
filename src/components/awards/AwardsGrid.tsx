@@ -35,27 +35,27 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                         <ZoomableCard
                             className="h-full flex flex-col glass-card transition-colors hover:border-[var(--hover-border)]"
                             expandedContent={
-                                <div className="p-8 max-w-3xl mx-auto text-[var(--foreground-strong)] dark:text-white [&_*]:text-[var(--foreground-strong)] dark:[&_*]:text-white">
-                                    <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${award.color} mb-4`}>
+                                <div className="p-8 max-w-3xl mx-auto text-black dark:text-white">
+                                    <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r ${award.color} mb-4`}>
                                         {award.date}
                                     </div>
-                                    <h3 className="text-3xl font-bold font-display mb-2">{award.title}</h3>
+                                    <h3 className="text-3xl font-bold font-display mb-2 text-black dark:text-white">{award.title}</h3>
                                     <div className="flex flex-col gap-1 text-black/80 dark:text-gray-200 mb-8">
                                         <span className="flex items-center gap-2"><Icon size={16} /> {award.issuer}</span>
                                         <span className="flex items-center gap-2"><Globe size={16} /> {award.association}</span>
                                     </div>
-                                    <div className="prose max-w-none dark:prose-invert">
+                                    <div className="prose prose-neutral max-w-none dark:prose-invert text-black dark:text-white">
                                         {award.highlights && (
-                                            <ul className="list-disc pl-5 space-y-2">
+                                            <ul className="list-disc pl-5 space-y-2 text-black dark:text-white">
                                                 {award.highlights.map((item, index) => (
-                                                    <li key={index}>{item}</li>
+                                                    <li key={index} className="text-black dark:text-white">{item}</li>
                                                 ))}
                                             </ul>
                                         )}
                                         {award.paragraphs && (
-                                            <div className="space-y-4">
+                                            <div className="space-y-4 text-black dark:text-white">
                                                 {award.paragraphs.map((paragraph, index) => (
-                                                    <p key={index}>{paragraph}</p>
+                                                    <p key={index} className="text-black dark:text-white">{paragraph}</p>
                                                 ))}
                                             </div>
                                         )}
