@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { useRouter } from 'next/navigation';
 import { X } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 interface ZoomableCardProps {
     children: React.ReactNode;
@@ -13,7 +14,6 @@ interface ZoomableCardProps {
     showcaseContent?: React.ReactNode;
     expandedContent?: React.ReactNode;
     autoRedirect?: boolean;
-import { useTheme } from 'next-themes';
 }
 
 export default function ZoomableCard({ children, className, redirectUrl, showcaseContent, expandedContent, autoRedirect }: ZoomableCardProps) {
