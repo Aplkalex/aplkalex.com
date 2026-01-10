@@ -63,12 +63,12 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 className={cn(
                     'relative border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white transition-colors',
                     isExpanded
-                        ? 'shadow-2xl !backdrop-blur-none !border-black/10 bg-white dark:bg-black text-[color:var(--foreground-strong)]'
+                        ? 'shadow-2xl !backdrop-blur-none !border-black/10 bg-white dark:bg-black'
                         : 'bg-white/80 dark:bg-black/40 backdrop-blur-md',
                     (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-black/30 dark:hover:border-white/30',
                     className
+                )}
                 style={isExpanded ? { backgroundColor: isDark ? '#000000' : '#ffffff', color: isDark ? '#ffffff' : '#000000' } : undefined}
-                style={isExpanded ? { backgroundColor: '#ffffff', color: 'var(--foreground-strong)' } : undefined}
                 whileHover={!isExpanded ? {
                     scale: 1.02,
                     y: -5,
