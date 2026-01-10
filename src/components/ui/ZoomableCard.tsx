@@ -48,7 +48,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed inset-0 !bg-white/95 dark:!bg-black/95 backdrop-blur-md z-50"
+                    className="fixed inset-0 z-50 bg-white dark:bg-black"
                     onClick={!isRedirecting ? () => setIsExpanded(false) : undefined}
                 />
             )}
@@ -57,10 +57,14 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 layout
                 onClick={!isExpanded ? handleClick : undefined}
                 className={cn(
-                    'relative bg-white/80 dark:bg-black/40 backdrop-blur-md border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white',
+                    'relative border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white transition-colors',
+                    isExpanded
+                        ? 'shadow-2xl !backdrop-blur-none !border-black/10 bg-white dark:bg-black text-[color:var(--foreground-strong)]'
+                        : 'bg-white/80 dark:bg-black/40 backdrop-blur-md',
                     (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-black/30 dark:hover:border-white/30',
                     className
                 )}
+                style={isExpanded ? { backgroundColor: '#ffffff', color: 'var(--foreground-strong)' } : undefined}
                 whileHover={!isExpanded ? {
                     scale: 1.02,
                     y: -5,
@@ -133,7 +137,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                                 </motion.div>
                             ) : (
                                 <div className={cn(
-                                    isExpanded ? "bg-white/85 dark:bg-black/60 backdrop-blur-xl p-8 rounded-2xl border border-black/10 dark:border-white/10 max-w-2xl w-full shadow-2xl mx-auto mt-20" : ""
+                                    isExpanded ? "p-8 rounded-2xl border border-black/10 dark:border-white/10 max-w-2xl w-full shadow-2xl mx-auto mt-20 bg-white dark:bg-black text-[color:var(--foreground-strong)]" : ""
                                 )}>
                                     {children}
 
