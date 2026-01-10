@@ -64,7 +64,7 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-black/30 dark:hover:border-white/30',
                     className
                 )}
-                style={isExpanded ? { backgroundColor: '#ffffff', color: 'var(--foreground-strong)' } : undefined}
+                style={isExpanded ? { backgroundColor: '#ffffff', color: '#000000' } : undefined}
                 whileHover={!isExpanded ? {
                     scale: 1.02,
                     y: -5,
