@@ -135,10 +135,6 @@ export default function Home() {
             <div ref={containerRef} className="container mx-auto px-6 space-y-32 pb-20 relative max-w-[100vw] overflow-x-hidden">
                 {/* Hero Section */}
                 <section id="hero" className="min-h-[85vh] flex flex-col justify-center relative">
-                    {/* Background Animations */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-purple-500/20 rounded-full blur-[120px] -z-10 mix-blend-screen pointer-events-none opacity-50 animate-pulse"></div>
-                    <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] -z-10 mix-blend-screen pointer-events-none opacity-30"></div>
-
 
 
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
