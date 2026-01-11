@@ -52,7 +52,6 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                     animate={{ opacity: 1 }}
                     className="fixed inset-0 z-50"
                     style={{ backgroundColor: isDark ? '#000000' : '#ffffff' }}
-                    className="fixed inset-0 z-50 bg-white dark:bg-black"
                     onClick={!isRedirecting ? () => setIsExpanded(false) : undefined}
                 />
             )}
