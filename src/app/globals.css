@@ -127,6 +127,7 @@ body {
         background-image: linear-gradient(120deg, rgba(15, 23, 42, 0.45), rgba(59, 130, 246, 0.55), rgba(15, 23, 42, 0.4));
         background-size: 200% 200%;
         -webkit-background-clip: text;
+        background-clip: text;
         color: transparent;
         animation: loopHeadingGlow 8s ease-in-out infinite;
         filter: drop-shadow(0 15px 40px rgba(15, 23, 42, 0.12));
@@ -252,6 +253,7 @@ body {
 .text-gradient {
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -412,12 +414,32 @@ body {
 
 /* Wave animation for emoji - CSS-based for better performance */
 @keyframes wave {
-    0%, 60%, 100% { transform: rotate(0deg); }
-    10% { transform: rotate(14deg); }
-    20% { transform: rotate(-8deg); }
-    30% { transform: rotate(14deg); }
-    40% { transform: rotate(-4deg); }
-    50% { transform: rotate(10deg); }
+
+    0%,
+    60%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    10% {
+        transform: rotate(14deg);
+    }
+
+    20% {
+        transform: rotate(-8deg);
+    }
+
+    30% {
+        transform: rotate(14deg);
+    }
+
+    40% {
+        transform: rotate(-4deg);
+    }
+
+    50% {
+        transform: rotate(10deg);
+    }
 }
 
 .animate-wave {
@@ -431,6 +453,7 @@ body {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -446,24 +469,24 @@ body {
     .animate-float {
         animation: none;
     }
-    
+
     .animate-shimmer {
         animation-duration: 4s;
     }
-    
+
     .loop-heading {
         animation-duration: 12s;
     }
-    
+
     .hero-title {
         animation: none;
     }
-    
+
     /* Reduce blur effects on mobile */
     .glass-card {
         backdrop-filter: blur(8px);
     }
-    
+
     /* Disable complex shadows on mobile */
     .animate-glow {
         animation: none;

@@ -21,7 +21,7 @@ export default function ScrambleText({
 }: ScrambleTextProps) {
     const [displayText, setDisplayText] = useState(text);
     const [mounted, setMounted] = useState(false);
-    const rafRef = useRef<number>();
+    const rafRef = useRef<number | undefined>(undefined);
     const startTimeRef = useRef<number>(0);
 
     useEffect(() => {
