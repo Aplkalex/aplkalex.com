@@ -8,7 +8,7 @@ export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
     const cursorRef = useRef<HTMLDivElement>(null);
     const positionRef = useRef({ x: 0, y: 0 });
-    const rafRef = useRef<number>();
+    const rafRef = useRef<number | undefined>(undefined);
     const { resolvedTheme } = useTheme();
     const isDarkMode = resolvedTheme === 'dark';
 
