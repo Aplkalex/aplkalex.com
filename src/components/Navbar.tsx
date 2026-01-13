@@ -75,17 +75,17 @@ export default function Navbar() {
 
             {/* Mobile Menu */}
             {mobileMenuOpen && (
-                <div className="md:hidden absolute top-full left-0 w-full bg-black/95 backdrop-blur-xl border-b border-white/10 p-6 flex flex-col gap-4">
-                    <Link href="/#about" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
+                <div className="md:hidden absolute top-full left-0 w-full bg-white/95 dark:bg-black/95 backdrop-blur-xl border-b border-black/10 dark:border-white/10 p-6 flex flex-col gap-4">
+                    <Link href="/#about" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-700 dark:text-gray-300">
                         About
                     </Link>
-                    <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
+                    <Link href="/projects" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-700 dark:text-gray-300">
                         Projects
                     </Link>
-                    <Link href="/awards" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-300">
+                    <Link href="/awards" onClick={() => setMobileMenuOpen(false)} className="text-lg text-gray-700 dark:text-gray-300">
                         Awards
                     </Link>
-                    <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-lg text-white font-semibold">
+                    <Link href="/#contact" onClick={() => setMobileMenuOpen(false)} className="text-lg text-black dark:text-white font-semibold">
                         Get in Touch
                     </Link>
                 </div>

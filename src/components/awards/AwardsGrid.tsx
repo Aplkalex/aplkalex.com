@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import ZoomableCard from '@/components/ui/ZoomableCard';
 import { awards } from '@/data/awards';
 import { Globe, Shield } from 'lucide-react';
@@ -25,12 +24,10 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                 const Icon = award.icon ?? Shield;
 
                 return (
-                    <motion.div
+                    <div
                         key={award.title}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
+                        className="animate-fade-in-up"
+                        style={{ animationDelay: `${index * 0.1}s`, animationFillMode: 'both' }}
                     >
                         <ZoomableCard
                             className="h-full flex flex-col glass-card transition-colors hover:border-[var(--hover-border)]"
@@ -72,7 +69,7 @@ export default function AwardsGrid({ className }: AwardsGridProps) {
                                 </div>
                             </div>
                         </ZoomableCard>
-                    </motion.div>
+                    </div>
                 );
             })}
         </div>

@@ -60,24 +60,16 @@ export default function ZoomableCard({ children, className, redirectUrl, showcas
                 layout
                 onClick={!isExpanded ? handleClick : undefined}
                 className={cn(
-                    'relative border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white transition-colors',
+                    'relative border border-black/10 dark:border-white/10 overflow-hidden text-gray-900 dark:text-white transition-all duration-200',
                     isExpanded
                         ? 'shadow-2xl !backdrop-blur-none !border-black/10 bg-white dark:bg-black'
-                        : 'bg-white/80 dark:bg-black/40 backdrop-blur-md',
+                        : 'bg-white/80 dark:bg-black/40 backdrop-blur-md hover:scale-[1.02] hover:-translate-y-1 hover:shadow-lg',
                     (isExpanded || isRedirecting) ? 'fixed inset-0 z-[60] rounded-none border-none' : 'rounded-2xl cursor-pointer hover:border-black/30 dark:hover:border-white/30',
                     className
                 )}
                 style={isExpanded ? { backgroundColor: isDark ? '#000000' : '#ffffff', color: isDark ? '#ffffff' : '#000000' } : undefined}
-                whileHover={!isExpanded ? {
-                    scale: 1.02,
-                    y: -5,
-                    borderColor: "var(--hover-border)",
-                    boxShadow: "var(--glass-shadow)"
-                } : undefined}
                 transition={{
-                    layout: { duration: 0.25, ease: [0.2, 0, 0.2, 1] }, // Ultra-fast, snappy
-                    scale: { duration: 0.2 },
-                    y: { duration: 0.2 }
+                    layout: { duration: 0.25, ease: [0.2, 0, 0.2, 1] }
                 }}
             >
                 {isExpanded && !isRedirecting && (
