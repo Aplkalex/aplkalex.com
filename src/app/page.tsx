@@ -152,17 +152,7 @@ export default function Home() {
                                 Available for collaborations
                             </motion.div>
                             <motion.h1 variants={fadeInUp} className="text-5xl md:text-7xl font-bold mb-6 font-hero leading-tight">
-                                Hi <motion.span
-                                    style={{ display: 'inline-block', transformOrigin: '70% 70%' }}
-                                    animate={{ rotate: [0, 14, -8, 14, -4, 10, 0, 0] }}
-                                    transition={{
-                                        duration: 2.5,
-                                        ease: "easeInOut",
-                                        times: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1],
-                                        repeat: Infinity,
-                                        repeatDelay: 1
-                                    }}
-                                >👋</motion.span>, I'm <br />
+                                Hi <span className="inline-block animate-wave origin-[70%_70%]">👋</span>, I'm <br />
                                 <ScrambleText text="Aplkalex" className="hero-title" />.
                             </motion.h1>
                             <motion.h2 variants={fadeInUp} className="text-2xl md:text-3xl theme-text-muted mb-6 font-light">

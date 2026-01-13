@@ -1,16 +1,24 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function Starfield() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
+        // Detect mobile device
+        const checkMobile = () => {
+            return window.innerWidth < 768 || 'ontouchstart' in window;
+        };
+        setIsMobile(checkMobile());
+
         const canvas = canvasRef.current;
         if (!canvas) return;
 
         // Check for reduced motion preference
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const mobile = checkMobile();
 
         const ctx = canvas.getContext('2d', { alpha: true });
         if (!ctx) return;
@@ -19,9 +27,12 @@ export default function Starfield() {
         let height = window.innerHeight;
         let animationFrameId: number;
         let frameCount = 0;
+        let lastTime = 0;
+        const targetFPS = mobile ? 30 : 60; // Lower FPS on mobile
+        const frameInterval = 1000 / targetFPS;
 
-        // Use device pixel ratio for sharper rendering but cap at 2 for performance
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        // Use device pixel ratio but cap lower on mobile for performance
+        const dpr = mobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
         canvas.width = width * dpr;
         canvas.height = height * dpr;
         canvas.style.width = `${width}px`;
@@ -29,8 +40,10 @@ export default function Starfield() {
         ctx.scale(dpr, dpr);
 
         const stars: { x: number; y: number; radius: number; alpha: number; speed: number }[] = [];
-        // Reduced star count for better performance
-        const numStars = Math.floor((width * height) / 40000);
+        // Significantly reduce star count on mobile
+        const numStars = mobile 
+            ? Math.floor((width * height) / 80000) // Half the stars on mobile
+            : Math.floor((width * height) / 40000);
 
         for (let i = 0; i < numStars; i++) {
             stars.push({
@@ -42,9 +55,19 @@ export default function Starfield() {
             });
         }
 
-        const animate = () => {
+        const animate = (currentTime: number) => {
+            animationFrameId = requestAnimationFrame(animate);
+
+            // Throttle frame rate
+            const elapsed = currentTime - lastTime;
+            if (elapsed < frameInterval) return;
+            lastTime = currentTime - (elapsed % frameInterval);
+
             ctx.clearRect(0, 0, width, height);
             frameCount++;
+
+            // On mobile, update twinkle less frequently
+            const twinkleInterval = mobile ? 6 : 3;
 
             stars.forEach((star) => {
                 ctx.beginPath();
@@ -52,8 +75,8 @@ export default function Starfield() {
                 ctx.fillStyle = `rgba(255, 255, 255, ${star.alpha})`;
                 ctx.fill();
 
-                // Throttle twinkle to every 3rd frame for performance
-                if (frameCount % 3 === 0) {
+                // Throttle twinkle for performance
+                if (frameCount % twinkleInterval === 0) {
                     star.alpha += (Math.random() - 0.5) * 0.04;
                     if (star.alpha < 0.1) star.alpha = 0.1;
                     if (star.alpha > 0.9) star.alpha = 0.9;
@@ -63,17 +86,20 @@ export default function Starfield() {
                 star.y -= star.speed;
                 if (star.y < 0) star.y = height;
             });
-
-            animationFrameId = requestAnimationFrame(animate);
         };
 
-        animate();
+        animationFrameId = requestAnimationFrame(animate);
 
         const handleResize = () => {
             width = window.innerWidth;
             height = window.innerHeight;
-            canvas.width = width;
-            canvas.height = height;
+            const newDpr = mobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
+            canvas.width = width * newDpr;
+            canvas.height = height * newDpr;
+            canvas.style.width = `${width}px`;
+            canvas.style.height = `${height}px`;
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            ctx.scale(newDpr, newDpr);
         };
 
         window.addEventListener('resize', handleResize);
@@ -88,6 +114,7 @@ export default function Starfield() {
         <canvas
             ref={canvasRef}
             className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
+            style={{ willChange: 'auto' }} // Prevent unnecessary GPU layer on mobile
         />
     );
 }

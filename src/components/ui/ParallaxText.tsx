@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import {
     motion,
     useScroll,
@@ -22,6 +22,7 @@ interface ParallaxTextProps {
 }
 
 export default function ParallaxText({ children, baseVelocity = 100, className = "" }: ParallaxTextProps) {
+    const [isMobile, setIsMobile] = useState(false);
     const baseX = useMotionValue(0);
     const { scrollY } = useScroll();
     const scrollVelocity = useVelocity(scrollY);
@@ -33,6 +34,11 @@ export default function ParallaxText({ children, baseVelocity = 100, className =
         clamp: false
     });
 
+    useEffect(() => {
+        const checkMobile = () => window.innerWidth < 768 || 'ontouchstart' in window;
+        setIsMobile(checkMobile());
+    }, []);
+
     /**
      * This is a magic number for the wrap function. If you can't see the text,
      * you might need to adjust this. It depends on the width of the content.
@@ -41,7 +47,15 @@ export default function ParallaxText({ children, baseVelocity = 100, className =
     const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
 
     const directionFactor = useRef<number>(1);
+    const lastFrameTime = useRef<number>(0);
+    
     useAnimationFrame((t, delta) => {
+        // Throttle to ~30fps on mobile
+        if (isMobile) {
+            if (t - lastFrameTime.current < 33) return; // ~30fps
+            lastFrameTime.current = t;
+        }
+
         let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 
         /**

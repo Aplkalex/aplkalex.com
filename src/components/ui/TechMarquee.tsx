@@ -1,8 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 
 interface TechItem {
     name: string;
@@ -56,15 +55,14 @@ function MarqueeRow({ items, reverse = false, speed }: MarqueeRowProps) {
                     style={animationStyle}
                 >
                     {visibleItems.map((item, index) => (
-                        <motion.div
+                        <div
                             key={`${dup}-${index}`}
-                            className="flex items-center gap-2 transition-colors duration-300 cursor-pointer"
+                            className="flex items-center gap-2 transition-transform duration-200 cursor-pointer hover:scale-110 md:hover:scale-115"
                             style={{ color: item.color || 'var(--foreground-muted)' }}
-                            whileHover={{ scale: 1.15, filter: "brightness(1.2)" }}
                         >
                             {item.icon}
                             <span className="text-lg font-medium whitespace-nowrap">{item.name}</span>
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
             ))}

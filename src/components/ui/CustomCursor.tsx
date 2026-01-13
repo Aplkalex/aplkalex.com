@@ -1,12 +1,14 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import { useTheme } from 'next-themes';
 
 export default function CustomCursor() {
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+    const [isVisible, setIsVisible] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
+    const cursorRef = useRef<HTMLDivElement>(null);
+    const positionRef = useRef({ x: 0, y: 0 });
+    const rafRef = useRef<number>();
     const { resolvedTheme } = useTheme();
     const isDarkMode = resolvedTheme === 'dark';
 
@@ -15,13 +17,26 @@ export default function CustomCursor() {
         hoverBorder: isDarkMode ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
         baseBackground: 'transparent',
         hoverBackground: isDarkMode ? 'rgba(255, 255, 255, 0.15)' : 'rgba(15, 23, 42, 0.1)',
-        baseShadow: isDarkMode ? '0 0 20px rgba(255, 255, 255, 0.3)' : '0 0 20px rgba(15, 23, 42, 0.18)',
-        hoverShadow: isDarkMode ? '0 0 30px rgba(255, 255, 255, 0.45)' : '0 0 30px rgba(15, 23, 42, 0.25)',
     };
 
+    const updateCursorPosition = useCallback(() => {
+        if (cursorRef.current) {
+            cursorRef.current.style.transform = `translate3d(${positionRef.current.x - 12}px, ${positionRef.current.y - 12}px, 0)`;
+        }
+        rafRef.current = requestAnimationFrame(updateCursorPosition);
+    }, []);
+
     useEffect(() => {
-        const updateMousePosition = (e: MouseEvent) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+        // Don't run on mobile/touch devices
+        const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        if (isTouchDevice || window.innerWidth < 768) {
+            return;
+        }
+
+        setIsVisible(true);
+
+        const handleMouseMove = (e: MouseEvent) => {
+            positionRef.current = { x: e.clientX, y: e.clientY };
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -33,35 +48,37 @@ export default function CustomCursor() {
             }
         };
 
-        window.addEventListener('mousemove', updateMousePosition);
-        window.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mousemove', handleMouseMove, { passive: true });
+        window.addEventListener('mouseover', handleMouseOver, { passive: true });
+        
+        rafRef.current = requestAnimationFrame(updateCursorPosition);
 
         return () => {
-            window.removeEventListener('mousemove', updateMousePosition);
+            window.removeEventListener('mousemove', handleMouseMove);
             window.removeEventListener('mouseover', handleMouseOver);
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+            }
         };
-    }, []);
+    }, [updateCursorPosition]);
+
+    // Don't render anything on mobile
+    if (!isVisible) return null;
 
     return (
-        <motion.div
+        <div
+            ref={cursorRef}
             className="fixed top-0 left-0 w-6 h-6 border rounded-full pointer-events-none z-[9999] hidden md:block"
             style={{
                 willChange: 'transform',
-                transform: 'translateZ(0)',
-            }}
-            animate={{
-                x: mousePosition.x - 12,
-                y: mousePosition.y - 12,
-                scale: isHovering ? 2.5 : 1,
                 backgroundColor: isHovering ? cursorStyles.hoverBackground : cursorStyles.baseBackground,
                 borderColor: isHovering ? cursorStyles.hoverBorder : cursorStyles.baseBorder,
-                boxShadow: isHovering ? cursorStyles.hoverShadow : cursorStyles.baseShadow,
-            }}
-            transition={{
-                type: "spring",
-                damping: 25,
-                stiffness: 300,
-                mass: 0.4
+                transform: 'translate3d(0, 0, 0)',
+                transition: 'background-color 0.15s ease, border-color 0.15s ease, width 0.15s ease, height 0.15s ease',
+                width: isHovering ? '60px' : '24px',
+                height: isHovering ? '60px' : '24px',
+                marginLeft: isHovering ? '-18px' : '0',
+                marginTop: isHovering ? '-18px' : '0',
             }}
         />
     );

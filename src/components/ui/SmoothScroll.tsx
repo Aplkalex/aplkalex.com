@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect, useState } from 'react';
 import Lenis from 'lenis';
 import 'lenis/dist/lenis.css';
 
@@ -9,7 +9,23 @@ interface SmoothScrollProps {
 }
 
 export default function SmoothScroll({ children }: SmoothScrollProps) {
+    const [isMobile, setIsMobile] = useState(false);
+
     useEffect(() => {
+        // Check if mobile device - disable smooth scroll on mobile for better performance
+        const checkMobile = () => {
+            return window.innerWidth < 768 || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        };
+        
+        const mobile = checkMobile();
+        setIsMobile(mobile);
+
+        // Skip Lenis on mobile - native scroll is smoother on touch devices
+        if (mobile) {
+            window.scrollTo(0, 0);
+            return;
+        }
+
         // Reset scroll position on page load
         window.scrollTo(0, 0);
         

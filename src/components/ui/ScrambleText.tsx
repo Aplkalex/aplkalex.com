@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -20,52 +20,55 @@ export default function ScrambleText({
     delay = 0,
 }: ScrambleTextProps) {
     const [displayText, setDisplayText] = useState(text);
-    const [isScrambling, setIsScrambling] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const rafRef = useRef<number>();
+    const startTimeRef = useRef<number>(0);
 
     useEffect(() => {
         setMounted(true);
-        setIsScrambling(true);
     }, []);
 
     useEffect(() => {
         if (!mounted) return;
 
-        let interval: NodeJS.Timeout;
-        let startTime: number;
+        const length = text.length;
+        let delayTimeout: NodeJS.Timeout;
 
-        const startScramble = () => {
-            startTime = Date.now();
-            const length = text.length;
+        const animate = (currentTime: number) => {
+            if (startTimeRef.current === 0) {
+                startTimeRef.current = currentTime;
+            }
 
-            interval = setInterval(() => {
-                const elapsedTime = (Date.now() - startTime) / 1000;
-                const progress = Math.min(elapsedTime / duration, 1);
+            const elapsedTime = (currentTime - startTimeRef.current) / 1000;
+            const progress = Math.min(elapsedTime / duration, 1);
 
-                if (progress >= 1) {
-                    setDisplayText(text);
-                    setIsScrambling(false);
-                    clearInterval(interval);
-                    return;
-                }
+            if (progress >= 1) {
+                setDisplayText(text);
+                return;
+            }
 
-                const scrambleLength = Math.floor(length * (1 - progress));
-                const revealedLength = length - scrambleLength;
+            const scrambleLength = Math.floor(length * (1 - progress));
+            const revealedLength = length - scrambleLength;
 
-                const revealed = text.substring(0, revealedLength);
-                const scrambled = Array.from({ length: scrambleLength })
-                    .map(() => CHARS[Math.floor(Math.random() * CHARS.length)])
-                    .join("");
+            const revealed = text.substring(0, revealedLength);
+            const scrambled = Array.from({ length: scrambleLength })
+                .map(() => CHARS[Math.floor(Math.random() * CHARS.length)])
+                .join("");
 
-                setDisplayText(revealed + scrambled);
-            }, 50);
+            setDisplayText(revealed + scrambled);
+            rafRef.current = requestAnimationFrame(animate);
         };
 
-        const timeout = setTimeout(startScramble, delay * 1000);
+        delayTimeout = setTimeout(() => {
+            startTimeRef.current = 0;
+            rafRef.current = requestAnimationFrame(animate);
+        }, delay * 1000);
 
         return () => {
-            clearTimeout(timeout);
-            clearInterval(interval);
+            clearTimeout(delayTimeout);
+            if (rafRef.current) {
+                cancelAnimationFrame(rafRef.current);
+            }
         };
     }, [text, duration, delay, mounted]);
 
