@@ -79,7 +79,6 @@ export default function Home() {
     const router = useRouter();
     const containerRef = useRef(null);
     const { resolvedTheme } = useTheme();
-    const zoomOverlayBg = resolvedTheme === 'dark' ? '!bg-black' : '!bg-white';
     const { scrollYProgress } = useScroll({
         target: containerRef,
         offset: ["start start", "end start"]
@@ -106,7 +105,7 @@ export default function Home() {
 
         setTimeout(() => {
             setZoomingId(null);
-        }, 900); // Reset after a while
+        }, 1200); // Reset after animation completes
     };
 
     return (
@@ -115,7 +114,8 @@ export default function Home() {
                 {zoomingId === 'queuesis' && (
                     <motion.div
                         layoutId="queuesis-card"
-                        className={`fixed inset-0 z-[9999] ${zoomOverlayBg}`}
+                        className="fixed inset-0 z-[9999]"
+                        style={{ backgroundColor: resolvedTheme === 'dark' ? '#000000' : '#ffffff' }}
                         initial={{ borderRadius: 16 }}
                         animate={{ borderRadius: 0 }}
                         transition={{ duration: 0.25, ease: "easeInOut" }}
@@ -123,11 +123,12 @@ export default function Home() {
                 )}
                 {zoomingId === 'resume' && (
                     <motion.div
-                        className={`fixed inset-0 z-[9999] ${zoomOverlayBg}`}
+                        className="fixed inset-0 z-[9999]"
+                        style={{ backgroundColor: resolvedTheme === 'dark' ? '#000000' : '#ffffff' }}
                         initial={{ clipPath: 'circle(0% at 50% 50%)' }}
-                        animate={{ clipPath: 'circle(150% at 50% 50%)' }}
+                        animate={{ clipPath: 'circle(200% at 50% 50%)' }}
                         exit={{ opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
                     />
                 )}
             </AnimatePresence>
