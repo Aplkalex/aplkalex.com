@@ -122,11 +122,11 @@ export default function Home() {
                 )}
                 {zoomingId === 'resume' && (
                     <motion.div
+                        layoutId="resume-button"
                         className="fixed inset-0 z-[9999] bg-[#f8f9fa] dark:bg-[#050505]"
-                        initial={{ clipPath: 'circle(0% at 50% 50%)' }}
-                        animate={{ clipPath: 'circle(200% at 50% 50%)' }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+                        initial={{ borderRadius: 9999 }}
+                        animate={{ borderRadius: 0 }}
+                        transition={{ duration: 0.25, ease: "easeInOut" }}
                     />
                 )}
             </AnimatePresence>
@@ -181,6 +181,8 @@ export default function Home() {
                                 </motion.div>
                                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                                     <motion.button
+                                        layoutId="resume-button"
+                                        style={{ borderRadius: 9999 }}
                                         type="button"
                                         onClick={handleResumeClick}
                                         className="cta-base cta-secondary"
