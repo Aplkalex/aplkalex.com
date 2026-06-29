@@ -100,7 +100,7 @@ export default function Home() {
         setZoomingId('resume');
         // Delay opening new tab to let animation play briefly
         setTimeout(() => {
-            window.open('/WongKaHei_Alex_Resume.pdf', '_blank');
+            window.open('/WKH_CV202606.pdf', '_blank');
         }, 250);
 
         setTimeout(() => {
