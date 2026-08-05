@@ -14,7 +14,6 @@ const spaceGrotesk = Space_Grotesk({ subsets: ['latin'], variable: '--font-space
 export const metadata: Metadata = {
     title: 'Aplkalex | Portfolio',
     description: 'Computer Science Student & Full Stack Developer',
-    keywords: ['CUHK timetable app'],
 };
 
 import { ThemeProvider } from '@/components/ThemeProvider';
